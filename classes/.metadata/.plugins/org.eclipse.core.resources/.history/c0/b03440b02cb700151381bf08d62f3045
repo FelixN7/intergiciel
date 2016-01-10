@@ -1,0 +1,19 @@
+package Core;
+
+public class Des {
+
+	public TypeDeDes type ;
+	
+	public Des(TypeDeDes type) {
+		this.type = type ;
+	}
+	
+	public int lancer() {
+		int res ;
+			switch(this.type) {
+				
+			}
+		return res;
+	}
+	
+}

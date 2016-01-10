@@ -1,0 +1,42 @@
+package Core;
+
+import java.util.Random;
+
+public class Des {
+
+	public TypeDeDes type ;
+	
+	public Des(TypeDeDes type) {
+		this.type = type ;
+	}
+	
+	public int lancer() {
+		Random rand = new Random() ;
+		int res ;
+			switch(this.type) {
+				case D4:
+					res = rand.nextInt(4) + 1 ;
+					break ;
+				case D6 :
+					res = rand.nextInt(4) + 1 ;
+					break ;
+				case D8 :
+					res = rand.nextInt(4) + 1 ;
+					break ;
+				case D10 : 
+					res = rand.nextInt(4) + 1 ;
+					break;
+				case D12 : 
+					res = rand.nextInt(4) + 1 ;
+					break;
+				case D20 : 
+					res = rand.nextInt(4) + 1 ;
+					break ;
+				case D100 : 
+					res = rand.nextInt(4) + 1 ;
+					break ;
+			}
+		return res;
+	}
+	
+}

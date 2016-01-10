@@ -1,0 +1,11 @@
+package Core;
+
+public class Des {
+
+	public TypeDeDes type ;
+	
+	public void Des(TypeDeDes type) {
+		this.type = type ;
+	}
+	
+}
