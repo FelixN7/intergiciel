@@ -1,0 +1,44 @@
+
+---------------------Facade----------------------
+	Facade utilisateur
+connexion
+(deconnxion, gere dans la servlet de connexion)
+inscription
+
+
+	Facade fiche
+creer fiche
+suppr fiche
+voir fiche
+editer fiche(MJ pour le lvl up)
+
+	Facade partie
+creer partie
+rajouter joueur partie
+suppr joueur partie
+lister joueurs partie (param selection joueur/PNJ/tout)
+
+
+	???
+calcul resultat de des (calculs finaux)
+
+
+
+
+
+--------------------Utilitaire hors facade--------------
+
+Demarrer combat (ajout joueur + jet de de cote client, puis envoi pour calcul d'ini cote serveur, retour ordre d'ini)
+fin combat
+
+
+
+
+ServConnection => login/inscription/accueil/deconnexion
+ServFiche => acces a la page fiche
+ServPartie => pages combat/partie
+
+
+
+
+
