@@ -1,15 +1,29 @@
 package Core;
 
+/**
+ * Classe Dés permettant de créer l'objet "Dés"
+ * @author Maxime
+ * @version 1.0
+ */
+
 import java.util.Random;
 
 public class Des {
 
+	/** Le type de dés */
 	public TypeDeDes type ;
 	
+	/** Création d'un dé
+	 * @param type le type de dé
+	 */
 	public Des(TypeDeDes type) {
 		this.type = type ;
 	}
 	
+	/**
+	 * Retourne le résultat d'un lancé de dé
+	 * @return integer
+	 */
 	public int lancer() {
 		Random rand = new Random() ;
 		int res ;
