@@ -7,7 +7,8 @@ import java.util.HashMap;
 public class Classe implements Serializable {
 
 	private static final long serialVersionUID = 1L ;
-	private String nom ; 
+	private String nom ;
+	private Core.Des DVie ;
 	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
 	private HashMap<Integer, Integer> bonusRef ; 
 	private HashMap<Integer, Integer> bonusVig ;
@@ -27,6 +28,14 @@ public class Classe implements Serializable {
 	
 	public String getNom() {
 		return (this.nom) ;
+	}
+	
+	public Core.Des getDVie() {
+		return DVie;
+	}
+
+	public void setDVie(Core.Des dVie) {
+		DVie = dVie;
 	}
 	
 	public void setBonusAtt(HashMap<Integer, ArrayList<Integer>> tableAtt) {
@@ -60,4 +69,5 @@ public class Classe implements Serializable {
 	public HashMap<Integer, Integer> getBonusVol() {
 		return (this.bonusVol) ;
 	}
+
 }

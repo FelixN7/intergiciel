@@ -3,6 +3,8 @@ package User;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Core.TypeDeDes;
+
 @Singleton
 public class Guerrier {
 
@@ -16,7 +18,7 @@ public class Guerrier {
 	
 	public Guerrier() {
 		/** Création d'une instance de la classe Classe*/
-		Classe g = new Classe() ;
+		Classe g = new Classe("Guerrier") ;
 		/** On remplit les tables pour chaque niveau */
 		for(int i=1; i<=20; i++) {
 			/** On remplit la table du bonus de base à l'attaque */
@@ -43,7 +45,8 @@ public class Guerrier {
 			/** On remplit la table du bonus de base de Volonté*/
 				tableVol.put(i, (i-i%3)/3) ;
 		}
-		/** */
+		/** Ajour de chaque table dans g */
+		g.setDVie(new Core.Des(TypeDeDes.D10));
 		g.setBonusAtt(tableAtt) ;
 		g.setBonusVol(tableVol) ;
 		g.setBonusVig(tableVig) ;
