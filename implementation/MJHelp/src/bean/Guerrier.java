@@ -1,7 +1,11 @@
-package User;
+package bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import Core.TypeDeDes;
 

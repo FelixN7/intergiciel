@@ -1,7 +1,11 @@
-package User;
+package bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import Core.TypeDeDes;
 
@@ -11,7 +15,6 @@ public class Voleur {
 	@PersistenceContext
 	private EntityManager em;
 
-	private Core.Des DVie ;
 	private HashMap<Integer, ArrayList<Integer>> tableAtt;
 	private HashMap<Integer, Integer> tableRef ; 
 	private HashMap<Integer, Integer> tableVig ;

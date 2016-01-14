@@ -1,4 +1,4 @@
-package User;
+package bean;
 
 public class Dons {
 

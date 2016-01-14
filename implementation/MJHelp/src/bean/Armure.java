@@ -1,7 +1,12 @@
-package User;
+package bean;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Armure implements Item {
-
+	
+	@Id
 	private String nom ;
 	private Integer bonusArmure ;
 	private Integer bonusDexMax ;

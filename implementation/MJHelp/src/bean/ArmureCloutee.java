@@ -1,4 +1,8 @@
-package User;
+package bean;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Singleton
 public class ArmureCloutee {
@@ -19,7 +23,7 @@ public class ArmureCloutee {
 		em.persist(a);
 	}
 	
-	public Classe getArmureCloutee(String nom) {
+	public Armure getArmureCloutee(String nom) {
 		return em.find(Armure.class, nom) ;
 	}
 	

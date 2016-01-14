@@ -1,4 +1,4 @@
-package User;
+package bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;

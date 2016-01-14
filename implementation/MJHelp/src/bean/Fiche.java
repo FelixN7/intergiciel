@@ -1,18 +1,20 @@
-package User;
+package bean;
 
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import Core.PersoType;
 import Utilities.Caracteristiques;
 import Utilities.Competences;
 import Utilities.Sauvegardes;
 
-@Singleton
+@Entity
 public class Fiche {
-
-	@PersistenceContext
-	EntityManager em ;
 	
+	@Id
+	private String nomPerso ;
 	private Utilisateur joueur ;
 	private Caracteristiques caracteristiques ;
 	private ArrayList<Core.Partie> listeParties ;
@@ -22,7 +24,6 @@ public class Fiche {
 	private ArrayList<Dons> dons ;
 	private int level ;
 	private Competences competences ;
-	private String nomPerso ;
 	private Arme arme ;
 	private Armure armure ;
 	private PersoType type ;

@@ -1,6 +1,10 @@
-package User;
+package bean;
 
 import java.util.ArrayList;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import Core.TypeDeDes;
 
@@ -27,7 +31,7 @@ public class EpeeBatarde {
 		em.persist(a);
 	}
 	
-	public Classe getEpeeBatarde(String nom) {
+	public Arme getEpeeBatarde(String nom) {
 		return em.find(Arme.class, nom) ;
 	}
 	

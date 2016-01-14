@@ -1,4 +1,8 @@
-package User;
+package bean;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Singleton
 public class ArmureCuir {
@@ -19,7 +23,7 @@ public class ArmureCuir {
 		em.persist(a) ;
 	}
 	
-	public Classe getArmureCuir(String nom) {
+	public Armure getArmureCuir(String nom) {
 		return em.find(Armure.class, nom) ;
 	}
 	

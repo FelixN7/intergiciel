@@ -1,8 +1,8 @@
-package User;
+package bean;
 
 import javax.persistence.*;
 
-import utils.TypeUtilisateur;
+import Core.TypeUtilisateur;
 
 @Entity
 public class Utilisateur {
@@ -32,7 +32,7 @@ public class Utilisateur {
 	
 	public Utilisateur(){}
 	
-	public Utilisateur(String p,String m, Core.TypeUtilisateur t){
+	public Utilisateur(String p,String m, TypeUtilisateur t){
 		pseudo=p;
 		mdp=m;
 		type=t;
