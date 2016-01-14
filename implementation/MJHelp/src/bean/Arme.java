@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Arme implements Item {
 
 	private String nom ;
-	private Core.Des dgtsP ;
-	private Core.Des dgtsM ;
+	private Utilities.Des dgtsP ;
+	private Utilities.Des dgtsM ;
 	private ArrayList<Integer> zoneCritique ;
 	private Integer facteurCritique ;
 	
@@ -26,18 +26,18 @@ public class Arme implements Item {
 		this.nom = nom;
 	}
 	
-	public Core.Des getDgtsP() {
+	public Utilities.Des getDgtsP() {
 		return this.dgtsP;
 	}
-	public void setDgtsP(Core.Des dgtsP) {
+	public void setDgtsP(Utilities.Des dgtsP) {
 		this.dgtsP = dgtsP;
 	}
 
-	public Core.Des getDgtsM() {
+	public Utilities.Des getDgtsM() {
 		return this.dgtsM;
 	}
 
-	public void setDgtsM(Core.Des dgtsM) {
+	public void setDgtsM(Utilities.Des dgtsM) {
 		this.dgtsM = dgtsM;
 	}
 

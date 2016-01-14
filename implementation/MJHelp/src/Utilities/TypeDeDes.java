@@ -1,4 +1,4 @@
-package Core;
+package Utilities;
 
 /**
  * Les types de dés existant

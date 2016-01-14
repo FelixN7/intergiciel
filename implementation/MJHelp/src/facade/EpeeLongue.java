@@ -1,4 +1,4 @@
-package bean;
+package facade;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,8 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import Core.TypeDeDes;
+import Utilities.TypeDeDes;
+import bean.Arme;
 
 @Singleton
 public class EpeeLongue {
@@ -19,8 +20,8 @@ public class EpeeLongue {
 		Arme a = new Arme("épée longue") ;
 		
 		/** On remplit les différents champs */
-		a.setDgtsP(new Core.Des(TypeDeDes.D6));
-		a.setDgtsM(new Core.Des(TypeDeDes.D8));
+		a.setDgtsP(new Utilities.Des(TypeDeDes.D6));
+		a.setDgtsM(new Utilities.Des(TypeDeDes.D8));
 		
 		ArrayList<Integer> l = new ArrayList<Integer>() ;
 		l.add(19,20) ;

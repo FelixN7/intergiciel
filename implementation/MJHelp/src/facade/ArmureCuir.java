@@ -1,8 +1,10 @@
-package bean;
+package facade;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import bean.Armure;
 
 @Singleton
 public class ArmureCuir {

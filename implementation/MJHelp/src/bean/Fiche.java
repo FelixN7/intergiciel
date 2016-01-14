@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import Core.PersoType;
 import Utilities.Caracteristiques;
 import Utilities.Competences;
+import Utilities.PersoType;
 import Utilities.Sauvegardes;
 
 @Entity
@@ -17,7 +17,7 @@ public class Fiche {
 	private String nomPerso ;
 	private Utilisateur joueur ;
 	private Caracteristiques caracteristiques ;
-	private ArrayList<Core.Partie> listeParties ;
+	private ArrayList<bean.Partie> listeParties ;
 	private int initiative ;
 	private int attaque ;
 	private int ca ;
@@ -33,7 +33,13 @@ public class Fiche {
 	private ArrayList<Item> inventory ;
 	
 	public Fiche() {
-		
+	}
+	
+	public Fiche(String nom, Utilisateur u, Caracteristiques c, int vie) {
+		this.nomPerso = nom ;
+		this.joueur = u ;
+		this.caracteristiques = c ;
+		this.vie = vie ;
 	}
 
 	public Utilisateur getJoueur() {
@@ -52,11 +58,11 @@ public class Fiche {
 		this.caracteristiques = caracteristiques;
 	}
 
-	public ArrayList<Core.Partie> getListeParties() {
+	public ArrayList<bean.Partie> getListeParties() {
 		return listeParties;
 	}
 
-	public void setListeParties(ArrayList<Core.Partie> listeParties) {
+	public void setListeParties(ArrayList<bean.Partie> listeParties) {
 		this.listeParties = listeParties;
 	}
 

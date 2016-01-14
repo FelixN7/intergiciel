@@ -2,14 +2,14 @@ package bean;
 
 import javax.persistence.*;
 
-import Core.TypeUtilisateur;
+import Utilities.TypeUtilisateur;
 
 @Entity
 public class Utilisateur {
 	@Id
 	private String pseudo;
 	private String mdp;
-	private Core.TypeUtilisateur type;
+	private Utilities.TypeUtilisateur type;
 	
 	public String getPseudo() {
 		return pseudo;
@@ -23,10 +23,10 @@ public class Utilisateur {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	public Core.TypeUtilisateur getType() {
+	public Utilities.TypeUtilisateur getType() {
 		return type;
 	}
-	public void setType(Core.TypeUtilisateur type) {
+	public void setType(Utilities.TypeUtilisateur type) {
 		this.type = type;
 	}
 	

@@ -1,4 +1,4 @@
-package Core;
+package Utilities;
 
 public enum PersoType {
 	PJ,

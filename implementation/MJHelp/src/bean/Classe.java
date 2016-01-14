@@ -8,7 +8,7 @@ public class Classe implements Serializable {
 
 	private static final long serialVersionUID = 1L ;
 	private String nom ;
-	private Core.Des DVie ;
+	private Utilities.Des DVie ;
 	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
 	private HashMap<Integer, Integer> bonusRef ; 
 	private HashMap<Integer, Integer> bonusVig ;
@@ -30,11 +30,11 @@ public class Classe implements Serializable {
 		return (this.nom) ;
 	}
 	
-	public Core.Des getDVie() {
+	public Utilities.Des getDVie() {
 		return DVie;
 	}
 
-	public void setDVie(Core.Des dVie) {
+	public void setDVie(Utilities.Des dVie) {
 		DVie = dVie;
 	}
 	

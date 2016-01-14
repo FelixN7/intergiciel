@@ -1,4 +1,4 @@
-package bean;
+package facade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,8 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import Core.TypeDeDes;
+import Utilities.TypeDeDes;
+import bean.Classe;
 
 @Singleton
 public class Guerrier {
@@ -50,7 +51,7 @@ public class Guerrier {
 				tableVol.put(i, (i-i%3)/3) ;
 		}
 		/** Ajour de chaque table dans g */
-		g.setDVie(new Core.Des(TypeDeDes.D10));
+		g.setDVie(new Utilities.Des(TypeDeDes.D10));
 		g.setBonusAtt(tableAtt) ;
 		g.setBonusVol(tableVol) ;
 		g.setBonusVig(tableVig) ;

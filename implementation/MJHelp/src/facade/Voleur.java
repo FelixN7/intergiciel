@@ -1,4 +1,4 @@
-package bean;
+package facade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,8 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import Core.TypeDeDes;
+import Utilities.TypeDeDes;
+import bean.Classe;
 
 @Singleton
 public class Voleur {
@@ -51,7 +52,7 @@ public class Voleur {
 				tableVol.put(i, (i-i%3)/3) ;
 		}
 		/** Ajout de chaque table dans v */
-		v.setDVie(new Core.Des(TypeDeDes.D10));
+		v.setDVie(new Utilities.Des(TypeDeDes.D10));
 		v.setBonusAtt(tableAtt) ;
 		v.setBonusVol(tableVol) ;
 		v.setBonusVig(tableVig) ;

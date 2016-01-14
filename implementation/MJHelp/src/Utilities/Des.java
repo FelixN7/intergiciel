@@ -1,4 +1,4 @@
-package Core;
+package Utilities;
 
 /**
  * Classe Dés permettant de créer l'objet "Dés"
