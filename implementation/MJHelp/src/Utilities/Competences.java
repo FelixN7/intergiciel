@@ -21,7 +21,7 @@ public class Competences {
 		competences.put("Décryptage", 0) ;
 		competences.put("Déguisement", 0) ;
 		competences.put("Déplacement silencieux", 0) ;
-		competences.put("désamorcçage/sabotage", 0) ;
+		competences.put("Désamorcçage/sabotage", 0) ;
 		competences.put("Détection", 0) ;
 		competences.put("Diplomatie", 0) ;
 		competences.put("Discrétion", 0) ;

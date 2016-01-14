@@ -27,4 +27,13 @@ public class Combat {
 		
 	}
 	
+	public void attaque(Fiche Joueur1, int resD, int nbAttaque, Fiche Joueur2) {
+		boolean touche ;
+		if (resD +  Joueur1.getAttaque().get(nbAttaque) >= Joueur2.getCa()) {
+			touche = true ;
+		} else {
+			touche = false ;
+		}
+	}
+	
 }

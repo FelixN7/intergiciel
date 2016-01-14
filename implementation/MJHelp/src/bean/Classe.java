@@ -4,9 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Classe implements Serializable {
 
 	private static final long serialVersionUID = 1L ;
+	@Id
 	private String nom ;
 	private Utilities.Des DVie ;
 	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
@@ -70,4 +75,15 @@ public class Classe implements Serializable {
 		return (this.bonusVol) ;
 	}
 
+	public String toString(ArrayList<Integer> l) {
+		if (l.size() != 0) {
+			String s = new String() ;
+			for (int i = 0; i<l.size(); i++) {
+				s = s+"+"+l.get(i)+"/" ;
+			}
+			return s ;
+		}
+		return null ;
+	}
+	
 }

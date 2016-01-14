@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import Utilities.Alignement;
 import Utilities.Caracteristiques;
 import Utilities.Competences;
 import Utilities.PersoType;
@@ -19,8 +20,11 @@ public class Fiche {
 	private Caracteristiques caracteristiques ;
 	private ArrayList<bean.Partie> listeParties ;
 	private int initiative ;
-	private int attaque ;
+	private ArrayList<Integer> attaque ;
 	private int ca ;
+	private Classe classe ;
+	private Race race ;
+	private Alignement alignement ;
 	private ArrayList<Dons> dons ;
 	private int level ;
 	private Competences competences ;
@@ -35,11 +39,33 @@ public class Fiche {
 	public Fiche() {
 	}
 	
-	public Fiche(String nom, Utilisateur u, Caracteristiques c, int vie) {
+	/**
+	 * Le constructeur de la classe Fiche
+	 * @param nom le nom du personnage représenté par la fiche
+	 * @param u l'utilisateur à qui appartient ce personnage
+	 * @param c les caractéristiques du personnage
+	 * @param classe la classe du personnage
+	 */
+	public Fiche(String nom, Utilisateur u, Caracteristiques c, Classe classe, Race race) {
+		/**
+		 * On commence par remplir les données connues
+		 */
 		this.nomPerso = nom ;
 		this.joueur = u ;
+		this.level = 1 ;
 		this.caracteristiques = c ;
-		this.vie = vie ;
+		this.setClasse(classe) ;
+		this.setRace(race) ;
+		
+		/**
+		 * On remplit ensuite le reste des informations par des calculs
+		 */
+		this.vie = c.getModCon() + classe.getDVie().val() ;
+		this.vieCourante = this.vie ;
+		this.attaque = classe.getBonusAtt().get(level) ;
+		this.ca = 10 ;
+		this.sauvegardes = new Sauvegardes(classe.getBonusRef().get(level) + c.getModDex(), classe.getBonusRef().get(level) + c.getModSag(), classe.getBonusRef().get(level) + c.getModCon()) ;
+		
 	}
 
 	public Utilisateur getJoueur() {
@@ -74,11 +100,11 @@ public class Fiche {
 		this.initiative = initiative;
 	}
 
-	public int getAttaque() {
+	public ArrayList<Integer> getAttaque() {
 		return attaque;
 	}
 
-	public void setAttaque(int attaque) {
+	public void setAttaque(ArrayList<Integer> attaque) {
 		this.attaque = attaque;
 	}
 
@@ -176,6 +202,30 @@ public class Fiche {
 
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
+	}
+
+	public Classe getClasse() {
+		return classe;
+	}
+
+	public void setClasse(Classe classe) {
+		this.classe = classe;
+	}
+
+	public Race getRace() {
+		return race;
+	}
+
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
+	public Alignement getAlignement() {
+		return alignement;
+	}
+
+	public void setAlignement(Alignement alignement) {
+		this.alignement = alignement;
 	}
 	
 	

@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import Utilities.Caracteristiques;
+import bean.Classe;
 import bean.Fiche;
+import bean.Race;
 import bean.Utilisateur;
 
 @Singleton
@@ -18,8 +20,8 @@ public class FacadeFiche {
 		
 	}
 	
-	public void creerFiche(String nom, Utilisateur u, Caracteristiques c, int vie) {
-		Fiche f = new Fiche(nom, u, c, vie) ;
+	public void creerFiche(String nom, Utilisateur u, Caracteristiques c, Classe classe, Race race) {
+		Fiche f = new Fiche(nom, u, c, classe, race) ;
 		em.persist(f);
 	}
 	

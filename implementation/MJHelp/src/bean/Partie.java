@@ -2,10 +2,15 @@ package bean;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Partie {
 
+	@Id
 	private String nom ; 
-	private ArrayList<bean.Fiche> listePj ;
+	private ArrayList<bean.Fiche> listePJ ;
 	private boolean finished ;
 	
 	public Partie() {	
@@ -13,6 +18,12 @@ public class Partie {
 	
 	public Partie (String nom) {
 		this.setNom(nom) ;
+	}
+	
+	public Partie (String nom, ArrayList<bean.Fiche> listePJ) {
+		this.setNom(nom);
+		this.setListePj(listePJ);
+		this.setFinished(false);
 	}
 
 	public String getNom() {
@@ -23,12 +34,12 @@ public class Partie {
 		this.nom = nom;
 	}
 
-	public ArrayList<bean.Fiche> getListePj() {
-		return listePj;
+	public ArrayList<bean.Fiche> getListePJ() {
+		return listePJ;
 	}
 
-	public void setListePj(ArrayList<bean.Fiche> listePj) {
-		this.listePj = listePj;
+	public void setListePj(ArrayList<bean.Fiche> listePJ) {
+		this.listePJ = listePJ;
 	}
 
 	public boolean isFinished() {
@@ -40,13 +51,13 @@ public class Partie {
 	}
 	
 	public void ajouterPJ (bean.Fiche PJ) {
-		this.listePj.add(PJ) ;
+		this.listePJ.add(PJ) ;
 	}
 	
 	public void supprimerPJ (bean.Fiche PJ) {
-		for (int i=0; i<listePj.size(); i++) {
-			if (listePj.get(i).equals(PJ)) {
-				this.listePj.remove(i) ;
+		for (int i=0; i<listePJ.size(); i++) {
+			if (listePJ.get(i).equals(PJ)) {
+				this.listePJ.remove(i) ;
 			}
 		}
 	}

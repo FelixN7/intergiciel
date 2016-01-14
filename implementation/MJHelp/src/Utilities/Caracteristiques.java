@@ -2,15 +2,15 @@ package Utilities;
 
 public class Caracteristiques {
 
-	private int Fo ;
+	private int For ;
 	private int Dex ;
 	private int Con ;
 	private int Int ;
 	private int Sag ;
 	private int Cha ;
 	
-	public Caracteristiques (int Fo, int Dex, int Con, int Int, int Sag, int Cha) {
-		this.setFo(Fo) ;
+	public Caracteristiques (int For, int Dex, int Con, int Int, int Sag, int Cha) {
+		this.setFor(For) ;
 		this.setDex(Dex) ;
 		this.setCon(Con) ;
 		this.setInt(Int) ;
@@ -18,16 +18,24 @@ public class Caracteristiques {
 		this.setCha(Cha) ;
 	}
 
-	public int getFo() {
-		return this.Fo;
+	public int getFor() {
+		return this.For;
 	}
-
-	public void setFo(int fo) {
-		this.Fo = fo;
+	
+	public int getModFor() {
+		return (this.For - 10)/2 ;
+	}
+	
+	public void setFor(int For) {
+		this.For = For ;
 	}
 
 	public int getDex() {
 		return this.Dex;
+	}
+	
+	public int getModDex() {
+		return (this.Dex - 10)/2 ;
 	}
 
 	public void setDex(int dex) {
@@ -36,6 +44,10 @@ public class Caracteristiques {
 
 	public int getCon() {
 		return this.Con;
+	}
+	
+	public int getModCon() {
+		return (this.Con - 10)/2 ;
 	}
 
 	public void setCon(int con) {
@@ -46,6 +58,10 @@ public class Caracteristiques {
 		return this.Int;
 	}
 
+	public int getModInt() {
+		return (this.Int - 10)/2 ;
+	}
+	
 	public void setInt(int i) {
 		this.Int = i;
 	}
@@ -54,6 +70,10 @@ public class Caracteristiques {
 		return this.Sag;
 	}
 
+	public int getModSag() {
+		return (this.Sag - 10)/2 ;
+	}
+	
 	public void setSag(int sag) {
 		this.Sag = sag;
 	}
@@ -62,6 +82,10 @@ public class Caracteristiques {
 		return this.Cha;
 	}
 
+	public int getModCha() {
+		return (this.Cha - 10)/2 ;
+	}
+	
 	public void setCha(int cha) {
 		this.Cha = cha;
 	}
