@@ -51,7 +51,7 @@ public class Guerrier {
 				tableVol.put(i, (i-i%3)/3) ;
 		}
 		/** Ajour de chaque table dans g */
-		g.setDVie(new Utilities.Des(TypeDeDes.D10));
+		g.setDVie(new Utilities.Des(TypeDeDes.D10, 1));
 		g.setBonusAtt(tableAtt) ;
 		g.setBonusVol(tableVol) ;
 		g.setBonusVig(tableVig) ;

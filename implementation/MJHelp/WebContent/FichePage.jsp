@@ -803,10 +803,10 @@ body {
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed">Battleaxe</td>
-    <td colspan="4" valign="top" class="boxed">4</td>
-    <td colspan="3" valign="top" class="boxed">1d8+4</td>
-    <td colspan="2" valign="top" class="boxed">20/x3</td>
+    <td height="19" colspan="9" valign="top" class="boxed"><%= f.getArme().getNom() %></td>
+    <td colspan="4" valign="top" class="boxed"><%= f.getAttaque() %></td>
+    <td colspan="3" valign="top" class="boxed"><%= f.getArme().getDgtsM().toString() %>+<%= f.getCaracteristiques().getModFor() %></td>
+    <td colspan="2" valign="top" class="boxed"><%= f.getArme().getZoneCritique().toString() %>/x<%= f.getArme().getFacteurCritique() %></td>
     <td></td>
   </tr>
   <tr> 
@@ -818,7 +818,7 @@ body {
   <tr> 
     <td height="19" colspan="2" valign="top" class="boxed">-</td>
     <td colspan="3" valign="top" class="boxed">&nbsp;</td>
-    <td colspan="13" valign="top" class="boxed">6lb, Med, twohanded wielding, </td>
+    <td colspan="13" valign="top" class="boxed"></td>
     <td></td>
   </tr>
   <tr> 
@@ -928,9 +928,9 @@ body {
                 <td width="32" valign="top" class="descboxed">LB.</td>
               </tr>
               <tr> 
-                <td width="107" height="24" valign="top" class="boxedsmall">Battleaxe</td>
+                <td width="107" height="24" valign="top" class="boxedsmall"></td>
                 <td width="32" valign="top" class="boxedsmall"><!--DWLayoutEmptyCell-->&nbsp;</td>
-                <td width="32" valign="top" class="boxedsmall">6</td>
+                <td width="32" valign="top" class="boxedsmall"></td>
                 <td width="107" valign="top" class="boxedsmall"></td>
                 <td width="32" valign="top" class="boxedsmall"><!--DWLayoutEmptyCell-->&nbsp;</td>
                 <td width="32" valign="top" class="boxedsmall"></td>

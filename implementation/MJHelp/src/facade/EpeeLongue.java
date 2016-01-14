@@ -20,8 +20,8 @@ public class EpeeLongue {
 		Arme a = new Arme("épée longue") ;
 		
 		/** On remplit les différents champs */
-		a.setDgtsP(new Utilities.Des(TypeDeDes.D6));
-		a.setDgtsM(new Utilities.Des(TypeDeDes.D8));
+		a.setDgtsP(new Utilities.Des(TypeDeDes.D6, 1));
+		a.setDgtsM(new Utilities.Des(TypeDeDes.D8, 1));
 		
 		ArrayList<Integer> l = new ArrayList<Integer>() ;
 		l.add(19,20) ;

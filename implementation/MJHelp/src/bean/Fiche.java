@@ -62,7 +62,13 @@ public class Fiche {
 		 */
 		this.vie = c.getModCon() + classe.getDVie().val() ;
 		this.vieCourante = this.vie ;
-		this.attaque = classe.getBonusAtt().get(level) ;
+		
+		ArrayList<Integer> l = classe.getBonusAtt().get(level) ;
+		for (int i = 0; i<l.size(); i++) {
+			l.set(i, l.get(i) + this.getCaracteristiques().getModFor()) ;
+		}
+		
+		this.attaque = l ;
 		this.ca = 10 ;
 		this.sauvegardes = new Sauvegardes(classe.getBonusRef().get(level) + c.getModDex(), classe.getBonusRef().get(level) + c.getModSag(), classe.getBonusRef().get(level) + c.getModCon()) ;
 		
