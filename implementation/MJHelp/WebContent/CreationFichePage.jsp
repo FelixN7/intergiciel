@@ -146,11 +146,11 @@ body {
 </head>
 <body>
 
-<% Fiche f = (Fiche) request.getAttribute("fiche"); %>
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
   <tr> 
-    <td height="18" colspan="10"><%= f.getNomPerso() %></td>
+    <td height="18" colspan="10"><input type="text" name="nomPerso"></td>
+    <td height="18" colspan="10"><input type="text" name="nomJoueur"></td>
     <td colspan="12" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
     <td colspan="8" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
   </tr>
@@ -160,9 +160,9 @@ body {
     <td colspan="8" class="desc1">CAMPAIGN</td>
   </tr>
   <tr> 
-    <td height="18" colspan="10"> <%= f.getLevel() %> <%= f.getClasse().getNom() %></td>
-    <td colspan="7" valign="top"> <%= f.getRace() %></td>
-    <td colspan="5" valign="top"> <%= f.getAlignement() %> </td>
+    <td height="18" colspan="10"> <input type="number" name="level"> <input type="text" name="nomClasse"></td>
+    <td colspan="7" valign="top"> <input type="text" name="nomRace"></td>
+    <td colspan="5" valign="top"> <input type="text" name="alignement"> </td>
     <td colspan="8" valign="top" class="boxed"></td>
   </tr>
   <tr> 
@@ -187,7 +187,7 @@ body {
   <tr> 
     <td height="39" valign="middle" class="blackback"> <p>STR<br>
         <span class="blackback_small">strength</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getFor() %></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" name="for"></td>
     <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModFor() %></td>
     <td colspan="2" valign="top" class="blackback"><P>HP<br>
         <span class="blackback_small">hit points</span></p></td>
@@ -199,11 +199,11 @@ body {
   <tr> 
     <td height="39" valign="middle" class="blackback"> <p>DEX<br>
         <span class="blackback_small">dexterity</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getDex()%> </td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" name="dex"></td>
     <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModDex()%></td>
     <td colspan="2" valign="top" class="blackback"><P>AC<br>
         <span class="blackback_small">armor class</span></p></td>
-    <td colspan="3" valign="top" class="boxed"> <%= f.getCa() %></td>
+    <td colspan="3" valign="top" class="boxed"> <%= f.getCa() %>	</td>
     <td width="10" class="desc3">=</td>
     <td colspan="2" valign="top" class="boxed">10</td>
     <td width="8" class="desc3">+</td>
@@ -224,7 +224,7 @@ body {
   <tr> 
     <td rowspan="2" valign="middle" class="blackback"> <p>CON<br>
         <span class="blackback_small">constitution</span></p></td>
-    <td colspan="2" rowspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getCon() %></td>
+    <td colspan="2" rowspan="2" valign="middle" class="boxed"><input type="number" name="con"></td>
     <td colspan="3" rowspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getModCon() %></td>
     <td width="31" height="18"></td>
     <td width="8"></td>
@@ -259,7 +259,7 @@ body {
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>INT<br>
         <span class="blackback_small">intelligence</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getInt()%></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" name="int"></td>
     <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModInt()%></td>
     <td colspan="3" valign="top" class="blackback"><P>TOUCH<br>
         <span class="blackback_small">armor class</span></p></td>
@@ -290,7 +290,7 @@ body {
           <td width="7" class="desc3">=</td>
           <td width="25" valign="top" class="skill"><%= f.getCaracteristiques().getModDex()%></td>
           <td width="7" class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Acrobaties")%></td>
+          <td valign="top" class="skill"><input type="number" name="acrobatiesRank"></td>
           <td width="7" class="desc3">+</td>
           <td width="25" valign="top" class="skill">  0</td>
         </tr>
@@ -302,7 +302,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"> <%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Art de la magie") %></td>
+          <td valign="top" class="skill"><input type="number" name="artdelamagieRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -314,7 +314,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Artisanat") %></td>
+          <td valign="top" class="skill"><input type="number" name="artisanat"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -326,7 +326,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Bluff") %></td>
+          <td valign="top" class="skill"><input type="number" name="bluffRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -338,7 +338,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCon() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Concentration") %></td>
+          <td valign="top" class="skill"><input type="number" name="concentrationRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -350,7 +350,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Connaissance(Mystères)") %></td>
+          <td valign="top" class="skill"><input type="number" name="connaissanceMystereRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -362,7 +362,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Connaissance(Nature)") %></td>
+          <td valign="top" class="skill"><input type="number" name="connaissanceNatureRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -374,7 +374,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Connaissance(religion)") %></td>
+          <td valign="top" class="skill"><input type="number" name="connaissanceReligionRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -386,7 +386,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"> <%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Contrefaçon") %></td>
+          <td valign="top" class="skill"><input type="number" name="contrefaconRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -398,7 +398,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Crochetage") %></td>
+          <td valign="top" class="skill"><input type="number" name="crochetageRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -410,7 +410,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Décryptage") %></td>
+          <td valign="top" class="skill"><input type="number" name="decryptageRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -422,7 +422,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Déguisement") %></td>
+          <td valign="top" class="skill"><input type="number" name="deguisementRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -434,7 +434,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Déplacement silencieux") %></td>
+          <td valign="top" class="skill"><input type="number" name="deplacementsilencieuxRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -446,7 +446,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Désamorçage/sabotage") %></td>
+          <td valign="top" class="skill"><input type="number" name="desamorcageRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -458,7 +458,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModSag() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Détection") %></td>
+          <td valign="top" class="skill"><input type="number" name="detectionRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -470,7 +470,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Diplomatie") %></td>
+          <td valign="top" class="skill"><input type="number" name="diplomatieRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -482,7 +482,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Discrétion") %></td>
+          <td valign="top" class="skill"><input type="number" name="discretionRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -494,7 +494,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Dressage") %> %></td>
+          <td valign="top" class="skill"><input type="number" name="dressageRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -506,7 +506,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Equilibre") %></td>
+          <td valign="top" class="skill"><input type="number" name="equilibreRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -518,7 +518,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Equitation") %></td>
+          <td valign="top" class="skill"><input type="number" name="equitationRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -530,7 +530,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModFor() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Escalade") %></td>
+          <td valign="top" class="skill"><input type="number" name="escaladeRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -542,7 +542,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Escamotage") %></td>
+          <td valign="top" class="skill"><input type="number" name="escamotageRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -554,7 +554,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences() %></td>
+          <td valign="top" class="skill"><input type="number" name="estimationRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -566,7 +566,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Evasion") %></td>
+          <td valign="top" class="skill"><input type="number" name="evasionRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -578,7 +578,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModInt() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Fouille") %></td>
+          <td valign="top" class="skill"><input type="number" name="fouilleRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -590,7 +590,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Intimidation") %></td>
+          <td valign="top" class="skill"><input type="number" name="intimidationRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -602,7 +602,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><%= f.getCaracteristiques().getModDex() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Maitrise des cordes") %></td>
+          <td valign="top" class="skill"><input type="number" name="maitrisedescordesRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -612,9 +612,9 @@ body {
           <td valign="top" class="skillability">for</td>
           <td valign="top" class="skill2"><%= f.getCaracteristiques().getModFor() + f.getCompetences().getCompetences().get("Natation") %></td>
           <td class="desc3">=</td>
-          <td valign="top" class="skill"><%=f.getCaracteristiques().getModFor() %></td>
+          <td valign="top" class="skill"><%= f.getCaracteristiques().getModFor() %></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Natation") %></td>
+          <td valign="top" class="skill"><input type="text" name="natationRank"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -623,7 +623,7 @@ body {
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>WIS<br>
         <span class="blackback_small">wisdom</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getSag() %></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" name="sag"></td>
     <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModSag() %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -641,7 +641,7 @@ body {
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>CHA<br>
         <span class="blackback_small">charisma</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><%= f.getCaracteristiques().getCha() %></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" name="cha"></td>
     <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModCha() %></td>
     <td colspan="6" valign="top" class="blackback"><P>INITIATIVE<br>
         <span class="blackback_small">modifier</span></p></td>
@@ -649,7 +649,7 @@ body {
     <td valign="top" class="desc3">=</td>
     <td valign="top" class="boxed"><%= f.getCaracteristiques().getModDex() %></td>
     <td valign="top" class="desc3">+</td>
-    <td valign="top" class="boxed">4</td>
+    <td valign="top" class="boxed">0</td>
     <td></td>
   </tr>
   <tr> 
@@ -803,7 +803,7 @@ body {
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed"><%= f.getArme().getNom() %></td>
+    <td height="19" colspan="9" valign="top" class="boxed"><input type="text" name="arme"></td>
     <td colspan="4" valign="top" class="boxed"><%= f.getAttaque() %></td>
     <td colspan="3" valign="top" class="boxed"><%= f.getArme().getDgtsM().toString() %>+<%= f.getCaracteristiques().getModFor() %></td>
     <td colspan="2" valign="top" class="boxed"><%= f.getArme().getZoneCritique().toString() %>/x<%= f.getArme().getFacteurCritique() %></td>
@@ -1069,7 +1069,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModSag() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Perception Auditive") %></td>
+                <td valign="top" class="skill"><input type="number" name="perceptionauditiveRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1081,7 +1081,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModSag() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Premier secours") %></td>
+                <td valign="top" class="skill"><input type="number" name="premiersecoursRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1093,7 +1093,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModSag() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Profession") %></td>
+                <td valign="top" class="skill"><input type="number" name="professionRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1105,7 +1105,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Psychologie") %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Psychologie") %></td>
+                <td valign="top" class="skill"><input type="number" name="psychologie"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1117,7 +1117,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Renseignements") %></td>
+                <td valign="top" class="skill"><input type="number" name="renseigementsRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1129,7 +1129,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Représentation") %></td>
+                <td valign="top" class="skill"><input type="number" name="representationRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1141,7 +1141,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModFor() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Saut") %></td>
+                <td valign="top" class="skill"><input type="number" name="sautRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1153,7 +1153,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModSag() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Survie") %></td>
+                <td valign="top" class="skill"><input type="number" name="survieRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1165,7 +1165,7 @@ body {
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><%= f.getCaracteristiques().getModCha() %></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><%= f.getCompetences().getCompetences().get("Utilisation d'objets magiques") %></td>
+                <td valign="top" class="skill"><input type="text" name="utilisationobjetsmagiquesRank"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>

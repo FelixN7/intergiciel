@@ -41,4 +41,8 @@ public class FacadeFiche {
 		
 	}
 	
+	public Fiche getFiche(String pseudo){
+		return em.find(Fiche.class, pseudo);
+	}
+	
 }

@@ -234,6 +234,36 @@ public class Fiche {
 		this.alignement = alignement;
 	}
 	
-	
-	
+	public static Alignement toAlignement(String s) {
+		if (s.equals("Loyal Bon")) {
+			return Alignement.LOYALBON ;
+		} 
+		if (s.equals("Chaotique Bon")) {
+			return Alignement.CHAOTIQUEBON ;
+		}
+		if (s.equals("Neutre Bon")) {
+			return Alignement.NEUTREBON ;
+		}
+		if (s.equals("Loyal Neutre")) {
+			return Alignement.LOYALNEUTRE ;
+		}
+		if (s.equals("Neutre Strict")) {
+			return Alignement.NEUTRESTRICT ;
+		}
+		if (s.equals("Chaotique Neutre")) {
+			return Alignement.CHAOTIQUENEUTRE ;
+		}
+		if (s.equals("Loyal Mauvais")) {
+			return Alignement.LOYALMAUVAIS ;
+		}
+		if (s.equals("Neutre Mauvais")) {
+			return Alignement.NEUTREMAUVAIS ;
+		}
+		if (s.equals("Chaotique Mauvais")) {
+			return Alignement.CHAOTIQUEMAUVAIS ;
+		}
+		else {
+			return null ;
+		}	
+	}
 }

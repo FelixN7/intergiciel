@@ -21,7 +21,7 @@ public class Competences {
 		competences.put("Décryptage", 0) ;
 		competences.put("Déguisement", 0) ;
 		competences.put("Déplacement silencieux", 0) ;
-		competences.put("Désamorcçage/sabotage", 0) ;
+		competences.put("Désamorçage/sabotage", 0) ;
 		competences.put("Détection", 0) ;
 		competences.put("Diplomatie", 0) ;
 		competences.put("Discrétion", 0) ;
@@ -45,6 +45,11 @@ public class Competences {
 		competences.put("Saut", 0) ;
 		competences.put("Survie", 0) ;
 		competences.put("Utilisation d'objets magiques", 0) ;
+	}
+	
+	public Competences(HashMap<String, Integer> competences) {
+		this.competences = competences ;
+		
 	}
 
 	public HashMap<String, Integer> getCompetences() {
