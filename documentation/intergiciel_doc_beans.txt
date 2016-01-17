@@ -1,0 +1,26 @@
+Liste Entity (beans)
+	utilisateurs
+	fiches
+	classe
+	race
+	armure (itf objets/divers)
+	arme (itf objets/divers)
+	Caractéristiques
+	Dons
+	Partie
+
+
+Liste fonctionnalites : Façade
+	Connection
+	inscription
+	creer_fiche
+	supprimer_fiche
+	voir_fiche
+	editer_fiche
+	creer_partie
+	ajouter joueur
+	supprimer joueur
+	lister joueur
+	demarrer combat
+ 	finir combat
+	calculer resultats
