@@ -107,7 +107,7 @@ public class ServFiche extends HttpServlet {
 		Competences competences = new Competences(HM) ;
 		
 		//On créer sa fiche et on l'enregistre en base de données
-		f.creerFiche(nomPerso, u, c, classe, race);
+		f.creerFiche(nomPerso, u, c, competences, classe, race);
 		request.setAttribute("fiche", f.getFiche(nomPerso));
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;
 	}

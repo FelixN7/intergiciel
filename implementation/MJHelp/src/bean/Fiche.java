@@ -46,7 +46,7 @@ public class Fiche {
 	 * @param c les caractéristiques du personnage
 	 * @param classe la classe du personnage
 	 */
-	public Fiche(String nom, Utilisateur u, Caracteristiques c, Classe classe, Race race) {
+	public Fiche(String nom, Utilisateur u, Caracteristiques c, Competences comp, Classe classe, Race race) {
 		/**
 		 * On commence par remplir les données connues
 		 */
@@ -54,6 +54,7 @@ public class Fiche {
 		this.joueur = u ;
 		this.level = 1 ;
 		this.caracteristiques = c ;
+		this.competences.setCompetences(comp.getCompetences());
 		this.setClasse(classe) ;
 		this.setRace(race) ;
 		
