@@ -1,6 +1,3 @@
-/**
- * 
- */
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -199,7 +196,7 @@ body {
   <tr> 
     <td height="39" valign="middle" class="blackback"> <p>DEX<br>
         <span class="blackback_small">dexterity</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" id="dex" onchange="setModDex()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" id="dex" onchange="setModDex(), settotaux()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name="modDex"></p></td>
     <td colspan="2" valign="top" class="blackback"><P>AC<br>
         <span class="blackback_small">armor class</span></p></td>
@@ -290,7 +287,7 @@ body {
           <td width="7" class="desc3">=</td>
           <td width="25" valign="top" class="skill"><p name	="modDex"></p></td>
           <td width="7" class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="acrobatiesRank"></td>
+          <td valign="top" class="skill"><input type="number" id="acrobatiesRank" onchange="settotaux()"></td>
           <td width="7" class="desc3">+</td>
           <td width="25" valign="top" class="skill">  0</td>
         </tr>
@@ -302,7 +299,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="artdelamagieRank"></td>
+          <td valign="top" class="skill"><input type="number" id="artdelamagieRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -314,7 +311,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="artisanatRank"></td>
+          <td valign="top" class="skill"><input type="number" id="artisanatRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -326,7 +323,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="bluffRank"></td>
+          <td valign="top" class="skill"><input type="number" id="bluffRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -338,7 +335,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCon"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="concentrationRank"></td>
+          <td valign="top" class="skill"><input type="number" id="concentrationRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -350,7 +347,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="connaissanceMystereRank"></td>
+          <td valign="top" class="skill"><input type="number" id="connaissanceMystereRank" onchange="setottaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -362,7 +359,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="connaissanceNatureRank"></td>
+          <td valign="top" class="skill"><input type="number" id="connaissanceNatureRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -374,7 +371,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="connaissanceReligionRank"></td>
+          <td valign="top" class="skill"><input type="number" id="connaissanceReligionRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -386,7 +383,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="contrefaconRank"></td>
+          <td valign="top" class="skill"><input type="number" id="contrefaconRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -398,7 +395,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="crochetageRank"></td>
+          <td valign="top" class="skill"><input type="number" id="crochetageRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -410,7 +407,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="decryptageRank"></td>
+          <td valign="top" class="skill"><input type="number" id="decryptageRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -422,7 +419,7 @@ body {
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" name="deguisementRank"></td>
+          <td valign="top" class="skill"><input type="number" id="deguisementRank" onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -623,8 +620,8 @@ body {
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>WIS<br>
         <span class="blackback_small">wisdom</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" name="sag"></td>
-    <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModSag() %></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" id="sag" onchange="setModSag()"></td>
+    <td colspan="3" valign="middle" class="boxed"><p name	="modSag"></p></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td width="10">&nbsp;</td>
@@ -641,15 +638,15 @@ body {
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>CHA<br>
         <span class="blackback_small">charisma</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" name="cha"></td>
-    <td colspan="3" valign="middle" class="boxed"><%= f.getCaracteristiques().getModCha() %></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" id="cha" onchange="setModCha()"></td>
+    <td colspan="3" valign="middle" class="boxed"><p name	="modCha"></p></td>
     <td colspan="6" valign="top" class="blackback"><P>INITIATIVE<br>
         <span class="blackback_small">modifier</span></p></td>
-    <td colspan="2" valign="top" class="boxed"><%= f.getInitiative() %></td>
+    <td colspan="2" valign="top" class="boxed"><p id ="init"></p></td>
     <td valign="top" class="desc3">=</td>
-    <td valign="top" class="boxed"><%= f.getCaracteristiques().getModDex() %></td>
+    <td valign="top" class="boxed"><p name	="modDex"></p></td>
     <td valign="top" class="desc3">+</td>
-    <td valign="top" class="boxed">0</td>
+    <td valign="top" class="boxed"><p id = "miscInit"></td>
     <td></td>
   </tr>
   <tr> 
@@ -674,7 +671,7 @@ body {
     <td valign="top" class="desc3">=</td>
     <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusVig().get(f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
-    <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModCon() %></td>
+    <td colspan="3" valign="top" class="boxed"><p name	="modCon"></p></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="2" valign="top" class="boxed">0</td>
     <td valign="top" class="desc3">+</td>
@@ -690,7 +687,7 @@ body {
     <td valign="top" class="desc3">=</td>
     <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusRef().get(f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
-    <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModDex() %></td>
+    <td colspan="3" valign="top" class="boxed"><p name	="modDex"></p></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="2" valign="top" class="boxed">0</td>
     <td valign="top" class="desc3">+</td>
@@ -706,7 +703,7 @@ body {
     <td valign="top" class="desc3">=</td>
     <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusVol().get(f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
-    <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModSag() %></td>
+    <td colspan="3" valign="top" class="boxed"><p name	="modSag"></p></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="2" valign="top" class="boxed">0</td>
     <td valign="top" class="desc3">+</td>
