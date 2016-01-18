@@ -52,7 +52,7 @@ public class Voleur {
 				tableVol.put(i, (i-i%3)/3) ;
 		}
 		/** Ajout de chaque table dans v */
-		v.setDVie(new Utilities.Des(TypeDeDes.D10, 1));
+		v.setDVie(new Utilities.Des(TypeDeDes.D6, 1));
 		v.setBonusAtt(tableAtt) ;
 		v.setBonusVol(tableVol) ;
 		v.setBonusVig(tableVig) ;

@@ -30,6 +30,7 @@ function setModDex() {
     for (i=0; i<l.length; i++) {
         l.item(i).innerHTML = text;
     }
+    document.getElementById("init").innerHTML = text ;
 }
 
 function setModCon() {
@@ -266,31 +267,78 @@ function settotaux() {
 }
 
 function setSave() {
-	var text, vol, ref, vig ;
+	var text, xdex, xcon, xsag ;
 	
-	text = String(document.getElementById("nomClasse").value) ;
+	text = document.getElementById("nomClasse").value ;
+	xdex = Number(document.getElementById("dex").value) ;
+	xcon = Number(document.getElementById("con").value) ;
+	xsag = Number(document.getElementById("sag").value) ;
+	
 	if (text == "guerrier") {
-		vol = 0 ;
-		vig = 2 ;
-		ref = 0 ;
-		document.getElementById("vig").inngerHTML = vig ;
-		document.getElementById("vol").innerHTML = vol ;
-		document.getElementById("ref").innerHTML = ref ;
+		document.getElementById("vig").innerHTML = 2 ;
+		document.getElementById("vol").innerHTML = 0 ;
+		document.getElementById("ref").innerHTML = 0 ;
+		
+		document.getElementById("modVig").innerHTML = (2+Math.floor((xcon-10)/2)).valueOf() ;
+		document.getElementById("modVol").innerHTML = (0+Math.floor((xsag-10)/2)).valueOf() ;
+		document.getElementById("modRef").innerHTML = (0+Math.floor((xdex-10)/2)).valueOf() ;
 	}
-	else {
-		document.getElementById("vig").inngerHTML = 0 ;
+	else if (text == "voleur") {
+		document.getElementById("ref").innerHTML = 2 ;
+		document.getElementById("vig").innerHTML = 0 ;
+		document.getElementById("vol").innerHTML = 0 ;
+		
+		document.getElementById("modVig").innerHTML = Math.floor((xcon-10)/2).valueOf() ;
+		document.getElementById("modVol").innerHTML = Math.floor((xsag-10)/2).valueOf() ;
+		document.getElementById("modRef").innerHTML = (2+Math.floor((xdex-10)/2)).valueOf() ;
 	}
 }
 
-/**
+function setAttaque() {
+	var text, xfor, arme, att ;
+	
+	text = document.getElementById("nomClasse").value ;
+	arme = document.getElementById("arme").value ;
+	xfor = Number(document.getElementById("for").value) ;
+	
+	if (text == "guerrier") {
+		var baseAtt = 1 ;
+	} 
+	else if (text == "voleur") {
+		var baseAtt = 0 ;
+	}
+	
+	var l = document.getElementsByName("baseAttaque")
+	for (i=0 ; i<l.length ; i++) {
+		l.item(i).innerHTML = baseAtt ;
+	}
+	document.getElementById("lutte").innerHTML = (baseAtt + Math.floor((xfor-10)/2)).valueOf() ;
+	document.getElementById("attaque").innerHTML = (baseAtt + Math.floor((xfor-10)/2)).valueOf() ;
+	
+	if (arme == "Epee Batarde") {
+		document.getElementById("dommages").innerHTML = "1D10+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critique").innerHTML = "19-20/x2";
+	}
+	else if (arme = "Epee Longue") {
+		document.getElementById("dommages").innerHTML = "1D8+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critique").innerHTML = "19-20/x2";
+	}
+}
+
+function setCA() {
+	var xdex = Number(document.getElementById("dex").value)
+	var text = Number(10 + Math.floor((xdex-10)/2)).valueOf();
+	document.getElementById("CA").innerHTML = text;
+}
+
 function setHP() {
-	var x, cl, lvl, text ;
-	
-	lvl = document.getElementById("level").value;
-	x = document.getElementById("modCon").value;
-	cl = document.getElementById("nomClasse").value;
-	Classe = new Classe(cl) ;
-	text = (x + cl.getDvie().lancer()) * lvl ;
-	document.getElementById("vie")innerHTML = text ;
-	
-}*/
+	var classe = document.getElementById("nomClasse").value ;
+	var xcon = Number(document.getElementById("con").value) ;
+	if (classe == "guerrier") {
+		var HP = (10 + Math.floor((xcon-10)/2)).valueOf() ;
+	}
+	else if (classe == "voleur") {
+		var HP = (6 + Math.floor((xcon-10)/2)).valueOf() ;
+	}
+		document.getElementById("vie").innerHTML = HP ;
+}
