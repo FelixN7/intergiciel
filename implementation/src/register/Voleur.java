@@ -1,0 +1,67 @@
+package register;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import bean.Classe;
+import utilities.TypeDeDes;
+
+@Singleton
+public class Voleur {
+
+	@PersistenceContext
+	private EntityManager em;
+
+	private HashMap<Integer, ArrayList<Integer>> tableAtt;
+	private HashMap<Integer, Integer> tableRef ; 
+	private HashMap<Integer, Integer> tableVig ;
+	private HashMap<Integer, Integer> tableVol ;
+	
+	public Voleur() {
+		/** Cr�ation d'une instance de la classe Classe*/
+		Classe v = new Classe("Voleur") ;
+		/** On remplit les tables pour chaque niveau */
+		for(int i=1; i<=20; i++) {
+			/** On remplit la table du bonus de base � l'attaque */
+			ArrayList<Integer> l = new ArrayList<Integer>() ;
+			int j = i - 1 - (i-1)/4 ;
+			l.add(j) ;
+			if (j>5 && 10>=j) {
+				l.add(j-5) ;
+			}
+			else if (j>10 && 15>=j) {
+				l.add(j-5) ;
+				l.add(j-10) ;
+			}
+			else if (j>15) {
+				l.add(j-5) ;
+				l.add(j-10) ;
+				l.add(j-15)	;
+			}
+			tableAtt.put(i, l) ;
+			
+			/** On remplit la table du bonus de base de Vigueur*/
+				tableVig.put(i, (i-i%3)/3) ;
+			/** On remplit la table du bonus de base de R�flexes*/
+				tableRef.put(i, 2+(i-i%2)/2) ;
+			/** On remplit la table du bonus de base de Volont�*/
+				tableVol.put(i, (i-i%3)/3) ;
+		}
+		/** Ajout de chaque table dans v */
+		v.setDVie(new utilities.Des(TypeDeDes.D10, 1));
+		v.setBonusAtt(tableAtt) ;
+		v.setBonusVol(tableVol) ;
+		v.setBonusVig(tableVig) ;
+		v.setBonusRef(tableRef);
+		em.persist(v);
+	}
+	
+	public Classe getVoleur(String nom) {
+		return em.find(Classe.class, nom) ;
+	}
+	
+}

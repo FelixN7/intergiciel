@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inscription</title>
+</head>
+<body>
+<form action="ServConnection" method="post">
+<p><label>Pseudo</label> : <input type="text" name="pseudo"><br/>
+<label>Mot de passe</label> : <input type="password" name="mdp"><br/>
+<label>Confirmation mot de passe</label> : <input type="password" name="confirmation"><br/>
+Choisir un type de compte :<br/>
+<input type="radio" name="type" value="joueur" checked="checked">Joueur
+<input type="radio" name="type" value="maitre du jeu">Maître du jeu
+<br/><input type="hidden" name="op" value="inscription">
+<input type="submit" value="OK">
+</p>
+</form>
+</body>
+</html>
