@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Partie;
 import facade.FacadePartie;
 
 /**
@@ -27,7 +28,8 @@ public class ServPartie extends HttpServlet {
 	 * @see HttpServlet#doGet (HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		
+		//On créée la partie et on la récupère de la bdd
+		Partie p = fp.creerPartie(null) ;
 	}
 	
 	/**

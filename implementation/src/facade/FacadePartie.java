@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import bean.Fiche;
 import bean.Partie;
+import bean.Utilisateur;
 
 @Singleton
 public class FacadePartie {
@@ -19,9 +20,10 @@ public class FacadePartie {
 		
 	}
 	
-	public void creerPartie(String nom, ArrayList<Fiche> listePJ) {
-		Partie p = new Partie(nom, listePJ) ;
+	public Partie creerPartie(ArrayList<Fiche> listePJ) {
+		Partie p = new Partie(listePJ) ;
 		em.persist(p);
+		return p ;
 	}
 	
 	public void ajouterJoueurPartie(Fiche joueur, Partie p) {
@@ -44,6 +46,10 @@ public class FacadePartie {
 	
 	public void listerJoueurPartie(Partie p) {
 		
+	}
+	
+	public Partie getPartie(Integer id){
+		return em.find(Partie.class, id);
 	}
 	
 }
