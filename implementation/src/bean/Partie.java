@@ -10,7 +10,7 @@ public class Partie {
 
 	@Id
 	private String nom ; 
-	private ArrayList<bean.Fiche> listePJ ;
+	private ArrayList<Fiche> listePJ ;
 	private boolean finished ;
 	
 	public Partie() {	
@@ -20,7 +20,7 @@ public class Partie {
 		this.setNom(nom) ;
 	}
 	
-	public Partie (String nom, ArrayList<bean.Fiche> listePJ) {
+	public Partie (String nom, ArrayList<Fiche> listePJ) {
 		this.setNom(nom);
 		this.setListePj(listePJ);
 		this.setFinished(false);
@@ -34,11 +34,11 @@ public class Partie {
 		this.nom = nom;
 	}
 
-	public ArrayList<bean.Fiche> getListePJ() {
+	public ArrayList<Fiche> getListePJ() {
 		return listePJ;
 	}
 
-	public void setListePj(ArrayList<bean.Fiche> listePJ) {
+	public void setListePj(ArrayList<Fiche> listePJ) {
 		this.listePJ = listePJ;
 	}
 
@@ -50,11 +50,11 @@ public class Partie {
 		this.finished = finished;
 	}
 	
-	public void ajouterPJ (bean.Fiche PJ) {
+	public void ajouterPJ (Fiche PJ) {
 		this.listePJ.add(PJ) ;
 	}
 	
-	public void supprimerPJ (bean.Fiche PJ) {
+	public void supprimerPJ (Fiche PJ) {
 		for (int i=0; i<listePJ.size(); i++) {
 			if (listePJ.get(i).equals(PJ)) {
 				this.listePJ.remove(i) ;

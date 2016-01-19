@@ -45,15 +45,15 @@ public class ServFiche extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		/**
-		 * On commence par rï¿½cupï¿½rer toutes les donnï¿½es relatives ï¿½ la crï¿½ation de la nouvelle fiche
+		 * On commence par récupérer toutes les données relatives à la création de la nouvelle fiche
 		 */
 		//On commence par le nom du joueur
 		String nomJoueur = request.getParameter("nomJoueur") ; 
 		Utilisateur u = fu.getUtilisateur(nomJoueur) ;
 		
-		//On rï¿½cupï¿½re ensuite les informations relatives ï¿½ son personnage
+		//On récupère ensuite les informations relatives à son personnage
 		String nomPerso = request.getParameter("nomPerso") ;
-		Integer level = Integer.parseInt(request.getParameter("level")) ; //TO DO : vï¿½rifier si entier
+		Integer level = Integer.parseInt(request.getParameter("level")) ;
 		Classe classe = new Classe(request.getParameter("nomClasse")) ;
 		Race race = new Race(request.getParameter("nomRace")) ;
 		Alignement alignement = Fiche.toAlignement(request.getParameter("alignement")) ;
@@ -106,7 +106,7 @@ public class ServFiche extends HttpServlet {
 		HM.put("Utilisation d'objets magiques", Integer.parseInt(request.getParameter("utilisationobjetsmagiquesRank"))) ;	
 		Competences competences = new Competences(HM) ;
 		
-		//On crï¿½er sa fiche et on l'enregistre en base de donnï¿½es
+		//On créée sa fiche et on l'enregistre en base de données
 		f.creerFiche(nomPerso, u, c, competences, classe, race);
 		request.setAttribute("fiche", f.getFiche(nomPerso));
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;

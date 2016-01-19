@@ -13,10 +13,10 @@ public class ArmureCloutee {
 	EntityManager em ;
 	
 	public ArmureCloutee() {
-		/** Crï¿½ation d'une instance de la classe Armure */
+		/** Création d'une instance de la classe Armure */
 		Armure a = new Armure("Armure de cuir cloutï¿½e") ;
 		
-		/** On remplit les diffï¿½rents champs */
+		/** On remplit les différents champs */
 		a.setBonusArmure(3);
 		a.setBonusDexMax(5);
 		a.setMalusTests(1);
