@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.Collection;
+
 import javax.persistence.*;
 
 import utilities.TypeUtilisateur;
@@ -10,6 +12,8 @@ public class Utilisateur {
 	private String pseudo;
 	private String mdp;
 	private utilities.TypeUtilisateur type;
+	@OneToMany(mappedBy="joueur", fetch=FetchType.EAGER )
+	private Collection<Fiche> personnages;
 	
 	public String getPseudo() {
 		return pseudo;

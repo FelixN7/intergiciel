@@ -43,7 +43,7 @@ public class ServConnection extends HttpServlet {
 				//voir comment faire pour ne pas retransmettre le mdp contenu dans la requete
 			}else{
 				//erreur authentification
-				response.sendRedirect("erreurLogin.html");
+				response.sendRedirect("inscription-connection/erreurLogin.html");
 				//TODO mettre un systeme pour mettre le message d'erreur dans la page
 			}
 		}else if (op.equals("inscription")){

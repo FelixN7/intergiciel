@@ -5,15 +5,18 @@
       <provider>org.hibernate.ejb.HibernatePersistence</provider>
       <jta-data-source>java:jboss/datasources/mydb</jta-data-source>
       <class>bean.Utilisateur</class>
-      <!-- mettre les bonnes classes à la place
-      <class>bean.Personne</class>
-      <class>bean.Adresse</class>
-       -->
+      <class>bean.Arme</class>
+      <class>bean.Armure</class>
+      <class>bean.Classe</class>
+      <class>bean.Dons</class>
+      <class>bean.Fiche</class>
+      <class>bean.Partie</class>
+      <class>bean.Race</class>
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-         <!--ligne a mettre a la place de la suivant lorsqu on crée la bdd :-->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-         <!-- <property name="hibernate.hbm2ddl.auto" value="update"/>-->
+         <!--ligne a mettre a la place de la suivant lorsqu on crée la bdd :
+         <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
          <property name="hibernate.show_sql" value="true"/>
       </properties>
    </persistence-unit>

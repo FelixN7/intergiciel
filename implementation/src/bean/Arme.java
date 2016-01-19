@@ -2,8 +2,13 @@ package bean;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Arme implements Item {
 
+	@Id
 	private String nom ;
 	private utilities.Des dgtsP ;
 	private utilities.Des dgtsM ;
@@ -56,5 +61,6 @@ public class Arme implements Item {
 	public void setFacteurCritique(Integer facteurCritique) {
 		this.facteurCritique = facteurCritique;
 	}
+
 	
 }

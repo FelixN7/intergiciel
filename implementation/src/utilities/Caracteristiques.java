@@ -1,7 +1,11 @@
 package utilities;
 
-public class Caracteristiques {
+import java.io.Serializable;
 
+public class Caracteristiques implements Serializable{
+
+	private static final long serialVersionUID = 1566057969299336594L;
+	
 	private int For ;
 	private int Dex ;
 	private int Con ;

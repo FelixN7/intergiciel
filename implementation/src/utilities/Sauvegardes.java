@@ -1,6 +1,8 @@
 package utilities;
 
-public class Sauvegardes {
+import java.io.Serializable;
+
+public class Sauvegardes implements Serializable{
 
 	private int ref ;
 	private int vol ;

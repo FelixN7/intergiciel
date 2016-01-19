@@ -1,9 +1,14 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import utilities.Alignement;
 import utilities.Caracteristiques;
@@ -16,27 +21,38 @@ public class Fiche {
 	
 	//il y a peut etre plusieurs perso dans la bdd qui auront le même nom: 
 	//il faut juste qu il ne soit pas dans la meme partie
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
-	private String nomPerso ;
-	private Utilisateur joueur ;
-	private Caracteristiques caracteristiques ;
-	private ArrayList<bean.Partie> listeParties ;
-	private int initiative ;
-	private ArrayList<Integer> attaque ;
+	private int id;
+	private String nomPerso;
+	@ManyToOne
+	private Utilisateur joueur;
+	private Caracteristiques caracteristiques;
+	@ManyToOne
+	private Partie partie;
+	private int initiative;
+	private ArrayList<Integer> attaque;
 	private int ca ;
+	@ManyToOne
 	private Classe classe ;
+	@ManyToOne
 	private Race race ;
 	private Alignement alignement ;
-	private ArrayList<Dons> dons ;
+	@ManyToMany
+	private Collection<Dons> dons ;
 	private int level ;
 	private Competences competences ;
-	private Arme arme ;
+	@ManyToOne
+	private Arme armeGauche;
+	@ManyToOne
+	private Arme armeDroite;
+	@ManyToOne
 	private Armure armure ;
 	private PersoType type ;
 	private Sauvegardes sauvegardes ;
-	private int vie ;
-	private int vieCourante ;
-	private ArrayList<Item> inventory ;
+	private int vie;
+	private int vieCourante;
+	//private ArrayList<Item> inventory;
 	
 	public Fiche() {
 	}
@@ -93,12 +109,28 @@ public class Fiche {
 		this.caracteristiques = caracteristiques;
 	}
 
-	public ArrayList<bean.Partie> getListeParties() {
-		return listeParties;
+	public int getId() {
+		return id;
 	}
 
-	public void setListeParties(ArrayList<bean.Partie> listeParties) {
-		this.listeParties = listeParties;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Partie getPartie() {
+		return partie;
+	}
+
+	public void setPartie(Partie partie) {
+		this.partie = partie;
+	}
+
+	public Arme getArmeGauche() {
+		return armeGauche;
+	}
+
+	public void setArmeGauche(Arme armeGauche) {
+		this.armeGauche = armeGauche;
 	}
 
 	public int getInitiative() {
@@ -125,11 +157,11 @@ public class Fiche {
 		this.ca = ca;
 	}
 
-	public ArrayList<Dons> getDons() {
+	public Collection<Dons> getDons() {
 		return dons;
 	}
 
-	public void setDons(ArrayList<Dons> dons) {
+	public void setDons(Collection<Dons> dons) {
 		this.dons = dons;
 	}
 
@@ -158,11 +190,11 @@ public class Fiche {
 	}
 
 	public Arme getArme() {
-		return arme;
+		return armeGauche;
 	}
 
 	public void setArme(Arme arme) {
-		this.arme = arme;
+		this.armeGauche = arme;
 	}
 
 	public Armure getArmure() {
@@ -205,13 +237,13 @@ public class Fiche {
 		this.vieCourante = vieCourante;
 	}
 
-	public ArrayList<Item> getInventory() {
+	/*public ArrayList<Item> getInventory() {
 		return inventory;
 	}
 
 	public void setInventory(ArrayList<Item> inventory) {
 		this.inventory = inventory;
-	}
+	}*/
 
 	public Classe getClasse() {
 		return classe;
@@ -268,5 +300,13 @@ public class Fiche {
 		else {
 			return null ;
 		}	
+	}
+
+	public Arme getArmeDroite() {
+		return armeDroite;
+	}
+
+	public void setArmeDroite(Arme armeDroite) {
+		this.armeDroite = armeDroite;
 	}
 }

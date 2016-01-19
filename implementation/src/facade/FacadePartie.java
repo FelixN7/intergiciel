@@ -1,6 +1,7 @@
 package facade;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -8,7 +9,6 @@ import javax.persistence.PersistenceContext;
 
 import bean.Fiche;
 import bean.Partie;
-import bean.Utilisateur;
 
 @Singleton
 public class FacadePartie {
@@ -27,20 +27,20 @@ public class FacadePartie {
 	}
 	
 	public void ajouterJoueurPartie(Fiche joueur, Partie p) {
-		ArrayList<Fiche> newListePJ  = p.getListePJ() ;
+		Collection<Fiche> newListePJ  = p.getListePJ() ;
 		newListePJ.add(joueur) ;
-		p.setListePj(newListePJ);
+		p.setListePJ(newListePJ);
 		em.refresh(p);
 	}
 	
 	public void supprimerJoueurPartie(Fiche joueur, Partie p) {
-		ArrayList<Fiche> newListePJ  = p.getListePJ() ;
+		Collection<Fiche> newListePJ  = p.getListePJ() ;
 		if (p.getListePJ().contains(joueur)) {
 			newListePJ.remove(joueur) ;
 		} else {
-			System.out.println("Ce joueur n'appartient pas à cette partie");
+			System.out.println("Ce joueur n'appartient pas ï¿½ cette partie");
 		}
-		p.setListePj(newListePJ);
+		p.setListePJ(newListePJ);
 		em.refresh(p);		
 	}
 	

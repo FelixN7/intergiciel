@@ -1,5 +1,7 @@
 package utilities;
 
+import java.io.Serializable;
+
 /**
  * Classe D�s permettant de cr�er l'objet "D�s"
  * @author Maxime
@@ -8,7 +10,7 @@ package utilities;
 
 import java.util.Random;
 
-public class Des {
+public class Des implements Serializable{
 
 	/** Le type de d�s */
 	public TypeDeDes type ;

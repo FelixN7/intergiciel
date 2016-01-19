@@ -1,44 +1,46 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Partie {
 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
-	private String nom ; 
-	private ArrayList<Fiche> listePJ ;
-	private boolean finished ;
-	
+	private int id ; 
+	@OneToMany (mappedBy="partie", fetch=FetchType.EAGER )
+	private Collection<Fiche> listePJ ;
+	private boolean finished;
+
 	public Partie() {	
 	}
-	
-	public Partie (String nom) {
-		this.setNom(nom) ;
-	}
-	
-	public Partie (String nom, ArrayList<Fiche> listePJ) {
-		this.setNom(nom);
-		this.setListePj(listePJ);
+
+	public Partie (ArrayList<Fiche> listePJ) {
+		this.setListePJ(listePJ);
 		this.setFinished(false);
 	}
 
-	public String getNom() {
-		return nom;
+	public int getId() {
+		return id;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public ArrayList<Fiche> getListePJ() {
+	public Collection<Fiche> getListePJ() {
 		return listePJ;
 	}
 
-	public void setListePj(ArrayList<Fiche> listePJ) {
+	public void setListePJ(Collection<Fiche> listePJ) {
 		this.listePJ = listePJ;
 	}
 
@@ -49,19 +51,19 @@ public class Partie {
 	public void setFinished(boolean finished) {
 		this.finished = finished;
 	}
-	
+
 	public void ajouterPJ (Fiche PJ) {
 		this.listePJ.add(PJ) ;
 	}
-	
+
 	public void supprimerPJ (Fiche PJ) {
-		for (int i=0; i<listePJ.size(); i++) {
-			if (listePJ.get(i).equals(PJ)) {
-				this.listePJ.remove(i) ;
+		for (Fiche f :listePJ) {
+			if (f.equals(PJ)) {
+				this.listePJ.remove(f) ;
 			}
 		}
 	}
-	
-	
-	
+
+
+
 }

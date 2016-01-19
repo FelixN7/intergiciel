@@ -1,9 +1,12 @@
 package utilities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Competences {
+public class Competences implements Serializable{
 
+	private static final long serialVersionUID = 1775285488221603255L;
+	
 	private HashMap<String, Integer> competences ;
 	
 	public Competences() {
