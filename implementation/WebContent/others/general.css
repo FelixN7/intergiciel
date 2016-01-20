@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin: 0px;		/* Eviter les bordures automatiques */
+}
+
+/*******************************  BANDEAU ***************************/
+
+.pageTitle {
+	font-family: arial;
+	font-style: oblique;
+	color: white;
+	font-size: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.headerButtonsDiv {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 20px;
+}
+
+.bandeau {
+	background-color: #a6c6df;
+	height: 130px;
+	padding: 10px;
+	border-color: black;
+	border-width: 0px 0px 1px 0px;
+	border-style: solid;
+	position: relative;
+}
+
+.header {
+	border: 1px black;
+	border-style: solid;
+	display: inline-block;
+	padding: 10px;
+	background-color: #82add0;
+	box-shadow: 1px 1px 10px;
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.header:hover {
+	background-color: #b3c9ff;
+	cursor: pointer;
+}
+
+.headerLink {
+	display: inline-block;
+	text-decoration: none;
+	color: black
+}
+
+
+/********************************************************************/
