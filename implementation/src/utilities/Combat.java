@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import bean.Fiche;
 
@@ -16,6 +17,8 @@ public class Combat {
 	private ArrayList<Fiche> listePJS ;
 	//La liste des adversaires des joueurs participant au combat
 	private ArrayList<Fiche> listeOPPOSANTS ;
+	//La table Hachage contenant les initiatives des combattant
+	private HashMap<String, Integer> initiatives ;
 	
 	/**
 	 * Le constructeur du combat
@@ -44,10 +47,28 @@ public class Combat {
 	}
 	
 	/**
+	 * Ajout l'initiative du combattant dans la table 
+	 * @param combattant
+	 * @param initiative
+	 */
+	public void ajoutInit(Fiche combattant, Integer initiative) {
+		initiatives.put(combattant.getNomPerso(), initiative) ;
+	}
+	
+	/**
 	 * Initie le combat
 	 */
 	public void demarrerCombat() {
-		/**On Commence par récupérer l'initiative de chaque joueur */
+		/**On Commence par récupérer l'initiative de participant au combat */
+		ListeOrdonnee lo = new ListeOrdonnee() ;
+		/**On récupère l'initiative des pj */
+		for (Fiche pj : listePJS) {
+			lo.inserer(initiatives.get(pj.getNomPerso())) ;
+		}
+		/**On récupère l'initiative des opposants*/
+		for (Fiche opposant : listeOPPOSANTS) {
+			lo.inserer(initiatives.get(opposant.getNomPerso()));
+		}
 		
 	}
 	

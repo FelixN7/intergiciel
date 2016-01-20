@@ -1,6 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -23,7 +22,7 @@ public class Partie {
 	public Partie() {	
 	}
 
-	public Partie (ArrayList<Fiche> listePJ) {
+	public Partie (Collection<Fiche> listePJ) {
 		this.setListePJ(listePJ);
 		this.setFinished(false);
 	}
@@ -57,7 +56,7 @@ public class Partie {
 	}
 
 	public void supprimerPJ (Fiche PJ) {
-		for (Fiche f :listePJ) {
+		for (Fiche f : listePJ) {
 			if (f.equals(PJ)) {
 				this.listePJ.remove(f) ;
 			}

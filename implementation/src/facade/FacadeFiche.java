@@ -21,9 +21,10 @@ public class FacadeFiche {
 		
 	}
 	
-	public void creerFiche(String nom, Utilisateur u, Caracteristiques c, Competences comp, Classe classe, Race race) {
+	public Fiche creerFiche(String nom, Utilisateur u, Caracteristiques c, Competences comp, Classe classe, Race race) {
 		Fiche f = new Fiche(nom, u, c, comp, classe, race) ;
 		em.persist(f);
+		return f ;
 	}
 	
 	public void supprimerFiche(Fiche f) {
@@ -42,8 +43,8 @@ public class FacadeFiche {
 		
 	}
 	
-	public Fiche getFiche(String pseudo){
-		return em.find(Fiche.class, pseudo);
+	public Fiche getFiche(int id){
+		return em.find(Fiche.class, id);
 	}
 	
 }

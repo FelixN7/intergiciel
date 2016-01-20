@@ -1,6 +1,5 @@
 package facade;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.ejb.Singleton;
@@ -20,32 +19,26 @@ public class FacadePartie {
 		
 	}
 	
-	public Partie creerPartie(ArrayList<Fiche> listePJ) {
+	public Partie creerPartie(Collection<Fiche> listePJ) {
 		Partie p = new Partie(listePJ) ;
 		em.persist(p);
 		return p ;
 	}
 	
 	public void ajouterJoueurPartie(Fiche joueur, Partie p) {
-		Collection<Fiche> newListePJ  = p.getListePJ() ;
-		newListePJ.add(joueur) ;
-		p.setListePJ(newListePJ);
+		p.ajouterPJ(joueur);
 		em.refresh(p);
 	}
 	
 	public void supprimerJoueurPartie(Fiche joueur, Partie p) {
-		Collection<Fiche> newListePJ  = p.getListePJ() ;
-		if (p.getListePJ().contains(joueur)) {
-			newListePJ.remove(joueur) ;
-		} else {
-			System.out.println("Ce joueur n'appartient pas � cette partie");
-		}
-		p.setListePJ(newListePJ);
+		p.supprimerPJ(joueur);
 		em.refresh(p);		
 	}
 	
 	public void listerJoueurPartie(Partie p) {
-		
+		for (Fiche joueur : p.getListePJ()) {
+			joueur.toString() ;
+		}
 	}
 	
 	public Partie getPartie(Integer id){

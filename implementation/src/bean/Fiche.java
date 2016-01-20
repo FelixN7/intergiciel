@@ -309,4 +309,5 @@ public class Fiche {
 	public void setArmeDroite(Arme armeDroite) {
 		this.armeDroite = armeDroite;
 	}
+	
 }
