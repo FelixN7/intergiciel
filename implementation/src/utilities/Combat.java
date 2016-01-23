@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import bean.Fiche;
@@ -28,6 +29,7 @@ public class Combat {
 	public Combat(ArrayList<Fiche> PJS, ArrayList<Fiche> Opposants) {
 		this.listePJS = PJS ;
 		this.listeOPPOSANTS = Opposants ;
+		this.initiatives = new HashMap<String, Integer>() ;
 	}
 	
 	/**
@@ -59,17 +61,36 @@ public class Combat {
 	 * Initie le combat
 	 */
 	public void demarrerCombat() {
-		/**On Commence par récupérer l'initiative de participant au combat */
-		ListeOrdonnee lo = new ListeOrdonnee() ;
-		/**On récupère l'initiative des pj */
-		for (Fiche pj : listePJS) {
-			lo.inserer(initiatives.get(pj.getNomPerso())) ;
-		}
-		/**On récupère l'initiative des opposants*/
-		for (Fiche opposant : listeOPPOSANTS) {
-			lo.inserer(initiatives.get(opposant.getNomPerso()));
-		}
 		
+		/**On Commence par récupérer l'initiative de participant au combat */
+		ArrayList<Fiche> listeTours = new ArrayList<Fiche>() ;
+		
+		/** On concatène la liste des PJs et celle des combattants */
+		ArrayList<Fiche> listeParticipants = new ArrayList<Fiche>() ;
+		listeParticipants.addAll(listePJS) ;
+		listeParticipants.addAll(listeOPPOSANTS) ;
+		Fiche j = null ;
+		Fiche joueurMax = null ;
+		
+		/**On récupère l'initiative des pj */
+		while(listeParticipants.size() > 0) {
+			j = listeParticipants.get(0) ;
+			int max = initiatives.get(j.getNomPerso());
+			for (Fiche pj : listeParticipants) {
+				if (max < initiatives.get(pj.getNomPerso())) {
+					max = initiatives.get(pj.getNomPerso()) ;
+					joueurMax = pj ;
+				} else if (max == initiatives.get(pj.getNomPerso())) {
+					if (j.getCaracteristiques().getDex() <= pj.getCaracteristiques().getDex()) {
+						max = initiatives.get(pj.getNomPerso()) ;
+						joueurMax = pj ;
+					}
+				}
+			}
+			/** listeTours correspond à la liste triée dans l'ordre de jeu */
+			listeTours.add(joueurMax) ;
+			listeParticipants.remove(joueurMax);
+		}
 	}
 	
 	/**

@@ -54,5 +54,11 @@ body {
 	color: black
 }
 
+.listeActions {
+	margin-left: 1200px;
+	margin-top: 0px ;
+  	border: 1px solid #000000;
+  	padding: 1em;
+}
 
 /********************************************************************/

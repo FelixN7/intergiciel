@@ -1,6 +1,9 @@
 package servlet;
 
+import java.io.IOException;
+
 import javax.ejb.EJB;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,22 +31,29 @@ public class ServPartie extends HttpServlet {
 	}
 	
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doGet (HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//On créée la partie
 		Partie p = fp.creerPartie(null) ;
 		
 		//On récupère les joueurs que le MJ ajoute à la partie
 		String perso = request.getParameter("newPerso") ;
-		//p.ajouterPJ();
+		p.ajouterPJ(ff.getFiche(Integer.parseInt(perso))) ;
+		
+		request.setAttribute("partie", p);
+		request.getRequestDispatcher("partie-mj.html").forward(request, response);
 		
 	}
 	
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doPost (HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response) ;
 	}
 }
