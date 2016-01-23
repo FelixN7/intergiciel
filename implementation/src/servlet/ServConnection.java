@@ -38,7 +38,8 @@ public class ServConnection extends HttpServlet {
 			String pseudo = request.getParameter("pseudo");
 			String mdp = request.getParameter("mdp");
 			if(f.checkUtilisateur(pseudo, mdp)){
-				request.setAttribute("utilisateur", f.getUtilisateur(pseudo));
+				request.getSession().setAttribute("utilisateur", f.getUtilisateur(pseudo));
+				request.getSession().setAttribute("typeUtil", f.getUtilisateur(pseudo).getType());
 				request.getRequestDispatcher("inscription-connection/accueil.jsp").forward(request, response);
 				//voir comment faire pour ne pas retransmettre le mdp contenu dans la requete
 			}else{

@@ -6,7 +6,7 @@ body {
 
 /*******************************  BANDEAU ***************************/
 
-.pageTitle {
+.bandeau .pageTitle {
 	font-family: arial;
 	font-style: oblique;
 	color: white;
@@ -15,7 +15,7 @@ body {
 	margin-top: 10px;
 }
 
-.headerButtonsDiv {
+.bandeau .headerButtonsDiv {
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -32,7 +32,7 @@ body {
 	position: relative;
 }
 
-.header {
+.headerButtonsDiv .header {
 	border: 1px black;
 	border-style: solid;
 	display: inline-block;
@@ -54,11 +54,20 @@ body {
 	color: black
 }
 
-.listeActions {
-	margin-left: 1200px;
-	margin-top: 0px ;
-  	border: 1px solid #000000;
-  	padding: 1em;
+
+/******************************  ACCUEIL ***********************************/
+
+#imageAccueil {
+	float:left;
 }
 
-/********************************************************************/
+
+#actionsAccueil {	
+	border: 1px solid;
+	margin-top: 30px;
+	margin-right: 30px;
+	position: absolute;
+	padding: 1em;
+	font-size: 30px;
+	right: 0px;
+}
