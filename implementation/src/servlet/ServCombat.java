@@ -1,32 +1,28 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Fiche;
-import bean.Partie;
-import facade.FacadeFiche;
-import facade.FacadePartie;
+import utilities.Combat;
 
 /**
- * Servlet implementation class servPartie
+ * Servlet implemententation servCombat
  */
-public class ServPartie extends HttpServlet {
-	
-	@EJB
-	FacadePartie fp ;
-	FacadeFiche ff ;
+public class ServCombat extends HttpServlet {
+
 	private static final long serialVersionUID = 5504876312795472403L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServPartie() {
+	public ServCombat() {
 		super() ;
 	}
 	
@@ -36,15 +32,22 @@ public class ServPartie extends HttpServlet {
 	 * @see HttpServlet#doGet (HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//On créée la partie
-		Partie p = fp.creerPartie(null) ;
+		//On initialise la liste des PJs et la liste des opposants
+		ArrayList<Fiche> PJS = new ArrayList<Fiche>() ;
+		ArrayList<Fiche> Opposants = new ArrayList<Fiche>() ;
+		HashMap<String, Integer> initiatives = new HashMap<String, Integer>() ;
 		
-		//On récupère les joueurs que le MJ ajoute à la partie
-		String perso = request.getParameter("newPerso") ;
-		p.ajouterPJ(ff.getFiche(Integer.parseInt(perso))) ;
+		//On crée le combat
+		Combat combat = new Combat(PJS, Opposants) ;		
 		
-		request.setAttribute("partie", p);
-		request.getRequestDispatcher("partie-mj.html").forward(request, response);
+		//On récupère et on ajoute un à un les participants au combat
+		//combat.ajouterJoueur(joueur);
+		
+		//On ajoute leurs initiatives
+		//combat.ajoutInit(combattant, initiative);
+		
+		//On démarre le combat
+		combat.demarrerCombat();
 		
 		
 	}
@@ -57,4 +60,5 @@ public class ServPartie extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response) ;
 	}
+	
 }

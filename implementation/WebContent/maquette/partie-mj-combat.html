@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<form action="ServCombat" method="post">
 	<div class="entete">
 		<div class="header" >Accueil</div>
 		<div class="header" >Règles du jeu</div>
@@ -29,20 +30,18 @@
 		</div>
 		<br>
 		<div id="optioncombat">
-			Participants : <input type="text"/>
+			Participants : <input type="text" id="joueur"/>
 			<br>
 			<a href="partie-mj-opt.html">Lancer le combat</a>  			
-			<input type="button" value="calculer l'initiative"/>
+			<input type="button" value="calculer l'initiative" onclick="rollTheDice()"> <p  id="init" ></p>
 		</div>
 		<br>
 		<div class="combat" style="border: 2px black; border-style: ">
 			<div id="options">
-				<a href="">Ajouter joueur</a> <a href="">Ajouter opposant</a>
+				<input type="button" value="ajouter un joueur" onclick="addJoueur()"> <input type="button" value="ajouter un opposant" onclick="addJoueur()">
 			</div>
 			<div id="listcombat">
-				<div class="combattant joueur">
-					Joueur 1
-				</div>
+				<p id="test"></p>
 				<div class="combattant opposant">
 					Ennemi 1
 				</div>
@@ -55,5 +54,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="combat.js"></script>
 </body>
 </html>
