@@ -8,8 +8,8 @@
 <title>Création de Fiche</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<style type="text/css">
-<!--
+<link rel="stylesheet" type="text/css" href="CreationFiche.css" />
+<!--  <style type="text/css">
 #header, #footer {display: none;} 
 .firstpage {
 	height          : 800px;
@@ -140,8 +140,8 @@ body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 9px;
 }
--->
-</style>
+
+</style>-->
 
 </head>
 <body>

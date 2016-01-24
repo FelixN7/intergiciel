@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import facade.FacadeUtilisateur;
 import utilities.TypeUtilisateur;
@@ -45,7 +46,6 @@ public class ServConnection extends HttpServlet {
 			}else{
 				//erreur authentification
 				response.sendRedirect("inscription-connection/erreurLogin.html");
-				//TODO mettre un systeme pour mettre le message d'erreur dans la page
 			}
 		}else if (op.equals("inscription")){
 			String pseudo = request.getParameter("pseudo");
@@ -63,6 +63,10 @@ public class ServConnection extends HttpServlet {
 			}else{
 				response.sendRedirect("inscription-connection/inscription.html");//ajouter un message d'erreur dans la page
 			}
+		}else if (op.equals("disconnect")){
+			request.getSession().removeAttribute("utilisateur");
+			request.getSession().removeAttribute("typeUtil");
+			response.sendRedirect("index.html");
 		}
 	}
 
