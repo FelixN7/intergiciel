@@ -39,10 +39,10 @@ public class TestListeOrdonnee {
 		Kevin.setNomPerso("Kevin");
 		Kevin.setCaracteristiques(new Caracteristiques(14, 70, 12, 18, 15, 25));
 		listePJS.add(Kevin) ;
-		Fiche Marton = new Fiche() ;
-		Marton.setNomPerso("Marton");
-		Marton.setCaracteristiques(new Caracteristiques(1000, 1000, 1000, 1000, 1000, 1000));
-		listePJS.add(Marton) ;
+		Fiche Tonmar = new Fiche() ;
+		Tonmar.setNomPerso("Tonmar");
+		Tonmar.setCaracteristiques(new Caracteristiques(1000, 1000, 1000, 1000, 1000, 1000));
+		listePJS.add(Tonmar) ;
 		
 		initiatives = new HashMap<String, Integer>() ;
 		initiatives.put("Jacques", 18) ;
@@ -51,7 +51,7 @@ public class TestListeOrdonnee {
 		initiatives.put("Felix", 3) ;
 		initiatives.put("Yvette", 2) ;
 		initiatives.put("Kevin", 35) ;
-		initiatives.put("Marton", 150) ;
+		initiatives.put("Tonmar", 150) ;
 		
 		/**On Commence par récupérer l'initiative de participant au combat */
 		ArrayList<Fiche> listeTours = new ArrayList<Fiche>() ;
