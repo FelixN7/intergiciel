@@ -4,6 +4,11 @@ body {
 	margin: 0px;		/* Eviter les bordures automatiques */
 }
 
+.pageContent {
+	margin: 10px;
+	
+}
+
 /*******************************  BANDEAU ***************************/
 
 .bandeau .pageTitle {

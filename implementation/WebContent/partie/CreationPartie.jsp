@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Création d'une partie</title>
 <link rel="stylesheet" type="text/css" href="/JDR/others/general.css">
-<lin
+<link rel="stylesheet" type="text/css" href="/JDR/partie/creationPartie.css">
 </head>
 <body>
 
@@ -18,24 +18,39 @@
 	<div class="pageContent">
 
 		<div id="creaPartie">
-			<div id="selectedPlayersContainer">
+			<div id="selectedPlayersContainer" class="contentDiv">
 
-				Maitre de jeu de la partie :
+				<b>Maitre de jeu de la partie :</b>
 				<%=request.getSession().getAttribute("utilisateur") %>
-				<br> <br> Liste des joueurs : <br>
-				<div id="selectedPlayers"></div>
+				<br> <br> <b>Liste des joueurs : </b><br>
+				<div id="selectedPlayers">
+					<br>
+				</div>
 				
 			</div>
 
-			<div id="addPlayerDiv">
-				<input type="text" id="searchPLayer"/>
-				<input type="button" onclick="invitePlaer" value="Inviter"/>
-
+			<div id="addPlayerDiv" class="contentDiv">
+				<div id="addPlayer">
+					Inviter un joueur : <br>
+					<input type="text" id="searchPlayer"/>
+					<input type="button" onclick="invitePlayer($('#searchPlayer'))" value="Inviter"/>
+				</div>
+				<br>
+				<br>
+				<div id="pendingRequests">
+					Invitations en attente : <br>
+					<div id="requestedPlayers">
+						<br>
+					
+					</div> 			
+				</div>
 			</div>
 		</div>
 
 		<form action="ServPartie?op=creation" method="POST"></form>
 	</div>
+
+	<script type="text/javascript" src="creationPartie.js"></script>
 
 </body>
 </html>
