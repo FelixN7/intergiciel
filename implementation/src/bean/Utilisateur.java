@@ -14,6 +14,8 @@ public class Utilisateur {
 	private utilities.TypeUtilisateur type;
 	@OneToMany(mappedBy="joueur", fetch=FetchType.EAGER )
 	private Collection<Fiche> personnages;
+	@OneToMany(mappedBy="mj", fetch=FetchType.EAGER )
+	private Collection<Partie> parties;
 	
 	public String getPseudo() {
 		return pseudo;
@@ -45,4 +47,18 @@ public class Utilisateur {
 	public void creerFiche() {
 		Fiche f = new Fiche() ;
 	}
+	public Collection<Fiche> getPersonnages() {
+		return personnages;
+	}
+	public void setPersonnages(Collection<Fiche> personnages) {
+		this.personnages = personnages;
+	}
+	public Collection<Partie> getParties() {
+		return parties;
+	}
+	public void setParties(Collection<Partie> parties) {
+		this.parties = parties;
+	}
+	
+	
 }

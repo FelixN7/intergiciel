@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,6 +18,8 @@ public class Partie {
 	private int id ; 
 	@OneToMany (mappedBy="partie", fetch=FetchType.EAGER )
 	private Collection<Fiche> listePJ ;
+	@ManyToOne
+	private Utilisateur mj;
 	private boolean finished;
 
 	public Partie() {	
@@ -63,6 +66,14 @@ public class Partie {
 		}
 	}
 
+	public Utilisateur getMj() {
+		return mj;
+	}
 
+	public void setMj(Utilisateur mj) {
+		this.mj = mj;
+	}
+	
+	
 
 }
