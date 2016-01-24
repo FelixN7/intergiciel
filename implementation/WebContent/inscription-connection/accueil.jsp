@@ -22,27 +22,26 @@
 		if (request.getSession().getAttribute("typeUtil") == TypeUtilisateur.Joueur) {
 	%>
 	<div id="actionsAccueil">
-		<a href="fiche/CreationFichePage.html">Créer une fiche de
+		<a href="/JDR/fiche/CreationFichePage.jsp">Créer une fiche de
 			personnage</a> <br>
-		<br> <a href="fiche/FichePage.jsp">Voir ses personnages</a>
+		<br> <a href="/JDR/fiche/FichePage.jsp">Voir ses personnages</a>
 	</div>
 	<%
-		} else {
+		} else if(request.getSession().getAttribute("typeUtil") == TypeUtilisateur.MaitreDuJeu) {
 	%>
 
 	<div id="actionsAccueil">
-		<a href="fiche/CreationFichePage.html">Créer une fiche de
+		<a href="/JDR/fiche/CreationFichePage.jsp">Créer une fiche de
 			personnage</a> <br>
-		<br> <a href="fiche/FichePage.jsp">Voir ses personnages</a> <br>
+		<br> <a href="/JDR/fiche/FichePage.jsp">Voir ses personnages</a> <br>
 		<br> <a href="/JDR/partie/CreationPartie.jsp">Créer une
 			partie</a>
 	</div>
 
 	<%
+		}else{
+			response.sendRedirect("/JDR/");
 		}
 	%>
-
-	<%-- <% Utilisateur u = (Utilisateur) request.getAttribute("utilisateur");%> --%>
-	<%-- Bonjour <%= u.getPseudo() %>! --%>
 </body>
 </html>

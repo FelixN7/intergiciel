@@ -1,0 +1,456 @@
+/*C1*/SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+COMMIT
+/*C3*/SET SCHEMA PUBLIC
+drop table Arme if exists
+drop table Armure if exists
+drop table BonusRef if exists
+drop table BonusVig if exists
+drop table BonusVol if exists
+drop table Classe if exists
+drop table Dons if exists
+drop table Fiche if exists
+drop table Fiche_Dons if exists
+drop table Partie if exists
+drop table Race if exists
+drop table Utilisateur if exists
+drop table Arme if exists
+drop table Armure if exists
+drop table BonusAtt if exists
+drop table BonusRef if exists
+drop table BonusVig if exists
+drop table BonusVol if exists
+drop table Classe if exists
+drop table Dons if exists
+drop table Fiche if exists
+drop table Fiche_Dons if exists
+drop table Partie if exists
+drop table Race if exists
+drop table Utilisateur if exists
+create table Arme (nom varchar(255) not null, dgtsM varbinary(255), dgtsP varbinary(255), facteurCritique integer not null, minCrit integer not null, primary key (nom))
+create table Armure (nom varchar(255) not null, bonusArmure integer, bonusDexMax integer, malusTests integer, risqueEchec integer, primary key (nom))
+create table BonusAtt (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusRef (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVig (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVol (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table Classe (nom varchar(255) not null, DVie varbinary(255), primary key (nom))
+create table Dons (nom varchar(255) not null, texte varchar(255), primary key (nom))
+create table Fiche (id integer not null, alignement integer, attaque varbinary(255), ca integer not null, caracteristiques varbinary(255), competences varbinary(255), initiative integer not null, level integer not null, nomPerso varchar(255), sauvegardes varbinary(255), type integer, vie integer not null, vieCourante integer not null, armeDroite_nom varchar(255), armeGauche_nom varchar(255), armure_nom varchar(255), classe_nom varchar(255), joueur_pseudo varchar(255), partie_id integer, race_nom varchar(255), primary key (id))
+create table Fiche_Dons (Fiche_id integer not null, dons_nom varchar(255) not null)
+create table Partie (id integer not null, finished boolean not null, mj_pseudo varchar(255), primary key (id))
+create table Race (nom varchar(255) not null, primary key (nom))
+create table Utilisateur (pseudo varchar(255) not null, mdp varchar(255), type integer, primary key (pseudo))
+alter table Fiche add constraint FK_cmwcu11yocixic52b738p73mu foreign key (armeDroite_nom) references Arme
+alter table Fiche add constraint FK_qbqpx6enbrg4do4oslbsy0ms0 foreign key (armeGauche_nom) references Arme
+alter table Fiche add constraint FK_jup1ab8ftviqheusghpwewkyd foreign key (armure_nom) references Armure
+alter table Fiche add constraint FK_35n4wsqpbpmocpp84g76b2y74 foreign key (classe_nom) references Classe
+alter table Fiche add constraint FK_saky87ymoddq6fi6d6ffbg0l2 foreign key (joueur_pseudo) references Utilisateur
+alter table Fiche add constraint FK_9ob0dqh9fb50d9hvmeokpyg0c foreign key (partie_id) references Partie
+alter table Fiche add constraint FK_rdlc7nodq96mrqwole4kjbky3 foreign key (race_nom) references Race
+alter table Fiche_Dons add constraint FK_4hu5u0dwkgwbi95t229n2k24d foreign key (dons_nom) references Dons
+alter table Fiche_Dons add constraint FK_hjr11cuev1q5n6f6qnmjc0iw4 foreign key (Fiche_id) references Fiche
+alter table Partie add constraint FK_onnrw1mx91aak3pdaejqqbpwh foreign key (mj_pseudo) references Utilisateur
+create sequence hibernate_sequence start with 1 increment by 1
+alter table Fiche drop constraint FK_cmwcu11yocixic52b738p73mu
+alter table Fiche drop constraint FK_qbqpx6enbrg4do4oslbsy0ms0
+alter table Fiche drop constraint FK_jup1ab8ftviqheusghpwewkyd
+alter table Fiche drop constraint FK_35n4wsqpbpmocpp84g76b2y74
+alter table Fiche drop constraint FK_saky87ymoddq6fi6d6ffbg0l2
+alter table Fiche drop constraint FK_9ob0dqh9fb50d9hvmeokpyg0c
+alter table Fiche drop constraint FK_rdlc7nodq96mrqwole4kjbky3
+alter table Fiche_Dons drop constraint FK_4hu5u0dwkgwbi95t229n2k24d
+alter table Fiche_Dons drop constraint FK_hjr11cuev1q5n6f6qnmjc0iw4
+alter table Partie drop constraint FK_onnrw1mx91aak3pdaejqqbpwh
+drop table Arme if exists
+drop table Armure if exists
+drop table BonusAtt if exists
+drop table BonusRef if exists
+drop table BonusVig if exists
+drop table BonusVol if exists
+drop table Classe if exists
+drop table Dons if exists
+drop table Fiche if exists
+drop table Fiche_Dons if exists
+drop table Partie if exists
+drop table Race if exists
+drop table Utilisateur if exists
+drop sequence hibernate_sequence
+create table Arme (nom varchar(255) not null, dgtsM varbinary(255), dgtsP varbinary(255), facteurCritique integer not null, minCrit integer not null, primary key (nom))
+create table Armure (nom varchar(255) not null, bonusArmure integer, bonusDexMax integer, malusTests integer, risqueEchec integer, primary key (nom))
+create table BonusAtt (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusRef (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVig (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVol (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table Classe (nom varchar(255) not null, DVie varbinary(255), primary key (nom))
+create table Dons (nom varchar(255) not null, texte varchar(255), primary key (nom))
+create table Fiche (id integer not null, alignement integer, attaque varbinary(255), ca integer not null, caracteristiques varbinary(255), competences varbinary(255), initiative integer not null, level integer not null, nomPerso varchar(255), sauvegardes varbinary(255), type integer, vie integer not null, vieCourante integer not null, armeDroite_nom varchar(255), armeGauche_nom varchar(255), armure_nom varchar(255), classe_nom varchar(255), joueur_pseudo varchar(255), partie_id integer, race_nom varchar(255), primary key (id))
+create table Fiche_Dons (Fiche_id integer not null, dons_nom varchar(255) not null)
+create table Partie (id integer not null, finished boolean not null, mj_pseudo varchar(255), primary key (id))
+create table Race (nom varchar(255) not null, primary key (nom))
+create table Utilisateur (pseudo varchar(255) not null, mdp varchar(255), type integer, primary key (pseudo))
+alter table Fiche add constraint FK_cmwcu11yocixic52b738p73mu foreign key (armeDroite_nom) references Arme
+alter table Fiche add constraint FK_qbqpx6enbrg4do4oslbsy0ms0 foreign key (armeGauche_nom) references Arme
+alter table Fiche add constraint FK_jup1ab8ftviqheusghpwewkyd foreign key (armure_nom) references Armure
+alter table Fiche add constraint FK_35n4wsqpbpmocpp84g76b2y74 foreign key (classe_nom) references Classe
+alter table Fiche add constraint FK_saky87ymoddq6fi6d6ffbg0l2 foreign key (joueur_pseudo) references Utilisateur
+alter table Fiche add constraint FK_9ob0dqh9fb50d9hvmeokpyg0c foreign key (partie_id) references Partie
+alter table Fiche add constraint FK_rdlc7nodq96mrqwole4kjbky3 foreign key (race_nom) references Race
+alter table Fiche_Dons add constraint FK_4hu5u0dwkgwbi95t229n2k24d foreign key (dons_nom) references Dons
+alter table Fiche_Dons add constraint FK_hjr11cuev1q5n6f6qnmjc0iw4 foreign key (Fiche_id) references Fiche
+alter table Partie add constraint FK_onnrw1mx91aak3pdaejqqbpwh foreign key (mj_pseudo) references Utilisateur
+create sequence hibernate_sequence start with 1 increment by 1
+INSERT INTO CLASSE VALUES('guerrier','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d00000000000000001200007870740003443130')
+INSERT INTO BONUSATT VALUES('guerrier',1,1)
+INSERT INTO BONUSATT VALUES('guerrier',2,2)
+INSERT INTO BONUSATT VALUES('guerrier',3,3)
+INSERT INTO BONUSATT VALUES('guerrier',4,4)
+INSERT INTO BONUSATT VALUES('guerrier',5,5)
+INSERT INTO BONUSATT VALUES('guerrier',6,6)
+INSERT INTO BONUSATT VALUES('guerrier',7,7)
+INSERT INTO BONUSATT VALUES('guerrier',8,8)
+INSERT INTO BONUSATT VALUES('guerrier',9,9)
+INSERT INTO BONUSATT VALUES('guerrier',10,10)
+INSERT INTO BONUSATT VALUES('guerrier',11,11)
+INSERT INTO BONUSATT VALUES('guerrier',12,12)
+INSERT INTO BONUSATT VALUES('guerrier',13,13)
+INSERT INTO BONUSATT VALUES('guerrier',14,14)
+INSERT INTO BONUSATT VALUES('guerrier',15,15)
+INSERT INTO BONUSATT VALUES('guerrier',16,16)
+INSERT INTO BONUSATT VALUES('guerrier',17,17)
+INSERT INTO BONUSATT VALUES('guerrier',18,18)
+INSERT INTO BONUSATT VALUES('guerrier',19,19)
+INSERT INTO BONUSATT VALUES('guerrier',20,20)
+INSERT INTO BONUSREF VALUES('guerrier',1,0)
+INSERT INTO BONUSREF VALUES('guerrier',2,0)
+INSERT INTO BONUSREF VALUES('guerrier',3,1)
+INSERT INTO BONUSREF VALUES('guerrier',4,1)
+INSERT INTO BONUSREF VALUES('guerrier',5,1)
+INSERT INTO BONUSREF VALUES('guerrier',6,2)
+INSERT INTO BONUSREF VALUES('guerrier',7,2)
+INSERT INTO BONUSREF VALUES('guerrier',8,2)
+INSERT INTO BONUSREF VALUES('guerrier',9,3)
+INSERT INTO BONUSREF VALUES('guerrier',10,3)
+INSERT INTO BONUSREF VALUES('guerrier',11,3)
+INSERT INTO BONUSREF VALUES('guerrier',12,4)
+INSERT INTO BONUSREF VALUES('guerrier',13,4)
+INSERT INTO BONUSREF VALUES('guerrier',14,4)
+INSERT INTO BONUSREF VALUES('guerrier',15,5)
+INSERT INTO BONUSREF VALUES('guerrier',16,5)
+INSERT INTO BONUSREF VALUES('guerrier',17,5)
+INSERT INTO BONUSREF VALUES('guerrier',18,6)
+INSERT INTO BONUSREF VALUES('guerrier',19,6)
+INSERT INTO BONUSREF VALUES('guerrier',20,6)
+INSERT INTO BONUSVIG VALUES('guerrier',1,2)
+INSERT INTO BONUSVIG VALUES('guerrier',2,3)
+INSERT INTO BONUSVIG VALUES('guerrier',3,3)
+INSERT INTO BONUSVIG VALUES('guerrier',4,4)
+INSERT INTO BONUSVIG VALUES('guerrier',5,4)
+INSERT INTO BONUSVIG VALUES('guerrier',6,5)
+INSERT INTO BONUSVIG VALUES('guerrier',7,5)
+INSERT INTO BONUSVIG VALUES('guerrier',8,6)
+INSERT INTO BONUSVIG VALUES('guerrier',9,6)
+INSERT INTO BONUSVIG VALUES('guerrier',10,7)
+INSERT INTO BONUSVIG VALUES('guerrier',11,7)
+INSERT INTO BONUSVIG VALUES('guerrier',12,8)
+INSERT INTO BONUSVIG VALUES('guerrier',13,8)
+INSERT INTO BONUSVIG VALUES('guerrier',14,9)
+INSERT INTO BONUSVIG VALUES('guerrier',15,9)
+INSERT INTO BONUSVIG VALUES('guerrier',16,10)
+INSERT INTO BONUSVIG VALUES('guerrier',17,10)
+INSERT INTO BONUSVIG VALUES('guerrier',18,11)
+INSERT INTO BONUSVIG VALUES('guerrier',19,11)
+INSERT INTO BONUSVIG VALUES('guerrier',20,12)
+INSERT INTO BONUSVOL VALUES('guerrier',1,2)
+INSERT INTO BONUSVOL VALUES('guerrier',2,3)
+INSERT INTO BONUSVOL VALUES('guerrier',3,3)
+INSERT INTO BONUSVOL VALUES('guerrier',4,4)
+INSERT INTO BONUSVOL VALUES('guerrier',5,4)
+INSERT INTO BONUSVOL VALUES('guerrier',6,5)
+INSERT INTO BONUSVOL VALUES('guerrier',7,5)
+INSERT INTO BONUSVOL VALUES('guerrier',8,6)
+INSERT INTO BONUSVOL VALUES('guerrier',9,6)
+INSERT INTO BONUSVOL VALUES('guerrier',10,7)
+INSERT INTO BONUSVOL VALUES('guerrier',11,7)
+INSERT INTO BONUSVOL VALUES('guerrier',12,8)
+INSERT INTO BONUSVOL VALUES('guerrier',13,8)
+INSERT INTO BONUSVOL VALUES('guerrier',14,9)
+INSERT INTO BONUSVOL VALUES('guerrier',15,9)
+INSERT INTO BONUSVOL VALUES('guerrier',16,10)
+INSERT INTO BONUSVOL VALUES('guerrier',17,10)
+INSERT INTO BONUSVOL VALUES('guerrier',18,11)
+INSERT INTO BONUSVOL VALUES('guerrier',19,11)
+INSERT INTO BONUSVOL VALUES('guerrier',20,12)
+COMMIT
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+alter table Fiche drop constraint FK_cmwcu11yocixic52b738p73mu
+alter table Fiche drop constraint FK_qbqpx6enbrg4do4oslbsy0ms0
+alter table Fiche drop constraint FK_jup1ab8ftviqheusghpwewkyd
+alter table Fiche drop constraint FK_35n4wsqpbpmocpp84g76b2y74
+alter table Fiche drop constraint FK_saky87ymoddq6fi6d6ffbg0l2
+alter table Fiche drop constraint FK_9ob0dqh9fb50d9hvmeokpyg0c
+alter table Fiche drop constraint FK_rdlc7nodq96mrqwole4kjbky3
+alter table Fiche_Dons drop constraint FK_4hu5u0dwkgwbi95t229n2k24d
+alter table Fiche_Dons drop constraint FK_hjr11cuev1q5n6f6qnmjc0iw4
+alter table Partie drop constraint FK_onnrw1mx91aak3pdaejqqbpwh
+drop table Arme if exists
+drop table Armure if exists
+drop table BonusAtt if exists
+drop table BonusRef if exists
+drop table BonusVig if exists
+drop table BonusVol if exists
+drop table Classe if exists
+drop table Dons if exists
+drop table Fiche if exists
+drop table Fiche_Dons if exists
+drop table Partie if exists
+drop table Race if exists
+drop table Utilisateur if exists
+drop sequence hibernate_sequence
+create table Arme (nom varchar(255) not null, dgtsM varbinary(255), dgtsP varbinary(255), facteurCritique integer not null, minCrit integer not null, primary key (nom))
+create table Armure (nom varchar(255) not null, bonusArmure integer, bonusDexMax integer, malusTests integer, risqueEchec integer, primary key (nom))
+create table BonusAtt (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusRef (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVig (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVol (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table Classe (nom varchar(255) not null, DVie varbinary(255), primary key (nom))
+create table Dons (nom varchar(255) not null, texte varchar(255), primary key (nom))
+create table Fiche (id integer not null, alignement integer, attaque varbinary(255), ca integer not null, caracteristiques varbinary(255), competences varbinary(255), initiative integer not null, level integer not null, nomPerso varchar(255), sauvegardes varbinary(255), type integer, vie integer not null, vieCourante integer not null, armeDroite_nom varchar(255), armeGauche_nom varchar(255), armure_nom varchar(255), classe_nom varchar(255), joueur_pseudo varchar(255), partie_id integer, race_nom varchar(255), primary key (id))
+create table Fiche_Dons (Fiche_id integer not null, dons_nom varchar(255) not null)
+create table Partie (id integer not null, finished boolean not null, mj_pseudo varchar(255), primary key (id))
+create table Race (nom varchar(255) not null, primary key (nom))
+create table Utilisateur (pseudo varchar(255) not null, mdp varchar(255), type integer, primary key (pseudo))
+alter table Fiche add constraint FK_cmwcu11yocixic52b738p73mu foreign key (armeDroite_nom) references Arme
+alter table Fiche add constraint FK_qbqpx6enbrg4do4oslbsy0ms0 foreign key (armeGauche_nom) references Arme
+alter table Fiche add constraint FK_jup1ab8ftviqheusghpwewkyd foreign key (armure_nom) references Armure
+alter table Fiche add constraint FK_35n4wsqpbpmocpp84g76b2y74 foreign key (classe_nom) references Classe
+alter table Fiche add constraint FK_saky87ymoddq6fi6d6ffbg0l2 foreign key (joueur_pseudo) references Utilisateur
+alter table Fiche add constraint FK_9ob0dqh9fb50d9hvmeokpyg0c foreign key (partie_id) references Partie
+alter table Fiche add constraint FK_rdlc7nodq96mrqwole4kjbky3 foreign key (race_nom) references Race
+alter table Fiche_Dons add constraint FK_4hu5u0dwkgwbi95t229n2k24d foreign key (dons_nom) references Dons
+alter table Fiche_Dons add constraint FK_hjr11cuev1q5n6f6qnmjc0iw4 foreign key (Fiche_id) references Fiche
+alter table Partie add constraint FK_onnrw1mx91aak3pdaejqqbpwh foreign key (mj_pseudo) references Utilisateur
+create sequence hibernate_sequence start with 1 increment by 1
+alter table Fiche drop constraint FK_cmwcu11yocixic52b738p73mu
+alter table Fiche drop constraint FK_qbqpx6enbrg4do4oslbsy0ms0
+alter table Fiche drop constraint FK_jup1ab8ftviqheusghpwewkyd
+alter table Fiche drop constraint FK_35n4wsqpbpmocpp84g76b2y74
+alter table Fiche drop constraint FK_saky87ymoddq6fi6d6ffbg0l2
+alter table Fiche drop constraint FK_9ob0dqh9fb50d9hvmeokpyg0c
+alter table Fiche drop constraint FK_rdlc7nodq96mrqwole4kjbky3
+alter table Fiche_Dons drop constraint FK_4hu5u0dwkgwbi95t229n2k24d
+alter table Fiche_Dons drop constraint FK_hjr11cuev1q5n6f6qnmjc0iw4
+alter table Partie drop constraint FK_onnrw1mx91aak3pdaejqqbpwh
+drop table Arme if exists
+drop table Armure if exists
+drop table BonusAtt if exists
+drop table BonusRef if exists
+drop table BonusVig if exists
+drop table BonusVol if exists
+drop table Classe if exists
+drop table Dons if exists
+drop table Fiche if exists
+drop table Fiche_Dons if exists
+drop table Partie if exists
+drop table Race if exists
+drop table Utilisateur if exists
+drop sequence hibernate_sequence
+create table Arme (nom varchar(255) not null, dgtsM varbinary(255), dgtsP varbinary(255), facteurCritique integer not null, minCrit integer not null, primary key (nom))
+create table Armure (nom varchar(255) not null, bonusArmure integer, bonusDexMax integer, malusTests integer, risqueEchec integer, primary key (nom))
+create table BonusAtt (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusRef (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVig (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table BonusVol (classeName varchar(255) not null, lvl integer not null, modificateur integer not null, primary key (classeName, lvl))
+create table Classe (nom varchar(255) not null, DVie varbinary(255), primary key (nom))
+create table Dons (nom varchar(255) not null, texte varchar(255), primary key (nom))
+create table Fiche (id integer not null, alignement integer, attaque varbinary(255), ca integer not null, caracteristiques varbinary(255), competences varbinary(255), initiative integer not null, level integer not null, nomPerso varchar(255), sauvegardes varbinary(255), type integer, vie integer not null, vieCourante integer not null, armeDroite_nom varchar(255), armeGauche_nom varchar(255), armure_nom varchar(255), classe_nom varchar(255), joueur_pseudo varchar(255), partie_id integer, race_nom varchar(255), primary key (id))
+create table Fiche_Dons (Fiche_id integer not null, dons_nom varchar(255) not null)
+create table Partie (id integer not null, finished boolean not null, mj_pseudo varchar(255), primary key (id))
+create table Race (nom varchar(255) not null, primary key (nom))
+create table Utilisateur (pseudo varchar(255) not null, mdp varchar(255), type integer, primary key (pseudo))
+alter table Fiche add constraint FK_cmwcu11yocixic52b738p73mu foreign key (armeDroite_nom) references Arme
+alter table Fiche add constraint FK_qbqpx6enbrg4do4oslbsy0ms0 foreign key (armeGauche_nom) references Arme
+alter table Fiche add constraint FK_jup1ab8ftviqheusghpwewkyd foreign key (armure_nom) references Armure
+alter table Fiche add constraint FK_35n4wsqpbpmocpp84g76b2y74 foreign key (classe_nom) references Classe
+alter table Fiche add constraint FK_saky87ymoddq6fi6d6ffbg0l2 foreign key (joueur_pseudo) references Utilisateur
+alter table Fiche add constraint FK_9ob0dqh9fb50d9hvmeokpyg0c foreign key (partie_id) references Partie
+alter table Fiche add constraint FK_rdlc7nodq96mrqwole4kjbky3 foreign key (race_nom) references Race
+alter table Fiche_Dons add constraint FK_4hu5u0dwkgwbi95t229n2k24d foreign key (dons_nom) references Dons
+alter table Fiche_Dons add constraint FK_hjr11cuev1q5n6f6qnmjc0iw4 foreign key (Fiche_id) references Fiche
+alter table Partie add constraint FK_onnrw1mx91aak3pdaejqqbpwh foreign key (mj_pseudo) references Utilisateur
+create sequence hibernate_sequence start with 1 increment by 1
+INSERT INTO CLASSE VALUES('guerrier','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d00000000000000001200007870740003443130')
+INSERT INTO BONUSATT VALUES('guerrier',1,1)
+INSERT INTO BONUSATT VALUES('guerrier',2,2)
+INSERT INTO BONUSATT VALUES('guerrier',3,3)
+INSERT INTO BONUSATT VALUES('guerrier',4,4)
+INSERT INTO BONUSATT VALUES('guerrier',5,5)
+INSERT INTO BONUSATT VALUES('guerrier',6,6)
+INSERT INTO BONUSATT VALUES('guerrier',7,7)
+INSERT INTO BONUSATT VALUES('guerrier',8,8)
+INSERT INTO BONUSATT VALUES('guerrier',9,9)
+INSERT INTO BONUSATT VALUES('guerrier',10,10)
+INSERT INTO BONUSATT VALUES('guerrier',11,11)
+INSERT INTO BONUSATT VALUES('guerrier',12,12)
+INSERT INTO BONUSATT VALUES('guerrier',13,13)
+INSERT INTO BONUSATT VALUES('guerrier',14,14)
+INSERT INTO BONUSATT VALUES('guerrier',15,15)
+INSERT INTO BONUSATT VALUES('guerrier',16,16)
+INSERT INTO BONUSATT VALUES('guerrier',17,17)
+INSERT INTO BONUSATT VALUES('guerrier',18,18)
+INSERT INTO BONUSATT VALUES('guerrier',19,19)
+INSERT INTO BONUSATT VALUES('guerrier',20,20)
+INSERT INTO BONUSREF VALUES('guerrier',1,0)
+INSERT INTO BONUSREF VALUES('guerrier',2,0)
+INSERT INTO BONUSREF VALUES('guerrier',3,1)
+INSERT INTO BONUSREF VALUES('guerrier',4,1)
+INSERT INTO BONUSREF VALUES('guerrier',5,1)
+INSERT INTO BONUSREF VALUES('guerrier',6,2)
+INSERT INTO BONUSREF VALUES('guerrier',7,2)
+INSERT INTO BONUSREF VALUES('guerrier',8,2)
+INSERT INTO BONUSREF VALUES('guerrier',9,3)
+INSERT INTO BONUSREF VALUES('guerrier',10,3)
+INSERT INTO BONUSREF VALUES('guerrier',11,3)
+INSERT INTO BONUSREF VALUES('guerrier',12,4)
+INSERT INTO BONUSREF VALUES('guerrier',13,4)
+INSERT INTO BONUSREF VALUES('guerrier',14,4)
+INSERT INTO BONUSREF VALUES('guerrier',15,5)
+INSERT INTO BONUSREF VALUES('guerrier',16,5)
+INSERT INTO BONUSREF VALUES('guerrier',17,5)
+INSERT INTO BONUSREF VALUES('guerrier',18,6)
+INSERT INTO BONUSREF VALUES('guerrier',19,6)
+INSERT INTO BONUSREF VALUES('guerrier',20,6)
+INSERT INTO BONUSVIG VALUES('guerrier',1,2)
+INSERT INTO BONUSVIG VALUES('guerrier',2,3)
+INSERT INTO BONUSVIG VALUES('guerrier',3,3)
+INSERT INTO BONUSVIG VALUES('guerrier',4,4)
+INSERT INTO BONUSVIG VALUES('guerrier',5,4)
+INSERT INTO BONUSVIG VALUES('guerrier',6,5)
+INSERT INTO BONUSVIG VALUES('guerrier',7,5)
+INSERT INTO BONUSVIG VALUES('guerrier',8,6)
+INSERT INTO BONUSVIG VALUES('guerrier',9,6)
+INSERT INTO BONUSVIG VALUES('guerrier',10,7)
+INSERT INTO BONUSVIG VALUES('guerrier',11,7)
+INSERT INTO BONUSVIG VALUES('guerrier',12,8)
+INSERT INTO BONUSVIG VALUES('guerrier',13,8)
+INSERT INTO BONUSVIG VALUES('guerrier',14,9)
+INSERT INTO BONUSVIG VALUES('guerrier',15,9)
+INSERT INTO BONUSVIG VALUES('guerrier',16,10)
+INSERT INTO BONUSVIG VALUES('guerrier',17,10)
+INSERT INTO BONUSVIG VALUES('guerrier',18,11)
+INSERT INTO BONUSVIG VALUES('guerrier',19,11)
+INSERT INTO BONUSVIG VALUES('guerrier',20,12)
+INSERT INTO BONUSVOL VALUES('guerrier',1,0)
+INSERT INTO BONUSVOL VALUES('guerrier',2,0)
+INSERT INTO BONUSVOL VALUES('guerrier',3,1)
+INSERT INTO BONUSVOL VALUES('guerrier',4,1)
+INSERT INTO BONUSVOL VALUES('guerrier',5,1)
+INSERT INTO BONUSVOL VALUES('guerrier',6,2)
+INSERT INTO BONUSVOL VALUES('guerrier',7,2)
+INSERT INTO BONUSVOL VALUES('guerrier',8,2)
+INSERT INTO BONUSVOL VALUES('guerrier',9,3)
+INSERT INTO BONUSVOL VALUES('guerrier',10,3)
+INSERT INTO BONUSVOL VALUES('guerrier',11,3)
+INSERT INTO BONUSVOL VALUES('guerrier',12,4)
+INSERT INTO BONUSVOL VALUES('guerrier',13,4)
+INSERT INTO BONUSVOL VALUES('guerrier',14,4)
+INSERT INTO BONUSVOL VALUES('guerrier',15,5)
+INSERT INTO BONUSVOL VALUES('guerrier',16,5)
+INSERT INTO BONUSVOL VALUES('guerrier',17,5)
+INSERT INTO BONUSVOL VALUES('guerrier',18,6)
+INSERT INTO BONUSVOL VALUES('guerrier',19,6)
+INSERT INTO BONUSVOL VALUES('guerrier',20,6)
+INSERT INTO CLASSE VALUES('roublard','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400024436')
+INSERT INTO BONUSATT VALUES('roublard',1,0)
+INSERT INTO BONUSATT VALUES('roublard',2,1)
+INSERT INTO BONUSATT VALUES('roublard',3,2)
+INSERT INTO BONUSATT VALUES('roublard',4,3)
+INSERT INTO BONUSATT VALUES('roublard',5,3)
+INSERT INTO BONUSATT VALUES('roublard',6,4)
+INSERT INTO BONUSATT VALUES('roublard',7,5)
+INSERT INTO BONUSATT VALUES('roublard',8,6)
+INSERT INTO BONUSATT VALUES('roublard',9,6)
+INSERT INTO BONUSATT VALUES('roublard',10,7)
+INSERT INTO BONUSATT VALUES('roublard',11,8)
+INSERT INTO BONUSATT VALUES('roublard',12,9)
+INSERT INTO BONUSATT VALUES('roublard',13,9)
+INSERT INTO BONUSATT VALUES('roublard',14,10)
+INSERT INTO BONUSATT VALUES('roublard',15,11)
+INSERT INTO BONUSATT VALUES('roublard',16,12)
+INSERT INTO BONUSATT VALUES('roublard',17,12)
+INSERT INTO BONUSATT VALUES('roublard',18,13)
+INSERT INTO BONUSATT VALUES('roublard',19,14)
+INSERT INTO BONUSATT VALUES('roublard',20,15)
+INSERT INTO BONUSREF VALUES('roublard',1,2)
+INSERT INTO BONUSREF VALUES('roublard',2,3)
+INSERT INTO BONUSREF VALUES('roublard',3,3)
+INSERT INTO BONUSREF VALUES('roublard',4,4)
+INSERT INTO BONUSREF VALUES('roublard',5,4)
+INSERT INTO BONUSREF VALUES('roublard',6,5)
+INSERT INTO BONUSREF VALUES('roublard',7,5)
+INSERT INTO BONUSREF VALUES('roublard',8,6)
+INSERT INTO BONUSREF VALUES('roublard',9,6)
+INSERT INTO BONUSREF VALUES('roublard',10,7)
+INSERT INTO BONUSREF VALUES('roublard',11,7)
+INSERT INTO BONUSREF VALUES('roublard',12,8)
+INSERT INTO BONUSREF VALUES('roublard',13,8)
+INSERT INTO BONUSREF VALUES('roublard',14,9)
+INSERT INTO BONUSREF VALUES('roublard',15,9)
+INSERT INTO BONUSREF VALUES('roublard',16,10)
+INSERT INTO BONUSREF VALUES('roublard',17,10)
+INSERT INTO BONUSREF VALUES('roublard',18,11)
+INSERT INTO BONUSREF VALUES('roublard',19,11)
+INSERT INTO BONUSREF VALUES('roublard',20,12)
+INSERT INTO BONUSVIG VALUES('roublard',1,0)
+INSERT INTO BONUSVIG VALUES('roublard',2,0)
+INSERT INTO BONUSVIG VALUES('roublard',3,1)
+INSERT INTO BONUSVIG VALUES('roublard',4,1)
+INSERT INTO BONUSVIG VALUES('roublard',5,1)
+INSERT INTO BONUSVIG VALUES('roublard',6,2)
+INSERT INTO BONUSVIG VALUES('roublard',7,2)
+INSERT INTO BONUSVIG VALUES('roublard',8,2)
+INSERT INTO BONUSVIG VALUES('roublard',9,3)
+INSERT INTO BONUSVIG VALUES('roublard',10,3)
+INSERT INTO BONUSVIG VALUES('roublard',11,3)
+INSERT INTO BONUSVIG VALUES('roublard',12,4)
+INSERT INTO BONUSVIG VALUES('roublard',13,4)
+INSERT INTO BONUSVIG VALUES('roublard',14,4)
+INSERT INTO BONUSVIG VALUES('roublard',15,5)
+INSERT INTO BONUSVIG VALUES('roublard',16,5)
+INSERT INTO BONUSVIG VALUES('roublard',17,5)
+INSERT INTO BONUSVIG VALUES('roublard',18,6)
+INSERT INTO BONUSVIG VALUES('roublard',19,6)
+INSERT INTO BONUSVIG VALUES('roublard',20,6)
+INSERT INTO BONUSVOL VALUES('roublard',1,0)
+INSERT INTO BONUSVOL VALUES('roublard',2,0)
+INSERT INTO BONUSVOL VALUES('roublard',3,1)
+INSERT INTO BONUSVOL VALUES('roublard',4,1)
+INSERT INTO BONUSVOL VALUES('roublard',5,1)
+INSERT INTO BONUSVOL VALUES('roublard',6,2)
+INSERT INTO BONUSVOL VALUES('roublard',7,2)
+INSERT INTO BONUSVOL VALUES('roublard',8,2)
+INSERT INTO BONUSVOL VALUES('roublard',9,3)
+INSERT INTO BONUSVOL VALUES('roublard',10,3)
+INSERT INTO BONUSVOL VALUES('roublard',11,3)
+INSERT INTO BONUSVOL VALUES('roublard',12,4)
+INSERT INTO BONUSVOL VALUES('roublard',13,4)
+INSERT INTO BONUSVOL VALUES('roublard',14,4)
+INSERT INTO BONUSVOL VALUES('roublard',15,5)
+INSERT INTO BONUSVOL VALUES('roublard',16,5)
+INSERT INTO BONUSVOL VALUES('roublard',17,5)
+INSERT INTO BONUSVOL VALUES('roublard',18,6)
+INSERT INTO BONUSVOL VALUES('roublard',19,6)
+INSERT INTO BONUSVOL VALUES('roublard',20,6)
+INSERT INTO ARMURE VALUES('Armure de cuir',2,6,0,10)
+INSERT INTO ARMURE VALUES('Armure de cuir cloutee',3,5,1,15)
+INSERT INTO ARME VALUES('epee batarde','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d00000000000000001200007870740003443130','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400024438',2,19)
+INSERT INTO ARME VALUES('epee longue','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400024438','aced00057372000d7574696c69746965732e446573dd6728ed4b2e842b0200024900056e624465734c0004747970657400154c7574696c69746965732f5479706544654465733b7870000000017e7200137574696c69746965732e54797065446544657300000000000000001200007872000e6a6176612e6c616e672e456e756d000000000000000012000078707400024436',2,19)
+COMMIT
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+INSERT INTO UTILISATEUR VALUES('aaaa','zzzz',0)
+COMMIT
+INSERT INTO UTILISATEUR VALUES('zzz','bbb',0)
+COMMIT

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%if(request.getSession().getAttribute("typeUtil") == null){
+	response.sendRedirect("/JDR/");
+}else{
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,6 +15,7 @@
 
 </head>
 <body onload="setAttaque(), setSave(), setHP()">
+
 <form action="ServFiche" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
@@ -1320,3 +1325,4 @@
 </form>
 </body>
 </html> 
+<%} %>
