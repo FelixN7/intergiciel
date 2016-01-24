@@ -64,8 +64,7 @@ public class ServConnection extends HttpServlet {
 				response.sendRedirect("inscription-connection/inscription.html");//ajouter un message d'erreur dans la page
 			}
 		}else if (op.equals("disconnect")){
-			request.getSession().removeAttribute("utilisateur");
-			request.getSession().removeAttribute("typeUtil");
+			request.getSession().invalidate();
 			response.sendRedirect("index.html");
 		}
 	}
