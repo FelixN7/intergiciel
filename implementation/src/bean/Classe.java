@@ -2,12 +2,9 @@ package bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Classe implements Serializable {
@@ -17,10 +14,6 @@ public class Classe implements Serializable {
 	private String nom ;
 	private utilities.Des DVie ;
 //	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
-//	@OneToMany (mappedBy="classe", fetch=FetchType.EAGER )
-//	private Collection<BonusRef> bonusReff; 
-//	private HashMap<Integer, Integer> bonusVig ;
-//	private HashMap<Integer, Integer> bonusVol ; 
 	
 	public Classe() {}
 	
@@ -52,13 +45,7 @@ public class Classe implements Serializable {
 //		return (this.bonusAtt) ;
 //	}
 //	
-//	public Collection<BonusRef> getBonusReff() {
-//		return bonusReff;
-//	}
-//
-//	public void setBonusReff(Collection<BonusRef> bonusReff) {
-//		this.bonusReff = bonusReff;
-//	}
+	
 //	
 //	public void setBonusVig(HashMap<Integer, Integer> tableVig) {
 //		this.bonusVig = tableVig ;
@@ -87,6 +74,31 @@ public class Classe implements Serializable {
 		return null ;
 	}
 
+	@Override
+	public int hashCode() {
+		return nom.hashCode();
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Classe other = (Classe) obj;
+		return nom.equals(other.nom);
+	}
+
+	
+
+//	public Collection<BonusRef> getBonusReff() {
+//		return bonusReff;
+//	}
+//
+//	public void setBonusReff(Collection<BonusRef> bonusReff) {
+//		this.bonusReff = bonusReff;
+//	}
 	
 }

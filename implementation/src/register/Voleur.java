@@ -3,23 +3,15 @@ package register;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.ejb.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import bean.Classe;
 import utilities.TypeDeDes;
 
-@Singleton
 public class Voleur {
 
-	@PersistenceContext
-	private EntityManager em;
-
-	private HashMap<Integer, ArrayList<Integer>> tableAtt;
-	private HashMap<Integer, Integer> tableRef ; 
-	private HashMap<Integer, Integer> tableVig ;
-	private HashMap<Integer, Integer> tableVol ;
+	private HashMap<Integer, ArrayList<Integer>> tableAtt = new HashMap<Integer, ArrayList<Integer>>();
+	private HashMap<Integer, Integer> tableRef = new HashMap<Integer, Integer>(); 
+	private HashMap<Integer, Integer> tableVig = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> tableVol = new HashMap<Integer, Integer>();
 	
 	public Voleur() {
 		/** Cr�ation d'une instance de la classe Classe*/
@@ -57,11 +49,6 @@ public class Voleur {
 		v.setBonusVol(tableVol) ;
 		v.setBonusVig(tableVig) ;
 		v.setBonusRef(tableRef);
-		em.persist(v);
-	}
-	
-	public Classe getVoleur(String nom) {
-		return em.find(Classe.class, nom) ;
 	}
 	
 }

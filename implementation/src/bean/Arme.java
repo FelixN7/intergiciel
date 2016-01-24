@@ -15,9 +15,7 @@ public class Arme implements Item {
 	private ArrayList<Integer> zoneCritique ;
 	private Integer facteurCritique ;
 	
-	public Arme() {
-		
-	}
+	public Arme() {}
 	
 	public Arme(String nom) {
 		this.setNom(nom) ;

@@ -3,27 +3,19 @@ package register;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.ejb.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import bean.Classe;
 import utilities.TypeDeDes;
 
-@Singleton
 public class Guerrier {
-
-	@PersistenceContext
-	private EntityManager em;
-
-	private HashMap<Integer, ArrayList<Integer>> tableAtt;
-	private HashMap<Integer, Integer> tableRef ; 
-	private HashMap<Integer, Integer> tableVig ;
-	private HashMap<Integer, Integer> tableVol ;
+	Classe cl;
+	private HashMap<Integer, ArrayList<Integer>> tableAtt = new HashMap<Integer, ArrayList<Integer>>();
+	private HashMap<Integer, Integer> tableRef = new HashMap<Integer, Integer>(); 
+	private HashMap<Integer, Integer> tableVig = new HashMap<Integer, Integer>();
+	private HashMap<Integer, Integer> tableVol = new HashMap<Integer, Integer>();
 	
 	public Guerrier() {
-		/** Cr�ation d'une instance de la classe Classe*/
-		Classe g = new Classe("Guerrier") ;
+		/** Création d'une instance de la classe Classe*/
+		cl = new Classe("Guerrier") ;
 		/** On remplit les tables pour chaque niveau */
 		for(int i=1; i<=20; i++) {
 			/** On remplit la table du bonus de base � l'attaque */
@@ -44,23 +36,18 @@ public class Guerrier {
 			tableAtt.put(i, l) ;
 			
 			/** On remplit la table du bonus de base de R�flexes*/
-				tableRef.put(i, (i-i%3)/3) ;
+				tableRef.put(i, (i-i%3)/3);
 			/** On remplit la table du bonus de base de Vigueur*/
 				tableVig.put(i, 2+(i-i%2)/2) ;
 			/** On remplit la table du bonus de base de Volont�*/
 				tableVol.put(i, (i-i%3)/3) ;
 		}
 		/** Ajour de chaque table dans g */
-		g.setDVie(new utilities.Des(TypeDeDes.D10, 1));
-		g.setBonusAtt(tableAtt) ;
-		g.setBonusVol(tableVol) ;
-		g.setBonusVig(tableVig) ;
-		g.setBonusRef(tableRef);
-		em.persist(g);
-	}
-	
-	public Classe getGuerrier(String nom) {
-		return em.find(Classe.class, nom) ;
+		cl.setDVie(new utilities.Des(TypeDeDes.D10, 1));
+//		cl.setBonusAtt(tableAtt) ;
+//		cl.setBonusVol(tableVol) ;
+//		cl.setBonusVig(tableVig) ;
+//		cl.setBonusRef(tableRef);
 	}
 	
 }
