@@ -3,15 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Connection</title>
+<link rel="stylesheet" type="text/css"
+	href="inscription-connection/index.css">
 </head>
 <body>
-<form action="ServConnection" method="post">
-<p><label>Pseudo</label> : <input type="text" name="pseudo"><br/>
-<label>Mot de passe</label> : <input type="password" name="mdp"><br/><br/>
-<input type="hidden" name="op" value="connection">
-<input type="submit" value="Connection">
-</p>
-</form>
-<a href="inscription-connection/inscription.html" >s'inscrire</a>
+	<form action="ServConnection" method="post">
+		<div class="pageContent">
+			<div id="image">
+				<img src="/JDR/images/dndlogo.png">
+			</div> <br />
+			<div style="display: table; margin: auto;">
+			<div id="connexionAccueil">
+				<p></p>
+					<label>Pseudo :</label><input type="text" name="pseudo"><br />
+					<label>Mot de passe :</label><input type="password" name="mdp"><br /><br />
+					<input type="hidden" name="op" value="connection">
+					<div style="vertical-align: middle;margin-left:50%">
+					<input type="submit" value="Connection">  <br /><br />
+					<a href="inscription-connection/inscription.html">s'inscrire</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 </html>
