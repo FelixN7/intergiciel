@@ -42,11 +42,11 @@ public class ServConnection extends HttpServlet {
 				Utilisateur currentUser = f.getUtilisateur(pseudo);
 				request.getSession().setAttribute("utilisateur", currentUser.getPseudo());
 				request.getSession().setAttribute("typeUtil", currentUser.getType());
-				request.getRequestDispatcher("inscription-connection/accueil.jsp").forward(request, response);
+				request.getRequestDispatcher("/inscription-connection/accueil.jsp").forward(request, response);
 				//voir comment faire pour ne pas retransmettre le mdp contenu dans la requete
 			}else{
 				//erreur authentification
-				response.sendRedirect("inscription-connection/erreurLogin.html");
+				response.sendRedirect("/JDR/inscription-connection/erreurLogin.html");
 			}
 		}else if (op.equals("inscription")){
 			String pseudo = request.getParameter("pseudo");
@@ -57,18 +57,18 @@ public class ServConnection extends HttpServlet {
 			if(mdp.equals(confirmation)){
 					try {
 						f.ajoutUtilisateur(pseudo, mdp, type);
-						response.sendRedirect("index.html");
+						response.sendRedirect("/JDR/");
 					} catch (EJBTransactionRolledbackException e) {
-						response.sendRedirect("inscription-connection/inscription.html");//ajouter le message : pseudo deja utilise
+						response.sendRedirect("/JDR/inscription-connection/inscription.html");//ajouter le message : pseudo deja utilise
 					}
 			}else{
-				response.sendRedirect("inscription-connection/inscription.html");//ajouter un message d'erreur dans la page
+				response.sendRedirect("/JDR/inscription-connection/inscription.html");//ajouter un message d'erreur dans la page
 			}
 		}else if (op.equals("disconnect")){
 			request.getSession().invalidate();
-			response.sendRedirect("index.html");
+			response.sendRedirect("/JDR/");
 		}else if (op.equals("accueil")) {
-			request.getRequestDispatcher("inscription-connection/accueil.jsp").forward(request, response);
+			request.getRequestDispatcher("/inscription-connection/accueil.jsp").forward(request, response);
 		}
 	}
 
