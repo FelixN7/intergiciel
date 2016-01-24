@@ -66,6 +66,8 @@ public class ServConnection extends HttpServlet {
 		}else if (op.equals("disconnect")){
 			request.getSession().invalidate();
 			response.sendRedirect("index.html");
+		}else if (op.equals("accueil")) {
+			request.getRequestDispatcher("inscription-connection/accueil.jsp").forward(request, response);
 		}
 	}
 
