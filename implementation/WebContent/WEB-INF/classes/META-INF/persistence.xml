@@ -6,6 +6,7 @@
       <jta-data-source>java:jboss/datasources/mydb</jta-data-source>
       <class>bean.Arme</class>
       <class>bean.Armure</class>
+      <class>bean.BonusAtt</class>
       <class>bean.BonusRef</class>
       <class>bean.BonusVig</class>
       <class>bean.BonusVol</class>
@@ -19,8 +20,8 @@
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
          <!--ligne a mettre a la place de la suivant lorsqu on crée la bdd :-->
-         <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
-         <property name="hibernate.hbm2ddl.auto" value="update"/>
+          <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+         <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
          <property name="hibernate.show_sql" value="true"/>
       </properties>
    </persistence-unit>

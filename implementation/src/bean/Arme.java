@@ -1,7 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,8 +10,8 @@ public class Arme implements Item {
 	private String nom ;
 	private utilities.Des dgtsP ;
 	private utilities.Des dgtsM ;
-	private ArrayList<Integer> zoneCritique ;
-	private Integer facteurCritique ;
+	private int minCrit ;
+	private int facteurCritique;
 	
 	public Arme() {}
 	
@@ -44,19 +42,19 @@ public class Arme implements Item {
 		this.dgtsM = dgtsM;
 	}
 
-	public ArrayList<Integer> getZoneCritique() {
-		return this.zoneCritique;
+	public int getMinCrit() {
+		return minCrit;
 	}
 
-	public void setZoneCritique(ArrayList<Integer> zoneCritique) {
-		this.zoneCritique = zoneCritique;
+	public void setMinCrit(int minCrit) {
+		this.minCrit = minCrit;
 	}
 
-	public Integer getFacteurCritique() {
+	public int getFacteurCritique() {
 		return this.facteurCritique;
 	}
 
-	public void setFacteurCritique(Integer facteurCritique) {
+	public void setFacteurCritique(int facteurCritique) {
 		this.facteurCritique = facteurCritique;
 	}
 
