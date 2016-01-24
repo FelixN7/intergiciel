@@ -9,8 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import bean.Utilisateur;
 import facade.FacadeUtilisateur;
 import utilities.TypeUtilisateur;
 
@@ -39,8 +39,9 @@ public class ServConnection extends HttpServlet {
 			String pseudo = request.getParameter("pseudo");
 			String mdp = request.getParameter("mdp");
 			if(f.checkUtilisateur(pseudo, mdp)){
-				request.getSession().setAttribute("utilisateur", f.getUtilisateur(pseudo));
-				request.getSession().setAttribute("typeUtil", f.getUtilisateur(pseudo).getType());
+				Utilisateur currentUser = f.getUtilisateur(pseudo);
+				request.getSession().setAttribute("utilisateur", currentUser.getPseudo());
+				request.getSession().setAttribute("typeUtil", currentUser.getType());
 				request.getRequestDispatcher("inscription-connection/accueil.jsp").forward(request, response);
 				//voir comment faire pour ne pas retransmettre le mdp contenu dans la requete
 			}else{
