@@ -2,10 +2,12 @@ package bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Classe implements Serializable {
@@ -14,14 +16,13 @@ public class Classe implements Serializable {
 	@Id
 	private String nom ;
 	private utilities.Des DVie ;
-	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
-	private HashMap<Integer, Integer> bonusRef ; 
-	private HashMap<Integer, Integer> bonusVig ;
-	private HashMap<Integer, Integer> bonusVol ; 
+//	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
+//	@OneToMany (mappedBy="classe", fetch=FetchType.EAGER )
+//	private Collection<BonusRef> bonusReff; 
+//	private HashMap<Integer, Integer> bonusVig ;
+//	private HashMap<Integer, Integer> bonusVol ; 
 	
-	public Classe() {
-		
-	}
+	public Classe() {}
 	
 	public Classe(String nom) {
 		this.nom = nom ;
@@ -42,38 +43,38 @@ public class Classe implements Serializable {
 	public void setDVie(utilities.Des dVie) {
 		DVie = dVie;
 	}
-	
-	public void setBonusAtt(HashMap<Integer, ArrayList<Integer>> tableAtt) {
-		this.bonusAtt = tableAtt ;
-	}
-	
-	public HashMap<Integer, ArrayList<Integer>> getBonusAtt() {
-		return (this.bonusAtt) ;
-	}
-	
-	public void setBonusRef(HashMap<Integer, Integer> tableRef) {
-		this.bonusRef = tableRef ;
-	}
-	
-	public HashMap<Integer, Integer> getBonusRef() {
-		return (this.bonusRef) ;
-	}
-	
-	public void setBonusVig(HashMap<Integer, Integer> tableVig) {
-		this.bonusVig = tableVig ;
-	}
-	
-	public HashMap<Integer, Integer> getBonusVig() {
-		return (this.bonusVig) ;
-	}
-	
-	public void setBonusVol(HashMap<Integer, Integer> tableVol) {
-		this.bonusVol = tableVol ;
-	}
-	
-	public HashMap<Integer, Integer> getBonusVol() {
-		return (this.bonusVol) ;
-	}
+//	
+//	public void setBonusAtt(HashMap<Integer, ArrayList<Integer>> tableAtt) {
+//		this.bonusAtt = tableAtt ;
+//	}
+//	
+//	public HashMap<Integer, ArrayList<Integer>> getBonusAtt() {
+//		return (this.bonusAtt) ;
+//	}
+//	
+//	public Collection<BonusRef> getBonusReff() {
+//		return bonusReff;
+//	}
+//
+//	public void setBonusReff(Collection<BonusRef> bonusReff) {
+//		this.bonusReff = bonusReff;
+//	}
+//	
+//	public void setBonusVig(HashMap<Integer, Integer> tableVig) {
+//		this.bonusVig = tableVig ;
+//	}
+//	
+//	public HashMap<Integer, Integer> getBonusVig() {
+//		return (this.bonusVig) ;
+//	}
+//	
+//	public void setBonusVol(HashMap<Integer, Integer> tableVol) {
+//		this.bonusVol = tableVol ;
+//	}
+//	
+//	public HashMap<Integer, Integer> getBonusVol() {
+//		return (this.bonusVol) ;
+//	}
 
 	public String toString(ArrayList<Integer> l) {
 		if (l.size() != 0) {
@@ -85,5 +86,7 @@ public class Classe implements Serializable {
 		}
 		return null ;
 	}
+
+
 	
 }
