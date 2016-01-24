@@ -22,8 +22,7 @@ public class Partie {
 	private Utilisateur mj;
 	private boolean finished;
 
-	public Partie() {	
-	}
+	public Partie() {}
 
 	public Partie (Collection<Fiche> listePJ) {
 		this.setListePJ(listePJ);

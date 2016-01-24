@@ -105,5 +105,32 @@ public class Des implements Serializable{
 		}
 		return s ;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + nbDes;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Des other = (Des) obj;
+		if (nbDes != other.nbDes)
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+	
+	
 	
 }
