@@ -147,6 +147,7 @@ body {
 <body>
 
 <% Fiche f = (Fiche) request.getAttribute("fiche"); %>
+<% FacadeBonus fb = (FacadeBonus) request.getAttribute("facadeBonus"); %>
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
   <tr> 
@@ -672,7 +673,7 @@ body {
         <span class="blackback_small">constitution</span></p></td>
     <td colspan="2" valign="top" class="boxed"><%= f.getSauvegardes().getVig() %></td>
     <td valign="top" class="desc3">=</td>
-    <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusVig().get(f.getLevel()) %></td>
+    <td colspan="2" valign="top" class="boxed"><%= fb.getBonusVig(f.getClasse().getNom(), f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModCon() %></td>
     <td valign="top" class="desc3">+</td>
@@ -688,7 +689,7 @@ body {
         <span class="blackback_small">dexterity</span></p></td>
     <td colspan="2" valign="top" class="boxed"><%= f.getSauvegardes().getRef() %></td>
     <td valign="top" class="desc3">=</td>
-    <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusRef().get(f.getLevel()) %></td>
+    <td colspan="2" valign="top" class="boxed"><%= fb.getBonusRef(f.getClasse().getNom(), f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModDex() %></td>
     <td valign="top" class="desc3">+</td>
@@ -704,7 +705,7 @@ body {
         <span class="blackback_small">wisdom</span></p></td>
     <td colspan="2" valign="top" class="boxed"><%= f.getSauvegardes().getVol() %></td>
     <td valign="top" class="desc3">=</td>
-    <td colspan="2" valign="top" class="boxed"><%= f.getClasse().getBonusVol().get(f.getLevel()) %></td>
+    <td colspan="2" valign="top" class="boxed"><%= fb.getBonusVol(f.getClasse().getNom(), f.getLevel()) %></td>
     <td valign="top" class="desc3">+</td>
     <td colspan="3" valign="top" class="boxed"><%= f.getCaracteristiques().getModSag() %></td>
     <td valign="top" class="desc3">+</td>

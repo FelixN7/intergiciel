@@ -298,7 +298,8 @@ function setAttaque() {
 	var text, xfor, arme, att ;
 	
 	text = document.getElementById("nomClasse").value ;
-	arme = document.getElementById("arme").value ;
+	armeD = document.getElementById("armeD").value ;
+	armeG = document.getElementById("armeG").value ;
 	xfor = Number(document.getElementById("for").value) ;
 	
 	if (text == "guerrier") {
@@ -313,15 +314,36 @@ function setAttaque() {
 		l.item(i).innerHTML = baseAtt ;
 	}
 	document.getElementById("lutte").innerHTML = (baseAtt + Math.floor((xfor-10)/2)).valueOf() ;
-	document.getElementById("attaque").innerHTML = (baseAtt + Math.floor((xfor-10)/2)).valueOf() ;
-	
-	if (arme == "Epee Batarde") {
-		document.getElementById("dommages").innerHTML = "1D10+"+String(Math.floor((xfor-10)/2));
-		document.getElementById("critique").innerHTML = "19-20/x2";
+	if (armeG == "") {
+		document.getElementById("attaqueD").innerHTML = (baseAtt + Math.floor((xfor-10)/2)).valueOf() ;
+		document.getElementById("attaqueG").innerHTML = "0" ;
+	} else {
+		document.getElementById("attaqueD").innerHTML = (baseAtt + Math.floor((xfor-10)/2) - 2).valueOf() ;
+		document.getElementById("attaqueG").innerHTML = (baseAtt + Math.floor((xfor-10)/2) - 6 ).valueOf() ;
 	}
-	else if (arme = "Epee Longue") {
-		document.getElementById("dommages").innerHTML = "1D8+"+String(Math.floor((xfor-10)/2));
-		document.getElementById("critique").innerHTML = "19-20/x2";
+	if (armeD == "Epee Batarde") {
+		document.getElementById("dommagesD").innerHTML = "1D10+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueD").innerHTML = "19-20/x2";
+	}
+	else if (armeD = "Epee Longue") {
+		document.getElementById("dommagesD").innerHTML = "1D8+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueD").innerHTML = "19-20/x2";
+	}
+	else if (armeD == "Mains") {
+		document.getElementById("dommagesD").innerHTML = "1D6"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueD").innerHTML = "20/x2";
+	}
+	if (armeG == "Epee Batarde") {
+		document.getElementById("dommagesG").innerHTML = "1D10+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueG").innerHTML = "19-20/x2";
+	}
+	else if (armeG = "Epee Longue") {
+		document.getElementById("dommagesG").innerHTML = "1D8+"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueG").innerHTML = "19-20/x2";
+	}
+	else if (armeG == "Mains") {
+		document.getElementById("dommagesG").innerHTML = "1D6"+String(Math.floor((xfor-10)/2));
+		document.getElementById("critiqueG").innerHTML = "20/x2";
 	}
 }
 

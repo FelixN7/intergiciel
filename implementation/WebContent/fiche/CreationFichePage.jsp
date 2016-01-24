@@ -689,14 +689,15 @@
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed"><select id="arme" onchange="setAttaque()">
+    <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" onchange="setAttaque()">
+    	<option value ="Mains">
     	<option value ="Epee Batarde">Epee Batarde
     	<option value ="Epee Longue">Epee Longue
     	</select>
-    	</td>
-    <td colspan="4" valign="top" class="boxed"><p id ="attaque"></p></td>
-    <td colspan="3" valign="top" class="boxed"><p id ="dommages"></p></td>
-    <td colspan="2" valign="top" class="boxed"><p id ="critique"></p></td>
+    </td>
+    <td colspan="4" valign="top" class="boxed"><p id ="attaqueD"></p></td>
+    <td colspan="3" valign="top" class="boxed"><p id ="dommagesD"></p></td>
+    <td colspan="2" valign="top" class="boxed"><p id ="critiqueD"></p></td>
     <td></td>
   </tr>
   <tr> 
@@ -740,10 +741,15 @@
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed">&nbsp;</td>
-    <td colspan="4" valign="top" class="boxed">&nbsp;</td>
-    <td colspan="3" valign="top" class="boxed">&nbsp;</td>
-    <td colspan="2" valign="top" class="boxed">&nbsp;</td>
+  	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" onchange="setAttaque()">
+    	<option value ="Mains">
+    	<option value ="Epee Batarde">Epee Batarde
+    	<option value ="Epee Longue">Epee Longue
+    	</select>
+    </td>
+    <td colspan="4" valign="top" class="boxed"><p id ="attaqueG"></p></td>
+    <td colspan="3" valign="top" class="boxed"><p id ="dommagesG"></p></td>
+    <td colspan="2" valign="top" class="boxed"><p id ="critiqueG"></p></td>
     <td></td>
   </tr>
   <tr> 
