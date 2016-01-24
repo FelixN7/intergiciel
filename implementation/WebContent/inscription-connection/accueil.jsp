@@ -33,7 +33,7 @@
 	<br><br>
 	<a href="fiche/FichePage.jsp">Voir ses personnages</a>
 	<br><br>
-	<a href="partie/CreationPartie.html">Créer une partie</a>
+	<a href="/JDR/partie/CreationPartie.jsp">Créer une partie</a>
 </div>
 
 <% } %>
