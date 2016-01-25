@@ -657,7 +657,7 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					VIG<br> <span class="blackback_small">constitution</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getSauvegardes().getVig()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVig(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModCon()%></td>
 			<td valign="top" class="desc3">=</td>
 			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVig(f.getClasse().getNom(), f.getLevel())%></td>
 			<td valign="top" class="desc3">+</td>
@@ -674,7 +674,7 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					REF<br> <span class="blackback_small">dexterity</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getSauvegardes().getRef()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusRef(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModDex()%></td>
 			<td valign="top" class="desc3">=</td>
 			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusRef(f.getClasse().getNom(), f.getLevel())%></td>
 			<td valign="top" class="desc3">+</td>
@@ -691,7 +691,7 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					VOL<br> <span class="blackback_small">wisdom</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getSauvegardes().getVol()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVol(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModSag()%></td>
 			<td valign="top" class="desc3">=</td>
 			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVol(f.getClasse().getNom(), f.getLevel())%></td>
 			<td valign="top" class="desc3">+</td>
@@ -728,7 +728,7 @@
 		<tr>
 			<td height="28" colspan="5" valign="top" class="blackback">BASE
 				ATTACK BONUS</td>
-			<td colspan="7" valign="top" class="boxed"><%=f.getClasse().toString(f.getAttaque())%></td>
+			<td colspan="7" valign="top" class="boxed"><%=fb.getBonusAtt(f.getClasse().getNom(), f.getLevel())%></td>
 			<td colspan="5" valign="top" class="blackback">SPELL RESISTANCE</td>
 			<td valign="top" class="boxed">0</td>
 			<td></td>
@@ -758,9 +758,9 @@
 			<td height="28" colspan="5" valign="top" class="blackback"><P>
 					LUTTE<BR> <span class="blackback_small"> modifier</span>
 				</P></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getAttaque().get(0) + f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getBonusAtt() + f.getCaracteristiques().getModFor()%></td>
 			<td valign="top" class="desc3">=</td>
-			<td colspan="3" valign="top" class="boxed"><%=f.getAttaque().get(0)%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
 			<td valign="top" class="desc3">+</td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getCaracteristiques().getModFor()%></td>
 			<td valign="top" class="desc3">+</td>
@@ -793,13 +793,23 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
+		<%if (f.getArmeGauche() == null) {%>
 		<tr>
-			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArme().getNom()%></td>
-			<td colspan="4" valign="top" class="boxed"><%=f.getAttaque()%></td>
-			<td colspan="3" valign="top" class="boxed"><%=f.getArme().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getArme().getMinCrit()%>/x<%=f.getArme().getFacteurCritique()%></td>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
+		<%} else {  %>
+		<tr>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()-2%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
+			<td></td>
+		</tr>
+		<%} %>
 		<tr>
 			<td height="19" colspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" valign="top" class="blackback2">TYPE</td>
@@ -840,13 +850,23 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
+		<%if (f.getArmeDroite() == null) { %>
 		<tr>
-			<td height="19" colspan="9" valign="top" class="boxed">&nbsp;</td>
-			<td colspan="4" valign="top" class="boxed">&nbsp;</td>
-			<td colspan="3" valign="top" class="boxed">&nbsp;</td>
-			<td colspan="2" valign="top" class="boxed">&nbsp;</td>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeGauche().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
+		<%} else { %>
+		<tr>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()-6%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeGauche().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
+			<td></td>
+		</tr>
+		<%} %>
 		<tr>
 			<td colspan="2" rowspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" rowspan="2" valign="top" class="blackback2">TYPE</td>
@@ -924,7 +944,7 @@
 									<td width="32" valign="top" class="descboxed">LB.</td>
 								</tr>
 								<tr>
-									<td width="107" height="24" valign="top" class="boxedsmall"></td>
+									<td width="107" height="24" valign="top" class="boxedsmall"><%=f.getArmure().getNom() %></td>
 									<td width="32" valign="top" class="boxedsmall">
 										<!--DWLayoutEmptyCell-->&nbsp;
 									</td>

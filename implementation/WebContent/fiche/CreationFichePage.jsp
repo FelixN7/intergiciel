@@ -16,7 +16,7 @@
 </head>
 <body onload="setAttaque(), setSave(), setHP()">
 
-<form action="ServFiche" method="post">
+<form action="ServFiche" method="post" id="formCreationFiche">
 
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
@@ -32,17 +32,17 @@
     <td colspan="8" class="desc1">CAMPAIGN</td>
   </tr>
   <tr> 
-    <td height="18" colspan="10"> <input type="number" value="1" size="4" id="level" readonly> <select id="nomClasse" onchange="setSave(), setAttaque(), setHP()">
+    <td height="18" colspan="10"> <input type="number" value="1" size="4" id="level" readonly> <select id="nomClasse" form="formCreationFiche" onchange="setSave(), setAttaque(), setHP()">
     	<option value ="guerrier">guerrier
     	<option value ="voleur">voleur
     	</select>
     	</td>
-    <td colspan="7" valign="top"> <select id="nomRace">
+    <td colspan="7" valign="top"> <select id="nomRace" form="formCreationFiche">
     	<option value="elfe">elfe
     	<option value="humain">humain
     	</select>
     </td>
-    <td colspan="5" valign="top"> <select id="alignement">
+    <td colspan="5" valign="top"> <select id="alignement" form="formCreationFiche">
     	<option value="loyal bon">loyal bon
     	<option value="chaotique bon">chaotique bon
     	<option value="neutre bon">neutre bon
@@ -694,7 +694,7 @@
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" onchange="setAttaque()">
+    <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" onchange="setAttaque()" form="formCreationFiche">
     	<option value ="Mains">
     	<option value ="Epee Batarde">Epee Batarde
     	<option value ="Epee Longue">Epee Longue
@@ -746,7 +746,7 @@
     <td></td>
   </tr>
   <tr> 
-  	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" onchange="setAttaque()">
+  	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" onchange="setAttaque()" form="formCreationFiche">
     	<option value ="Mains">
     	<option value ="Epee Batarde">Epee Batarde
     	<option value ="Epee Longue">Epee Longue
@@ -829,7 +829,13 @@
                 <td width="32" valign="top" class="descboxed">LB.</td>
               </tr>
               <tr> 
-                <td width="107" height="24" valign="top" class="boxedsmall"></td>
+                <td width="107" height="24" valign="top" class="boxedsmall">
+                	<select id="armure" onchange="setCA()" form="formCreationFiche">
+                		<option value="sans Armure">
+                		<option value="armure de Cuir">Armure de cuir
+                		<option value="armure de Cuir Cloutee">Armure de cuir cloutée
+                	</select>
+                </td>
                 <td width="32" valign="top" class="boxedsmall"><!--DWLayoutEmptyCell-->&nbsp;</td>
                 <td width="32" valign="top" class="boxedsmall"></td>
                 <td width="107" valign="top" class="boxedsmall"></td>

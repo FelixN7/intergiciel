@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Arme;
+import bean.Armure;
 import bean.Classe;
 import bean.Fiche;
 import bean.Race;
@@ -67,6 +68,7 @@ public class ServFiche extends HttpServlet {
 		
 		Arme armeG = new Arme(request.getParameter("armeG")) ;
 		Arme armeD= new Arme(request.getParameter("armeD")) ;
+		Armure armure = new Armure(request.getParameter("armure")) ;
 		
 		HashMap<String, Integer> HM = new HashMap<String, Integer>() ;
 		HM.put("Acrobaties", Integer.parseInt(request.getParameter("acrobatiesRank"))) ;
@@ -111,6 +113,7 @@ public class ServFiche extends HttpServlet {
 		fiche.setAlignement(alignement);
 		fiche.setArmeDroite(armeD);
 		fiche.setArmeGauche(armeG);
+		fiche.setArmure(armure);
 		f.editerFiche(fiche);
 		request.setAttribute("fiche", fiche);
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;

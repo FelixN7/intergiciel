@@ -349,8 +349,18 @@ function setAttaque() {
 
 function setCA() {
 	var xdex = Number(document.getElementById("dex").value)
-	var text = Number(10 + Math.floor((xdex-10)/2)).valueOf();
-	document.getElementById("CA").innerHTML = text;
+	var armure = document.getElementById("armure").valueOf() ;
+	
+	if (armure = "armure de Cuir") {
+		var text = Number(10 + Math.floor((xdex-10)/2) + 2).valueOf();
+		document.getElementById("CA").innerHTML = text;
+	} else if (armure = "armure de Cuir Cloutee") {
+		var text = Number(10 + Math.floor((xdex-10)/2) + 3).valueOf();
+		document.getElementById("CA").innerHTML = text;
+	} else {
+		var text = Number(10 + Math.floor((xdex-10)/2)).valueOf();
+		document.getElementById("CA").innerHTML = text;
+	}
 }
 
 function setHP() {

@@ -15,5 +15,11 @@ function addJoueur() {
 	var text = '<div class="combattant joueur">' + joueur + '</div>' ;
 	var test = document.getElementById("test").value ;
 	document.getElementById("test").innerHTML = text ;
-	
+}
+
+function test() {
+    $("#btn1").click(function(){
+    	var text = '<div>test</div>' ;
+        $("p").append(text);
+    });
 }

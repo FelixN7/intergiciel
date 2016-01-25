@@ -5,6 +5,9 @@
 <title>Interface d'aide aux MJs</title>
 <link rel="stylesheet" type="text/css" href="accueil.css">
 
+<script type="text/javascript" src="/JDR/others/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="combat.js"></script>
+
 </head>
 <body>
 <form action="ServCombat" method="post">
@@ -38,10 +41,10 @@
 		<br>
 		<div class="combat" style="border: 2px black; border-style: ">
 			<div id="options">
-				<input type="button" value="ajouter un joueur" onclick="addJoueur()"> <input type="button" value="ajouter un opposant" onclick="addJoueur()">
+				<button id="btn1">Ajouter un joueur</button> <input type="button" value="ajouter un opposant" onclick="addJoueur()">
 			</div>
 			<div id="listcombat">
-				<p id="test"></p>
+					<p id="test"></p>
 				<div class="combattant opposant">
 					Ennemi 1
 				</div>
@@ -53,7 +56,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<script src="combat.js"></script>
+	</div>	
 </body>
 </html>
