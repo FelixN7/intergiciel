@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import bean.Classe;
 import bean.Fiche;
 import bean.Race;
-import bean.Utilisateur;
 import utilities.Caracteristiques;
 import utilities.Competences;
 
@@ -17,12 +16,10 @@ public class FacadeFiche {
 	@PersistenceContext
 	private EntityManager em ;
 	
-	public FacadeFiche() {
-		
-	}
+	public FacadeFiche() {}
 	
-	public Fiche creerFiche(String nom, Utilisateur u, Caracteristiques c, Competences comp, Classe classe, Race race) {
-		Fiche f = new Fiche(nom, u, c, comp, classe, race) ;
+	public Fiche creerFiche(String nom, String nameUt, Caracteristiques c, Competences comp, Classe classe, Race race) {
+		Fiche f = new Fiche(nom, nameUt, c, comp, classe, race) ;
 		em.persist(f);
 		return f ;
 	}
@@ -31,7 +28,7 @@ public class FacadeFiche {
 		if (em.contains(f)) {
 			em.remove(f);
 		} else {
-			System.out.println("Ce personnage n'est pas pr�sent");
+			System.out.println("Ce personnage n'est pas présent");
 		}
 	}
 	
@@ -39,8 +36,8 @@ public class FacadeFiche {
 		
 	}
 	
-	public void editerFiche() {
-		
+	public void editerFiche(Fiche f) {
+		em.persist(f);
 	}
 	
 	public Fiche getFiche(int id){

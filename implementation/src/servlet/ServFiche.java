@@ -45,17 +45,16 @@ public class ServFiche extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		/**
-		 * On commence par récupérer toutes les données relatives à la création de la nouvelle fiche
+		 * On commence par rï¿½cupï¿½rer toutes les donnï¿½es relatives ï¿½ la crï¿½ation de la nouvelle fiche
 		 */
 		//On commence par le nom du joueur
 		String nomJoueur = request.getParameter("nomJoueur") ; 
-		Utilisateur u = fu.getUtilisateur(nomJoueur) ;
 		
-		//On récupère ensuite les informations relatives à son personnage
+		//On rï¿½cupï¿½re ensuite les informations relatives ï¿½ son personnage
 		String nomPerso = request.getParameter("nomPerso") ;
-		Integer level = Integer.parseInt(request.getParameter("level")) ;
 		Classe classe = new Classe(request.getParameter("nomClasse")) ;
 		Race race = new Race(request.getParameter("nomRace")) ;
+		System.out.println(request.getParameter("alignement"));
 		Alignement alignement = Fiche.toAlignement(request.getParameter("alignement")) ;
 		
 		Integer For = Integer.parseInt(request.getParameter("for")) ;
@@ -66,7 +65,8 @@ public class ServFiche extends HttpServlet {
 		Integer Cha = Integer.parseInt(request.getParameter("cha")) ;
 		Caracteristiques c = new Caracteristiques(For, Dex, Con, Int, Sag, Cha) ;
 		
-		Arme arme = new Arme(request.getParameter("arme")) ;
+		Arme armeG = new Arme(request.getParameter("armeG")) ;
+		Arme armeD= new Arme(request.getParameter("armeD")) ;
 		
 		HashMap<String, Integer> HM = new HashMap<String, Integer>() ;
 		HM.put("Acrobaties", Integer.parseInt(request.getParameter("acrobatiesRank"))) ;
@@ -74,15 +74,15 @@ public class ServFiche extends HttpServlet {
 		HM.put("Artisanat", Integer.parseInt(request.getParameter("artisanatRank"))) ;
 		HM.put("Bluff", Integer.parseInt(request.getParameter("bluffRank"))) ;
 		HM.put("Concentration", Integer.parseInt(request.getParameter("concentrationRank"))) ;
-		HM.put("Connaissance(Mystï¿½res)", Integer.parseInt(request.getParameter("connaissanceMysteresRank"))) ;
+		HM.put("Connaissance(Mysteres)", Integer.parseInt(request.getParameter("connaissanceMysteresRank"))) ;
 		HM.put("Connaissance(Nature)", Integer.parseInt(request.getParameter("connaissanceNatureRank"))) ;
 		HM.put("Connaissance(Religion)", Integer.parseInt(request.getParameter("connaissanceReligionRank"))) ;
 		HM.put("Contrefacon", Integer.parseInt(request.getParameter("contrefacon"))) ;
-		HM.put("Dï¿½cryptage", Integer.parseInt(request.getParameter("decryptageRank"))) ;
-		HM.put("Dï¿½guisement", Integer.parseInt(request.getParameter("deguisementRank"))) ;
-		HM.put("Dï¿½placement Silencieux", Integer.parseInt(request.getParameter("deplacementsilencieuxRank"))) ;
-		HM.put("Dï¿½samorï¿½age/sabotage", Integer.parseInt(request.getParameter("desamorcageRank"))) ;
-		HM.put("Dï¿½tection", Integer.parseInt(request.getParameter("detectionRank"))) ;
+		HM.put("Decryptage", Integer.parseInt(request.getParameter("decryptageRank"))) ;
+		HM.put("Deguisement", Integer.parseInt(request.getParameter("deguisementRank"))) ;
+		HM.put("Deplacement Silencieux", Integer.parseInt(request.getParameter("deplacementsilencieuxRank"))) ;
+		HM.put("Desamoreage/sabotage", Integer.parseInt(request.getParameter("desamorcageRank"))) ;
+		HM.put("Detection", Integer.parseInt(request.getParameter("detectionRank"))) ;
 		HM.put("Diplomatie", Integer.parseInt(request.getParameter("diplomatieRank"))) ;
 		HM.put("Discretion", Integer.parseInt(request.getParameter("discretionRank"))) ;
 		HM.put("Dressage", Integer.parseInt(request.getParameter("dressageRank"))) ;
@@ -100,15 +100,19 @@ public class ServFiche extends HttpServlet {
 		HM.put("Profession", Integer.parseInt(request.getParameter("professionRank"))) ;
 		HM.put("Psychologie", Integer.parseInt(request.getParameter("psychologieRank"))) ;
 		HM.put("Renseignements", Integer.parseInt(request.getParameter("renseignementsRank"))) ;
-		HM.put("Reprï¿½sentation", Integer.parseInt(request.getParameter("representationsRank"))) ;
+		HM.put("Representation", Integer.parseInt(request.getParameter("representationsRank"))) ;
 		HM.put("Saut", Integer.parseInt(request.getParameter("sautRank"))) ;
 		HM.put("Survie", Integer.parseInt(request.getParameter("survieRank"))) ;
 		HM.put("Utilisation d'objets magiques", Integer.parseInt(request.getParameter("utilisationobjetsmagiquesRank"))) ;	
 		Competences competences = new Competences(HM) ;
 		
-		//On créée sa fiche et on l'enregistre en base de données
-		f.creerFiche(nomPerso, u, c, competences, classe, race);
-		request.setAttribute("fiche", f);
+		//On crï¿½ï¿½e sa fiche et on l'enregistre en base de donnï¿½es
+		Fiche fiche =f.creerFiche(nomPerso, nomJoueur, c, competences, classe, race);
+		fiche.setAlignement(alignement);
+		fiche.setArmeDroite(armeD);
+		fiche.setArmeGauche(armeG);
+		f.editerFiche(fiche);
+		request.setAttribute("fiche", fiche);
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;
 	}
 	

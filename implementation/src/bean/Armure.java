@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Armure implements Item {
 	
 	@Id
-	private String nom ;
+	private String nom;
 	private Integer bonusArmure ;
 	private Integer bonusDexMax ;
 	private Integer malusTests ;

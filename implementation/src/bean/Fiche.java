@@ -1,37 +1,32 @@
 package bean;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import facade.FacadeBonus;
 import utilities.Alignement;
 import utilities.Caracteristiques;
 import utilities.Competences;
 import utilities.PersoType;
-import utilities.Sauvegardes;
 
 @Entity
+@IdClass(PersoPseudo.class)
 public class Fiche {
-	
-	//il y a peut etre plusieurs perso dans la bdd qui auront le même nom: 
-	//il faut juste qu il ne soit pas dans la meme partie
-	@GeneratedValue(strategy=GenerationType.AUTO)
+
 	@Id
-	private int id;
 	private String nomPerso;
-	@ManyToOne
-	private Utilisateur joueur;
+	@Id
+	private String pseudo;
 	private Caracteristiques caracteristiques;
 	@ManyToOne
 	private Partie partie;
 	private int initiative;
-	private ArrayList<Integer> attaque;
+	private int bonusAtt;
 	private int ca ;
 	@ManyToOne
 	private Classe classe ;
@@ -49,10 +44,8 @@ public class Fiche {
 	@ManyToOne
 	private Armure armure ;
 	private PersoType type ;
-	private Sauvegardes sauvegardes ;
 	private int vie;
 	private int vieCourante;
-	//private ArrayList<Item> inventory;
 	
 	public Fiche() {
 	}
@@ -64,12 +57,12 @@ public class Fiche {
 	 * @param c les caract�ristiques du personnage
 	 * @param classe la classe du personnage
 	 */
-	public Fiche(String nom, Utilisateur u, Caracteristiques c, Competences comp, Classe classe, Race race) {
+	public Fiche(String nom, String nameUt, Caracteristiques c, Competences comp, Classe classe, Race race) {
 		/**
-		 * On commence par remplir les donn�es connues
+		 * On commence par remplir les donnees connues
 		 */
 		this.nomPerso = nom ;
-		this.joueur = u ;
+		this.pseudo = nameUt ;
 		this.level = 1 ;
 		this.caracteristiques = c ;
 		this.competences.setCompetences(comp.getCompetences());
@@ -79,26 +72,21 @@ public class Fiche {
 		/**
 		 * On remplit ensuite le reste des informations par des calculs
 		 */
-		//TODO this.vie = c.getModCon() + classe.getDVie().val() ;
+		this.vie = c.getModCon() + classe.getDVie().val() ;
 		this.vieCourante = this.vie ;
-		
-		//TODO ArrayList<Integer> l = classe.getBonusAtt().get(level) ;
-//		for (int i = 0; i<l.size(); i++) {
-//			l.set(i, l.get(i) + this.getCaracteristiques().getModFor()) ;
-//		}
-//		
-//		this.attaque = l ;
+		FacadeBonus f = new FacadeBonus();
+		int bonusAttBase = f.getBonusAtt(classe.getNom(), level);
+		bonusAtt=bonusAttBase+caracteristiques.getFor();
 		this.ca = 10 ;
-		//TODO this.sauvegardes = new Sauvegardes(classe.getBonusRef().get(level) + c.getModDex(), classe.getBonusRef().get(level) + c.getModSag(), classe.getBonusRef().get(level) + c.getModCon()) ;
 		
 	}
 
-	public Utilisateur getJoueur() {
-		return joueur;
+	public String getPseudo() {
+		return pseudo;
 	}
 
-	public void setJoueur(Utilisateur joueur) {
-		this.joueur = joueur;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	public Caracteristiques getCaracteristiques() {
@@ -107,14 +95,6 @@ public class Fiche {
 
 	public void setCaracteristiques(Caracteristiques caracteristiques) {
 		this.caracteristiques = caracteristiques;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Partie getPartie() {
@@ -141,12 +121,12 @@ public class Fiche {
 		this.initiative = initiative;
 	}
 
-	public ArrayList<Integer> getAttaque() {
-		return attaque;
+	public int getBonusAtt() {
+		return bonusAtt;
 	}
 
-	public void setAttaque(ArrayList<Integer> attaque) {
-		this.attaque = attaque;
+	public void setBonusAtt(int bonusAtt) {
+		this.bonusAtt = bonusAtt;
 	}
 
 	public int getCa() {
@@ -189,14 +169,6 @@ public class Fiche {
 		this.nomPerso = nomPerso;
 	}
 
-	public Arme getArme() {
-		return armeGauche;
-	}
-
-	public void setArme(Arme arme) {
-		this.armeGauche = arme;
-	}
-
 	public Armure getArmure() {
 		return armure;
 	}
@@ -211,14 +183,6 @@ public class Fiche {
 
 	public void setType(PersoType type) {
 		this.type = type;
-	}
-
-	public Sauvegardes getSauvegardes() {
-		return sauvegardes;
-	}
-
-	public void setSauvegardes(Sauvegardes sauvegardes) {
-		this.sauvegardes = sauvegardes;
 	}
 
 	public int getVie() {

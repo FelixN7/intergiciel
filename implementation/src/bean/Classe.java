@@ -13,7 +13,6 @@ public class Classe implements Serializable {
 	@Id
 	private String nom ;
 	private utilities.Des DVie ;
-//	private HashMap<Integer, ArrayList<Integer>> bonusAtt;
 	
 	public Classe() {}
 	

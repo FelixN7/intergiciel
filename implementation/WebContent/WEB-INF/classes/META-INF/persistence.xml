@@ -15,13 +15,14 @@
       <class>bean.Dons</class>
       <class>bean.Fiche</class>
       <class>bean.Partie</class>
+      <class>bean.PersoPseudo</class>
       <class>bean.Race</class>
       <class>bean.Utilisateur</class>   
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
          <!--ligne a mettre a la place de la suivant lorsqu on crée la bdd :-->
-          <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-         <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
          <property name="hibernate.show_sql" value="true"/>
       </properties>
    </persistence-unit>
