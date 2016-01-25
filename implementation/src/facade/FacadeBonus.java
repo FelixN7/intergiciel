@@ -8,7 +8,9 @@ import bean.BonusAtt;
 import bean.BonusRef;
 import bean.BonusVig;
 import bean.BonusVol;
+import bean.Classe;
 import bean.ClasseLvl;
+import utilities.Des;
 
 @Singleton
 public class FacadeBonus {
@@ -37,5 +39,9 @@ public class FacadeBonus {
 	public int getBonusVol(String classeName, int lvl){
 		ClasseLvl clvl = new ClasseLvl(classeName, lvl);
 		return em.find(BonusVol.class, clvl).getModificateur();
+	}
+	
+	public Des getDeVieClasse(String nomClasse){
+		return em.find(Classe.class, nomClasse).getDVie();
 	}
 }

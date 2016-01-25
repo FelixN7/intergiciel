@@ -8,7 +8,6 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import facade.FacadeBonus;
 import utilities.Alignement;
 import utilities.Caracteristiques;
 import utilities.Competences;
@@ -26,17 +25,16 @@ public class Fiche {
 	@ManyToOne
 	private Partie partie;
 	private int initiative;
-	private int bonusAtt;
 	private int ca ;
 	@ManyToOne
-	private Classe classe ;
+	private Classe classe;
 	@ManyToOne
 	private Race race ;
-	private Alignement alignement ;
+	private Alignement alignement;//TODO pourquoi l alignement ne s insere pas en bdd
 	@ManyToMany
 	private Collection<Dons> dons ;
 	private int level ;
-	private Competences competences ;
+	//TODO private Competences competences;
 	@ManyToOne
 	private Arme armeGauche;
 	@ManyToOne
@@ -46,10 +44,9 @@ public class Fiche {
 	private PersoType type ;
 	private int vie;
 	private int vieCourante;
-	
-	public Fiche() {
-	}
-	
+
+	public Fiche() {}
+
 	/**
 	 * Le constructeur de la classe Fiche
 	 * @param nom le nom du personnage repr�sent� par la fiche
@@ -65,20 +62,18 @@ public class Fiche {
 		this.pseudo = nameUt ;
 		this.level = 1 ;
 		this.caracteristiques = c ;
-		this.competences.setCompetences(comp.getCompetences());
-		this.setClasse(classe) ;
-		this.setRace(race) ;
-		
+		//this.competences=comp;
+		this.setClasse(classe);
+		this.setRace(race);
+
 		/**
 		 * On remplit ensuite le reste des informations par des calculs
 		 */
-		this.vie = c.getModCon() + classe.getDVie().val() ;
+		System.out.println(classe.getDVie().val());
+		this.vie = c.getModCon() + classe.getDVie().val();
 		this.vieCourante = this.vie ;
-		FacadeBonus f = new FacadeBonus();
-		int bonusAttBase = f.getBonusAtt(classe.getNom(), level);
-		bonusAtt=bonusAttBase+caracteristiques.getFor();
 		this.ca = 10 ;
-		
+
 	}
 
 	public String getPseudo() {
@@ -121,14 +116,6 @@ public class Fiche {
 		this.initiative = initiative;
 	}
 
-	public int getBonusAtt() {
-		return bonusAtt;
-	}
-
-	public void setBonusAtt(int bonusAtt) {
-		this.bonusAtt = bonusAtt;
-	}
-
 	public int getCa() {
 		return ca;
 	}
@@ -153,13 +140,13 @@ public class Fiche {
 		this.level = level;
 	}
 
-	public Competences getCompetences() {
-		return competences;
-	}
-
-	public void setCompetences(Competences competences) {
-		this.competences = competences;
-	}
+//	public Competences getCompetences() {
+//		return competences;
+//	}
+//
+//	public void setCompetences(Competences competences) {
+//		this.competences = competences;
+//	}
 
 	public String getNomPerso() {
 		return nomPerso;
@@ -232,7 +219,7 @@ public class Fiche {
 	public void setAlignement(Alignement alignement) {
 		this.alignement = alignement;
 	}
-	
+
 	public static Alignement toAlignement(String s) {
 		if (s.equals("Loyal Bon")) {
 			return Alignement.LOYALBON ;
@@ -273,5 +260,5 @@ public class Fiche {
 	public void setArmeDroite(Arme armeDroite) {
 		this.armeDroite = armeDroite;
 	}
-	
+
 }

@@ -15,9 +15,8 @@ import bean.Armure;
 import bean.Classe;
 import bean.Fiche;
 import bean.Race;
-import bean.Utilisateur;
+import facade.FacadeBonus;
 import facade.FacadeFiche;
-import facade.FacadeUtilisateur;
 import utilities.Alignement;
 import utilities.Caracteristiques;
 import utilities.Competences;
@@ -29,8 +28,9 @@ import utilities.Competences;
 public class ServFiche extends HttpServlet {
 
 	@EJB
-	FacadeFiche f ;
-	FacadeUtilisateur fu ;
+	FacadeFiche f;
+	@EJB
+	FacadeBonus fb;
 	private static final long serialVersionUID = 1L ;
 	
 	/**
@@ -53,17 +53,17 @@ public class ServFiche extends HttpServlet {
 		
 		//On r�cup�re ensuite les informations relatives � son personnage
 		String nomPerso = request.getParameter("nomPerso") ;
-		Classe classe = new Classe(request.getParameter("nomClasse")) ;
+		Classe classe = new Classe(request.getParameter("nomClasse"));
+		classe.setDVie(fb.getDeVieClasse(classe.getNom()));
 		Race race = new Race(request.getParameter("nomRace")) ;
-		System.out.println(request.getParameter("alignement"));
 		Alignement alignement = Fiche.toAlignement(request.getParameter("alignement")) ;
 		
-		Integer For = Integer.parseInt(request.getParameter("for")) ;
-		Integer Dex = Integer.parseInt(request.getParameter("dex")) ;
-		Integer Con = Integer.parseInt(request.getParameter("con")) ;
-		Integer Int = Integer.parseInt(request.getParameter("int")) ;
-		Integer Sag = Integer.parseInt(request.getParameter("sag")) ;
-		Integer Cha = Integer.parseInt(request.getParameter("cha")) ;
+		Integer For = Integer.parseInt(request.getParameter("for"));
+		Integer Dex = Integer.parseInt(request.getParameter("dex"));
+		Integer Con = Integer.parseInt(request.getParameter("con"));
+		Integer Int = Integer.parseInt(request.getParameter("int"));
+		Integer Sag = Integer.parseInt(request.getParameter("sag"));
+		Integer Cha = Integer.parseInt(request.getParameter("cha"));
 		Caracteristiques c = new Caracteristiques(For, Dex, Con, Int, Sag, Cha) ;
 		
 		Arme armeG = new Arme(request.getParameter("armeG")) ;
@@ -76,10 +76,10 @@ public class ServFiche extends HttpServlet {
 		HM.put("Artisanat", Integer.parseInt(request.getParameter("artisanatRank"))) ;
 		HM.put("Bluff", Integer.parseInt(request.getParameter("bluffRank"))) ;
 		HM.put("Concentration", Integer.parseInt(request.getParameter("concentrationRank"))) ;
-		HM.put("Connaissance(Mysteres)", Integer.parseInt(request.getParameter("connaissanceMysteresRank"))) ;
+		HM.put("Connaissance(Mysteres)", Integer.parseInt(request.getParameter("connaissanceMystereRank")));
 		HM.put("Connaissance(Nature)", Integer.parseInt(request.getParameter("connaissanceNatureRank"))) ;
 		HM.put("Connaissance(Religion)", Integer.parseInt(request.getParameter("connaissanceReligionRank"))) ;
-		HM.put("Contrefacon", Integer.parseInt(request.getParameter("contrefacon"))) ;
+		HM.put("Contrefacon", Integer.parseInt(request.getParameter("contrefaconRank"))) ;
 		HM.put("Decryptage", Integer.parseInt(request.getParameter("decryptageRank"))) ;
 		HM.put("Deguisement", Integer.parseInt(request.getParameter("deguisementRank"))) ;
 		HM.put("Deplacement Silencieux", Integer.parseInt(request.getParameter("deplacementsilencieuxRank"))) ;
@@ -101,20 +101,20 @@ public class ServFiche extends HttpServlet {
 		HM.put("Premiers secours", Integer.parseInt(request.getParameter("premiersecoursRank"))) ;
 		HM.put("Profession", Integer.parseInt(request.getParameter("professionRank"))) ;
 		HM.put("Psychologie", Integer.parseInt(request.getParameter("psychologieRank"))) ;
-		HM.put("Renseignements", Integer.parseInt(request.getParameter("renseignementsRank"))) ;
-		HM.put("Representation", Integer.parseInt(request.getParameter("representationsRank"))) ;
+		HM.put("Renseignements", Integer.parseInt(request.getParameter("renseigementsRank"))) ;
+		HM.put("Representation", Integer.parseInt(request.getParameter("representationRank")));
 		HM.put("Saut", Integer.parseInt(request.getParameter("sautRank"))) ;
 		HM.put("Survie", Integer.parseInt(request.getParameter("survieRank"))) ;
 		HM.put("Utilisation d'objets magiques", Integer.parseInt(request.getParameter("utilisationobjetsmagiquesRank"))) ;	
 		Competences competences = new Competences(HM) ;
 		
 		//On cr��e sa fiche et on l'enregistre en base de donn�es
-		Fiche fiche =f.creerFiche(nomPerso, nomJoueur, c, competences, classe, race);
+		Fiche fiche = new Fiche(nomPerso, nomJoueur, c, competences, classe, race);
 		fiche.setAlignement(alignement);
 		fiche.setArmeDroite(armeD);
 		fiche.setArmeGauche(armeG);
 		fiche.setArmure(armure);
-		f.editerFiche(fiche);
+		f.insererFiche(fiche);
 		request.setAttribute("fiche", fiche);
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;
 	}

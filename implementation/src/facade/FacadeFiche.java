@@ -4,11 +4,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import bean.Classe;
 import bean.Fiche;
-import bean.Race;
-import utilities.Caracteristiques;
-import utilities.Competences;
 
 @Singleton
 public class FacadeFiche {
@@ -18,10 +14,9 @@ public class FacadeFiche {
 	
 	public FacadeFiche() {}
 	
-	public Fiche creerFiche(String nom, String nameUt, Caracteristiques c, Competences comp, Classe classe, Race race) {
-		Fiche f = new Fiche(nom, nameUt, c, comp, classe, race) ;
-		em.persist(f);
-		return f ;
+	public Fiche insererFiche(Fiche fiche) {
+		em.persist(fiche);
+		return fiche ;
 	}
 	
 	public void supprimerFiche(Fiche f) {
@@ -34,10 +29,6 @@ public class FacadeFiche {
 	
 	public void voirFiche() {
 		
-	}
-	
-	public void editerFiche(Fiche f) {
-		em.persist(f);
 	}
 	
 	public Fiche getFiche(int id){

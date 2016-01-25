@@ -16,13 +16,13 @@
 </head>
 <body onload="setAttaque(), setSave(), setHP()">
 
-<form action="ServFiche" method="post" id="formCreationFiche">
+<form action="/JDR/ServFiche" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
   <tr> 
-    <td height="18" colspan="10"><input type="text" size="10" id="nomPerso"></td>
-    <td height="18" colspan="10"><input type="text" value="<%= request.getSession().getAttribute("utilisateur") %>" size="10" id="nomJoueur" readonly></td>
+    <td height="18" colspan="10"><input type="text" size="10" name="nomPerso" id="nomPerso"></td>
+    <td height="18" colspan="10"><input type="text" value="<%= request.getSession().getAttribute("utilisateur") %>" size="10" name="nomJoueur" id="nomJoueur" readonly></td>
     <td colspan="12" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
     <td colspan="8" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
   </tr>
@@ -32,17 +32,17 @@
     <td colspan="8" class="desc1">CAMPAIGN</td>
   </tr>
   <tr> 
-    <td height="18" colspan="10"> <input type="number" value="1" size="4" id="level" readonly> <select id="nomClasse" form="formCreationFiche" onchange="setSave(), setAttaque(), setHP()">
+    <td height="18" colspan="10"> <input type="number" value="1" size="4" id="level" name="level" readonly> <select name="nomClasse" id="nomClasse" onchange="setSave(), setAttaque(), setHP()">
     	<option value ="guerrier">guerrier
-    	<option value ="voleur">voleur
+    	<option value ="roublard">roublard
     	</select>
     	</td>
-    <td colspan="7" valign="top"> <select id="nomRace" form="formCreationFiche">
+    <td colspan="7" valign="top"> <select id="nomRace" name="nomRace">
     	<option value="elfe">elfe
     	<option value="humain">humain
     	</select>
     </td>
-    <td colspan="5" valign="top"> <select id="alignement" form="formCreationFiche">
+    <td colspan="5" valign="top"> <select id="alignement" name="alignement">
     	<option value="loyal bon">loyal bon
     	<option value="chaotique bon">chaotique bon
     	<option value="neutre bon">neutre bon
@@ -78,7 +78,7 @@
   <tr> 
     <td height="39" valign="middle" class="blackback"> <p>STR<br>
         <span class="blackback_small">strength</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="for" onchange="setModFor(), settotaux(), setSave(), setAttaque()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="for" name="for" value=3 onchange="setModFor(), settotaux(), setSave(), setAttaque()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name="modFor"></p></td>
     <td colspan="2" valign="top" class="blackback"><P>HP<br>
         <span class="blackback_small">hit points</span></p></td>
@@ -90,7 +90,7 @@
   <tr> 
     <td height="39" valign="middle" class="blackback"> <p>DEX<br>
         <span class="blackback_small">dexterity</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="dex" onchange="setModDex(), settotaux(), setSave(), setAttaque(), setCA()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" name="dex" id="dex" value=3 onchange="setModDex(), settotaux(), setSave(), setAttaque(), setCA()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name="modDex"></p></td>
     <td colspan="2" valign="top" class="blackback"><P>AC<br>
         <span class="blackback_small">armor class</span></p></td>
@@ -115,7 +115,7 @@
   <tr> 
     <td rowspan="2" valign="middle" class="blackback"> <p>CON<br>
         <span class="blackback_small">constitution</span></p></td>
-    <td colspan="2" rowspan="2" valign="middle" class="boxed"><input type="number" size="4" id="con" onchange="setModCon(), settotaux(), setSave(), setAttaque(), setHP()"></td>
+    <td colspan="2" rowspan="2" valign="middle" class="boxed"><input type="number" size="4" name="con" id="con" value=3 onchange="setModCon(), settotaux(), setSave(), setAttaque(), setHP()"></td>
     <td colspan="3" rowspan="2" valign="middle" class="boxed"><p name="modCon"></p></td>
     <td width="31" height="18"></td>
     <td width="8"></td>
@@ -150,7 +150,7 @@
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>INT<br>
         <span class="blackback_small">intelligence</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="int" onchange="setModInt(), settotaux(), setSave(), setAttaque()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" name="int" id="int" value=3 onchange="setModInt(), settotaux(), setSave(), setAttaque()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name="modInt"></p></td>
     <td colspan="3" valign="top" class="blackback"><P>TOUCH<br>
         <span class="blackback_small">armor class</span></p></td>
@@ -181,7 +181,7 @@
           <td width="7" class="desc3">=</td>
           <td width="25" valign="top" class="skill"><p name	="modDex"></p></td>
           <td width="7" class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="acrobatiesRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="acrobatiesRank" id="acrobatiesRank" value=0 onchange="settotaux()"></td>
           <td width="7" class="desc3">+</td>
           <td width="25" valign="top" class="skill">  0</td>
         </tr>
@@ -193,7 +193,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="artdelamagieRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="artdelamagieRank" id="artdelamagieRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -205,7 +205,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="artisanatRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="artisanatRank" id="artisanatRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -217,7 +217,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="bluffRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="bluffRank" id="bluffRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -229,7 +229,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCon"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="concentrationRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="concentrationRank" id="concentrationRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -241,7 +241,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="connaissanceMystereRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="connaissanceMystereRank" id="connaissanceMystereRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -253,7 +253,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="connaissanceNatureRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="connaissanceNatureRank" id="connaissanceNatureRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -265,7 +265,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="connaissanceReligionRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="connaissanceReligionRank" id="connaissanceReligionRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -277,7 +277,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="contrefaconRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="contrefaconRank" id="contrefaconRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -289,7 +289,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="crochetageRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="crochetageRank" id="crochetageRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -301,7 +301,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="decryptageRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="decryptageRank" id="decryptageRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -313,7 +313,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="deguisementRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="deguisementRank" id="deguisementRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -325,7 +325,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="deplacementsilencieuxRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="deplacementsilencieuxRank" id="deplacementsilencieuxRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -337,7 +337,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="desamorcageRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="desamorcageRank" id="desamorcageRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -349,7 +349,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modSag"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="detectionRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="detectionRank" id="detectionRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -361,7 +361,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="diplomatieRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4"  name="diplomatieRank" id="diplomatieRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -373,7 +373,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="discretionRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="discretionRank" id="discretionRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -385,7 +385,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="dressageRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="dressageRank" id="dressageRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -397,7 +397,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="equilibreRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="equilibreRank" id="equilibreRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -409,7 +409,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="equitationRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="equitationRank" id="equitationRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -421,7 +421,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modFor"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="escaladeRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="escaladeRank" id="escaladeRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -433,7 +433,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="escamotageRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="escamotageRank" id="escamotageRank"value=0  onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -445,7 +445,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="estimationRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="estimationRank" id="estimationRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -457,7 +457,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="evasionRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="evasionRank" id="evasionRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -469,7 +469,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modInt"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="fouilleRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="fouilleRank" id="fouilleRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -481,7 +481,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modCha"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="intimidationRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="intimidationRank" id="intimidationRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -493,7 +493,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modDex"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="maitrisedescordesRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="maitrisedescordesRank" id="maitrisedescordesRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -505,7 +505,7 @@
           <td class="desc3">=</td>
           <td valign="top" class="skill"><p name ="modFor"></p></td>
           <td class="desc3">+</td>
-          <td valign="top" class="skill"><input type="number" size="4" id="natationRank" onchange="settotaux()"></td>
+          <td valign="top" class="skill"><input type="number" size="4" name="natationRank" id="natationRank" value=0 onchange="settotaux()"></td>
           <td class="desc3">+</td>
           <td valign="top" class="skill">  0</td>
         </tr>
@@ -514,7 +514,7 @@
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>WIS<br>
         <span class="blackback_small">wisdom</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="sag" onchange="setModSag(), settotaux(), setSave(), setAttaque()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" name="sag" id="sag" value=3 onchange="setModSag(), settotaux(), setSave(), setAttaque()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name	="modSag"></p></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -532,7 +532,7 @@
   <tr> 
     <td height="42" valign="middle" class="blackback"> <p>CHA<br>
         <span class="blackback_small">charisma</span></p></td>
-    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" id="cha" onchange="setModCha(), settotaux(), setSave(), setAttaque()"></td>
+    <td colspan="2" valign="middle" class="boxed"><input type="number" size="4" name="cha" id="cha" value=3 onchange="setModCha(), settotaux(), setSave(), setAttaque()"></td>
     <td colspan="3" valign="middle" class="boxed"><p name	="modCha"></p></td>
     <td colspan="6" valign="top" class="blackback"><P>INITIATIVE<br>
         <span class="blackback_small">modifier</span></p></td>
@@ -694,10 +694,10 @@
     <td></td>
   </tr>
   <tr> 
-    <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" onchange="setAttaque()" form="formCreationFiche">
+    <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" name="armeD" onchange="setAttaque()">
     	<option value ="Mains">
-    	<option value ="Epee Batarde">Epee Batarde
-    	<option value ="Epee Longue">Epee Longue
+    	<option value ="epee batarde">Epee Batarde
+    	<option value ="epee longue">Epee Longue
     	</select>
     </td>
     <td colspan="4" valign="top" class="boxed"><p id ="attaqueD"></p></td>
@@ -746,10 +746,10 @@
     <td></td>
   </tr>
   <tr> 
-  	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" onchange="setAttaque()" form="formCreationFiche">
+  	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" name="armeG" onchange="setAttaque()">
     	<option value ="Mains">
-    	<option value ="Epee Batarde">Epee Batarde
-    	<option value ="Epee Longue">Epee Longue
+    	<option value ="epee batarde">Epee Batarde
+    	<option value ="epee longue">Epee Longue
     	</select>
     </td>
     <td colspan="4" valign="top" class="boxed"><p id ="attaqueG"></p></td>
@@ -830,10 +830,10 @@
               </tr>
               <tr> 
                 <td width="107" height="24" valign="top" class="boxedsmall">
-                	<select id="armure" onchange="setCA()" form="formCreationFiche">
-                		<option value="sans Armure">
-                		<option value="armure de Cuir">Armure de cuir
-                		<option value="armure de Cuir Cloutee">Armure de cuir cloutée
+                	<select id="armure" name="armure" onchange="setCA()">
+                		<option value="sans armure">
+                		<option value="Armure de cuir">Armure de cuir
+                		<option value="Armure de cuir cloutee">Armure de cuir cloutée
                 	</select>
                 </td>
                 <td width="32" valign="top" class="boxedsmall"><!--DWLayoutEmptyCell-->&nbsp;</td>
@@ -976,7 +976,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modSag"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="perceptionauditiveRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="perceptionauditiveRank" id="perceptionauditiveRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -988,7 +988,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modSag"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="premiersecoursRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="premiersecoursRank" id="premiersecoursRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1000,7 +1000,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modSag"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="professionRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="professionRank" id="professionRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1012,7 +1012,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modSag"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="psychologieRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="psychologieRank" id="psychologieRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1024,7 +1024,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modCha"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="renseigementsRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="renseigementsRank" id="renseigementsRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1036,7 +1036,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modCha"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="representationRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="representationRank" id="representationRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1048,7 +1048,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modFor"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="sautRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="sautRank" id="sautRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1060,7 +1060,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modSag"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="survieRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="survieRank" id="survieRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
@@ -1072,7 +1072,7 @@
                 <td width="12" class="desc3">=</td>
                 <td width="27" valign="top" class="skill"><p name ="modCha"></p></td>
                 <td width="8" class="desc3">+</td>
-                <td valign="top" class="skill"><input type="number" size="4" id="utilisationobjetsmagiquesRank" onchange="settotaux()"></td>
+                <td valign="top" class="skill"><input type="number" size="4" name="utilisationobjetsmagiquesRank" id="utilisationobjetsmagiquesRank" value=0 onchange="settotaux()"></td>
                 <td width="8" class="desc3">+</td>
                 <td width="29" valign="top" class="skill">  0</td>
               </tr>
