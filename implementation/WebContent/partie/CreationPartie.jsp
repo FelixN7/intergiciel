@@ -31,19 +31,13 @@
 
 			<div id="addPlayerDiv" class="contentDiv">
 				<div id="addPlayer">
-					Inviter un joueur : <br>
-					<input type="text" id="searchPlayer"/>
-					<input type="button" onclick="invitePlayer($('#searchPlayer'))" value="Inviter"/>
+					Rechercher un joueur : <br>
+					<input type="text" id="searchPlayerInput"/>
+					<input type="button" onclick="searchPlayer($('#searchPlayerInput'))" value="Rechercher"/>
 				</div>
-				<br>
-				<br>
-				<div id="pendingRequests">
-					Invitations en attente : <br>
-					<div id="requestedPlayers">
-						<br>
-					
-					</div> 			
-				</div>
+				<div id="searchResult">
+				
+				</div>			
 			</div>
 		</div>
 
