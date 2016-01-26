@@ -2,6 +2,7 @@ package bean;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -34,7 +35,8 @@ public class Fiche {
 	@ManyToMany
 	private Collection<Dons> dons ;
 	private int level ;
-	//TODO private Competences competences; n arrive pas a s inserer en bdd 
+	@Column (columnDefinition = "blob")
+	private Competences competences;// n arrive pas a s inserer en bdd 
 	@ManyToOne
 	private Arme armeGauche;
 	@ManyToOne
@@ -139,13 +141,13 @@ public class Fiche {
 		this.level = level;
 	}
 
-//	public Competences getCompetences() {
-//		return competences;
-//	}
-//
-//	public void setCompetences(Competences competences) {
-//		this.competences = competences;
-//	}
+	public Competences getCompetences() {
+		return competences;
+	}
+
+	public void setCompetences(Competences competences) {
+		this.competences = competences;
+	}
 
 	public String getNomPerso() {
 		return nomPerso;
