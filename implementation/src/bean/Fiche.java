@@ -30,11 +30,11 @@ public class Fiche {
 	private Classe classe;
 	@ManyToOne
 	private Race race ;
-	private Alignement alignement;//TODO pourquoi l alignement ne s insere pas en bdd
+	private Alignement alignement;
 	@ManyToMany
 	private Collection<Dons> dons ;
 	private int level ;
-	//TODO private Competences competences;
+	//TODO private Competences competences; n arrive pas a s inserer en bdd 
 	@ManyToOne
 	private Arme armeGauche;
 	@ManyToOne
@@ -69,7 +69,6 @@ public class Fiche {
 		/**
 		 * On remplit ensuite le reste des informations par des calculs
 		 */
-		System.out.println(classe.getDVie().val());
 		this.vie = c.getModCon() + classe.getDVie().val();
 		this.vieCourante = this.vie ;
 		this.ca = 10 ;

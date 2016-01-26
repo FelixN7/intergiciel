@@ -20,6 +20,8 @@ import facade.FacadeFiche;
 import utilities.Alignement;
 import utilities.Caracteristiques;
 import utilities.Competences;
+import utilities.PersoType;
+import utilities.TypeUtilisateur;
 
 /**
  * Servlet implementation class ServFiche
@@ -55,7 +57,7 @@ public class ServFiche extends HttpServlet {
 		String nomPerso = request.getParameter("nomPerso") ;
 		Classe classe = new Classe(request.getParameter("nomClasse"));
 		classe.setDVie(fb.getDeVieClasse(classe.getNom()));
-		Race race = new Race(request.getParameter("nomRace")) ;
+		Race race = new Race(request.getParameter("nomRace"));
 		Alignement alignement = Fiche.toAlignement(request.getParameter("alignement")) ;
 		
 		Integer For = Integer.parseInt(request.getParameter("for"));
@@ -111,9 +113,12 @@ public class ServFiche extends HttpServlet {
 		//On cr��e sa fiche et on l'enregistre en base de donn�es
 		Fiche fiche = new Fiche(nomPerso, nomJoueur, c, competences, classe, race);
 		fiche.setAlignement(alignement);
+		
 		fiche.setArmeDroite(armeD);
 		fiche.setArmeGauche(armeG);
 		fiche.setArmure(armure);
+		PersoType type = (request.getSession().getAttribute("typeUtil") == TypeUtilisateur.Joueur)?PersoType.PJ:PersoType.PNJ;
+		fiche.setType(type);
 		f.insererFiche(fiche);
 		request.setAttribute("fiche", fiche);
 		request.getRequestDispatcher("FichePage.jsp").forward(request, response) ;

@@ -43,15 +43,15 @@
     	</select>
     </td>
     <td colspan="5" valign="top"> <select id="alignement" name="alignement">
-    	<option value="loyal bon">loyal bon
-    	<option value="chaotique bon">chaotique bon
-    	<option value="neutre bon">neutre bon
-    	<option value="loyal neutre">loyal neutre
-    	<option value="neutre strict">neutre strict
-    	<option value="chaotique neutre">chaotique neutre
-    	<option value="loyal mauvais">loyal mauvais
-    	<option value="neutre mauvais">neutre mauvais
-    	<option value="chaotique mauvais">chaotique mauvais
+    	<option value="Loyal Bon">loyal bon
+    	<option value="Chaotique Bon">chaotique bon
+    	<option value="Neutre Bon">neutre bon
+    	<option value="Loyal Neutre">loyal neutre
+    	<option value="Neutre Strict">neutre strict
+    	<option value="Chaotique Neutre">chaotique neutre
+    	<option value="Loyal Mauvais">loyal mauvais
+    	<option value="Neutre Mauvais">neutre mauvais
+    	<option value="Chaotique Mauvais">chaotique mauvais
     	</select>
     	</td>
     <td colspan="8" valign="top" class="boxed"></td>
@@ -695,7 +695,7 @@
   </tr>
   <tr> 
     <td height="19" colspan="9" valign="top" class="boxed"><select id="armeD" name="armeD" onchange="setAttaque()">
-    	<option value ="Mains">
+    	<option value ="main">
     	<option value ="epee batarde">Epee Batarde
     	<option value ="epee longue">Epee Longue
     	</select>
@@ -747,7 +747,7 @@
   </tr>
   <tr> 
   	<td height="19" colspan="9" valign="top" class="boxed"><select id="armeG" name="armeG" onchange="setAttaque()">
-    	<option value ="Mains">
+    	<option value ="main">
     	<option value ="epee batarde">Epee Batarde
     	<option value ="epee longue">Epee Longue
     	</select>

@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import bean.Fiche;
+import bean.Partie;
 
 @Singleton
 public class FacadeFiche {
@@ -33,6 +34,11 @@ public class FacadeFiche {
 	
 	public Fiche getFiche(int id){
 		return em.find(Fiche.class, id);
+	}
+	
+	public void ajouterPartie(Fiche f, Partie p){
+		f.setPartie(p);
+		em.refresh(f);
 	}
 	
 }
