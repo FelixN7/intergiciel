@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Fiche;
+import facade.FacadeFiche;
 import utilities.Combat;
 
 /**
@@ -36,20 +37,24 @@ public class ServCombat extends HttpServlet {
 		ArrayList<Fiche> PJS = new ArrayList<Fiche>() ;
 		ArrayList<Fiche> Opposants = new ArrayList<Fiche>() ;
 		HashMap<String, Integer> initiatives = new HashMap<String, Integer>() ;
+		FacadeFiche ff = new FacadeFiche() ;
 		
 		//On crée le combat
 		Combat combat = new Combat(PJS, Opposants) ;		
 		
 		//On récupère et on ajoute un à un les participants au combat
-		//combat.ajouterJoueur(joueur);
+		String nomUtilisateur = request.getParameter("nomUtilisateur") ;
+		String nomPerso = request.getParameter("nomPerso") ;
+		Fiche combattant = ff.getFiche(nomUtilisateur, nomPerso) ;
+		combat.ajouterJoueur(combattant);
 		
 		//On ajoute leurs initiatives
-		//combat.ajoutInit(combattant, initiative);
+		Integer initiative = Integer.parseInt(request.getParameter("init")) ;
+		combat.ajoutInit(combattant, initiative);
 		
 		//On démarre le combat
-		combat.demarrerCombat();
-		
-		
+		combat.demarrerCombat();	
+		request.setAttribute("combat", combat);
 	}
 	
 	/**

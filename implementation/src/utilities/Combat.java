@@ -59,6 +59,30 @@ public class Combat {
 	}
 	
 	/**
+	 * Retourne la liste des PJs participants au combat
+	 * @return listePJS
+	 */
+	public ArrayList<Fiche> getPJS() {
+		return this.listePJS ;
+	}
+	
+	/**
+	 * Retourne la liste des Opposants
+	 * @return listeOpposants
+	 */
+	public ArrayList<Fiche> getOpposants() {
+		return this.listeOPPOSANTS ;
+	}
+	
+	/**
+	 * Retourne la liste des initiatives
+	 * @return initiatives
+	 */
+	public HashMap<String, Integer> getInitiatives() {
+		return this.initiatives ;
+	}
+	
+	/**
 	 * Initie le combat
 	 */
 	public void demarrerCombat() {
@@ -143,25 +167,6 @@ public class Combat {
 					touche = false ;
 				}
 			}
-		}
-		return touche ;
-	}
-	
-	/**
-	 * Attaque à outrance d'un joueur1 sur un joueur2
-	 * @param Joueur1 le joueur attaquant
-	 * @param resD le résultat de son jet de dé
-	 * @param nbAttaque le nombre d'attaque dont il dispose
-	 * @param Joueur2 le joueur attaqué
-	 * @return touche le joueur a été touche ou non
-	 */
-	public boolean attaqueOutrance(Fiche Joueur1, int resD, int nbAttaque, Fiche Joueur2) {
-		boolean touche ;
-		FacadeBonus fb = new FacadeBonus() ;
-		if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() >= Joueur2.getCa()) {
-			touche = true ;
-		} else {
-			touche = false ;
 		}
 		return touche ;
 	}
