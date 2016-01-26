@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import bean.Fiche;
+import facade.FacadeBonus;
 
 /**
  * Classe permettant de réaliser un combat
@@ -97,16 +98,101 @@ public class Combat {
 	 * Attaque d'un joueur1 sur un joueur2
 	 * @param Joueur1 le joueur attaquant
 	 * @param resD le résultat de son jet de dé
+	 * @param Joueur2 le joueur attaqué
+	 * @return touche le joueur a été touché ou non
+	 */
+	public boolean attaque(Fiche Joueur1, int resD, boolean droite, Fiche Joueur2) {
+		boolean touche ;
+		FacadeBonus fb = new FacadeBonus() ;
+		
+		//Si le joueur 1 attaque de la main de droite
+		if (droite) {
+			//Et si ce joueur ne possède pas d'arme dans la main gauche
+			if (Joueur1.getArmeGauche() == null) {
+				//Alors le jet n'a pas de malus
+				if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() >= Joueur2.getCa()) {
+					touche = true ;
+				} else {
+					touche = false ;
+				}
+			//Si le joueur possède une arme dans la main gauche
+			} else {
+				//Le jet possède un malus de -2
+				if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() - 2>= Joueur2.getCa()) {
+					touche = true ;
+				} else {
+					touche = false ;
+				}
+			}
+		//Si le joueur 2 attaque de la main gauche
+		} else {
+			//Si le joueur ne possède pas d'arme dans la main droite
+			if (Joueur1.getArmeDroite() == null) {
+				//Pas de malus
+				if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() >= Joueur2.getCa()) {
+					touche = true ;
+				} else {
+					touche = false ;
+				}
+			//Si le joueur possède une arme dans chaque main
+			} else {
+				//Malus de -6 sur sa main non directrice
+				if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() - 6 >= Joueur2.getCa()) {
+					touche = true ;
+				} else {
+					touche = false ;
+				}
+			}
+		}
+		return touche ;
+	}
+	
+	/**
+	 * Attaque à outrance d'un joueur1 sur un joueur2
+	 * @param Joueur1 le joueur attaquant
+	 * @param resD le résultat de son jet de dé
 	 * @param nbAttaque le nombre d'attaque dont il dispose
 	 * @param Joueur2 le joueur attaqué
+	 * @return touche le joueur a été touche ou non
 	 */
-	public void attaque(Fiche Joueur1, int resD, int nbAttaque, Fiche Joueur2) {
+	public boolean attaqueOutrance(Fiche Joueur1, int resD, int nbAttaque, Fiche Joueur2) {
 		boolean touche ;
-		if (resD +  Joueur1.getAttaque().get(nbAttaque) >= Joueur2.getCa()) {
+		FacadeBonus fb = new FacadeBonus() ;
+		if (resD +  fb.getBonusAtt(Joueur1.getClasse().getNom(), Joueur1.getLevel()) + Joueur1.getCaracteristiques().getModFor() >= Joueur2.getCa()) {
 			touche = true ;
 		} else {
 			touche = false ;
 		}
+		return touche ;
+	}
+	
+	/**
+	 * Calcule les degats d'un joueur1 sur un joueur2 et les soustrait au total de pv du joueur2
+	 * @param Joueur1
+	 * @param jetDe
+	 * @param Joueur2
+	 * @return
+	 */
+	public int calculDgts(Fiche Joueur1, int jetDe, boolean droite, Fiche Joueur2) {
+		int dgts = 0 ;
+		if (Joueur1.getType() == PersoType.PNJ || Joueur1.getType() == PersoType.MONSTRES) {
+			if (droite) {
+				dgts = Joueur1.getArmeDroite().getDgtsM().lancer() ;
+				dgts += Joueur1.getCaracteristiques().getModFor() ;
+				
+				Joueur2.setVieCourante(Joueur2.getVieCourante()-dgts) ;
+			} else {
+				dgts = Joueur1.getArmeGauche().getDgtsM().lancer() ;
+				dgts += Joueur1.getCaracteristiques().getModFor() ;
+				
+				Joueur2.setVieCourante(Joueur2.getVieCourante()-dgts) ;
+			}
+		} else {
+			dgts = Joueur1.getCaracteristiques().getModFor() + jetDe;
+			
+			Joueur2.setVieCourante(Joueur2.getVieCourante()-dgts) ;
+		}
+		return dgts ;
 	}
 	
 }
