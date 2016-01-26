@@ -4,37 +4,45 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
 
 @Entity
+@IdClass(PartieMJ.class)
 public class Partie {
 
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
-	private int id ; 
+	private String pseudoMJ;
+	@Id
+	private String nomPartie;
 	@OneToMany (mappedBy="partie", fetch=FetchType.EAGER )
-	private Collection<Fiche> listePJ ;
-	@ManyToOne
-	private Utilisateur mj;
+	private Collection<Fiche> listePJ ;	
 	private boolean finished;
 
 	public Partie() {}
 
-	public Partie (Collection<Fiche> listePJ) {
-		this.setListePJ(listePJ);
+	public Partie (PartieMJ pMJ) {
+		this.pseudoMJ = pMJ.getPseudoMJ();
+		this.nomPartie = pMJ.getNomPartie();
 		this.setFinished(false);
 	}
 
-	public int getId() {
-		return id;
+	
+	public String getPseudoMJ() {
+		return pseudoMJ;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPseudoMJ(String pseudoMJ) {
+		this.pseudoMJ = pseudoMJ;
+	}
+
+	public String getNomPartie() {
+		return nomPartie;
+	}
+
+	public void setNomPartie(String nomPartie) {
+		this.nomPartie = nomPartie;
 	}
 
 	public Collection<Fiche> getListePJ() {
@@ -64,15 +72,6 @@ public class Partie {
 			}
 		}
 	}
-
-	public Utilisateur getMj() {
-		return mj;
-	}
-
-	public void setMj(Utilisateur mj) {
-		this.mj = mj;
-	}
-	
 	
 
 }

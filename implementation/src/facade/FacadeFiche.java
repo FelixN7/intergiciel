@@ -1,11 +1,16 @@
 package facade;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Vector;
+
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import bean.Fiche;
 import bean.Partie;
+import bean.PersoPseudo;
 
 @Singleton
 public class FacadeFiche {
@@ -32,13 +37,26 @@ public class FacadeFiche {
 		
 	}
 	
-	public Fiche getFiche(int id){
-		return em.find(Fiche.class, id);
+	public Fiche getFiche(String pseudo,String nomPerso){
+		PersoPseudo pp = new PersoPseudo(pseudo, nomPerso);
+		return em.find(Fiche.class, pp);
 	}
 	
 	public void ajouterPartie(Fiche f, Partie p){
 		f.setPartie(p);
 		em.refresh(f);
 	}
+	
+	public Collection<String> getNomPersos(String pseudo){
+		List<Fiche> fiches = em.createQuery("from Fiche where pseudo="
+				+pseudo, Fiche.class).getResultList();
+		Collection<String> persos = new Vector<String>();
+		for(Fiche f :fiches){
+			persos.add(f.getNomPerso());
+		}
+		return persos;
+	}
+	
+	
 	
 }
