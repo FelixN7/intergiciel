@@ -8,15 +8,22 @@ function rollTheDice() {
 	$("#dice").val(x) ;
 }
 
-/**
-function addJoueur() {
+function addJoueur(nomPerso, nomJoueur) {
 	
-	var joueur = document.getElementById("joueur").value;
-	var text = '<div class="combattant joueur">' + joueur + '</div>' ;
-	var test = document.getElementById("test").value ;
-	document.getElementById("test").innerHTML = text ;
+	$('#selectedPlayers').append( 
+		"<li id='" + nomJoueur + "' class='nomJoueur'> " + nomJoueur + "<div id='" + nomPerso + "' class='nomPersonnage'> ( " + nomPerso + " ) </div></li>"	
+	);
+	
+	var nbjoueurs = Number($('#nbJoueurs').val()) +1;
+	$('#nbJoueurs').val(nbjoueurs);
+	
+	$('#joueursForm').append(
+		"<div id='joueur" + nbjoueurs + "'>" +
+				"<input type='hidden' name='nomPerso" + nbjoueurs +"' value='" + nomPerso + "'/>" +
+				"<input type='hidden' name='nomJoueur" + nbjoueurs +"' value='" + nomJoueur + "'/>" +		
+		"</div>"		
+	);
 }
-*/
 
 $(document).ready(function(){
     $("#btn1").click(function(){
