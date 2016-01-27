@@ -68,6 +68,13 @@ public class FacadeFiche {
 		return em.find(Armure.class, nomArmure);
 	}
 	
-	
+	public Collection<Fiche> getNomPersos(String nomPartie,String nomMJ){
+		String reqString = "from Fiche where partie_nompartie like ?1 and partie_pseudomj like ?2";
+		Query query = em.createQuery(reqString);
+		query.setParameter(1, nomPartie);
+		query.setParameter(2, nomMJ);
+
+		return query.getResultList();
+	}
 	
 }
