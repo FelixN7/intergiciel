@@ -22,8 +22,10 @@
 	<h2>Vous avez déjà créé un personnage avec ce nom</h2>
 <%} %>
 
-<form action="/JDR/ServFiche" method="post">
+<div class="fichepage">
 
+<form action="/JDR/ServFiche" method="post">
+<input type="hidden" name="op" value="creationFiche"/>
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
   <tr> 
@@ -1336,6 +1338,7 @@
 <script src="/JDR/fiche/CreationFiche.js"></script>
 
 </form>
+</div>
 </div>
 </body>
 </html> 

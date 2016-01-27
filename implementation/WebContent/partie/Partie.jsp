@@ -11,6 +11,8 @@
 <title>Partie : <%= request.getAttribute("nomPartie")%></title>
 <link rel="stylesheet" type="text/css" href="others/general.css">
 <link rel="stylesheet" type="text/css" href="partie/partie.css">
+<link rel="stylesheet" type="text/css" href="fiche/CreationFiche.css">
+
 <script src="/JDR/partie/partie.js"></script>
 </head>
 <body>
