@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inscription</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<form action="/JDR/ServConnection" method="post">
+		<div class="pageContent">
+			<div id="image">
+				<img src="/JDR/images/dndlogo.png">
+			</div>
+			<div style="display: table; margin: auto;">
+			<div id="connexionAccueil">
+				<p>
+					<label for="pseudo">Pseudo :</label><input type="text"
+						name="pseudo"><br /> <label for="mdp">Mot de
+						passe :</label><input type="password" name="mdp"><br /> <label
+						for="confirmation">Confirmation mot de passe :</label><input
+						type="password" name="confirmation"><br /> Choisir un
+					type de compte :<br />
+					<input type="radio" name="type" value="joueur" checked>Joueur <input
+						type="radio" name="type" value="maitre du jeu">Maître du
+					jeu <br /> <input type="hidden" name="op" value="inscription">
+					<input type="submit" value="OK" style="margin-left: 50%">
+				</p>
+			</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
