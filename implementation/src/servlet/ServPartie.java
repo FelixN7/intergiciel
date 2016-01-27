@@ -109,10 +109,10 @@ public class ServPartie extends HttpServlet {
 			}
 			
 			request.setAttribute("fiches", fichesJoueurs);
-			request.getRequestDispatcher("/JDR/partie/Partie.jsp").forward(request, response);
+			request.getRequestDispatcher("/partie/Partie.jsp").forward(request, response);
 			
 		} else if (action.equals("partie")) {
-			request.getRequestDispatcher("/JDR/comabt/CreationCombat.jsp").forward(request, response);
+			request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
 		}
 	}
 	
