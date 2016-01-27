@@ -7,6 +7,9 @@ public class PartieMJ implements Serializable {
 	private String nomPartie;
 	private String pseudoMJ;
 	
+	public PartieMJ() {
+	}
+	
 	public PartieMJ(String nomP, String MJ){
 		nomPartie=nomP;
 		pseudoMJ=MJ;

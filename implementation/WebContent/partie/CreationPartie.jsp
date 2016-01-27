@@ -22,10 +22,9 @@
 
 				<b>Maitre de jeu de la partie :</b>
 				<%=request.getSession().getAttribute("utilisateur") %>
-				<br> <br> <b>Liste des joueurs : </b><br>
-				<div id="selectedPlayers">
-					<br>
-				</div>
+				<br> <br> <b>Liste des joueurs : </b>
+				<ul id="selectedPlayers">
+				</ul>
 				
 			</div>
 
@@ -41,7 +40,19 @@
 			</div>
 		</div>
 
-		<form action="ServPartie?op=creation" method="POST"></form>
+		<form action="/JDR/ServPartie?op=create" method="POST">
+			Nom de la partie : 
+			<input type="text" name="nomPartie"/>
+			<div style="display: none">
+				<input type="hidden" name="nbJoueurs" id="nbJoueurs" value="0"/>
+
+				<div id="joueursForm">
+				</div>
+<!-- 				<input type="hidden" name="op" value="create" /> -->
+			</div>
+
+			<input type="submit" value="Lancer la partie"/>
+		</form>
 	</div>
 
 	<script type="text/javascript" src="creationPartie.js"></script>

@@ -3,9 +3,7 @@
 
 
 #creaPartie{
-	
 	margin:10px;
-	
 }
 
 .contentDiv {
@@ -16,8 +14,17 @@
 	vertical-align: top;
 }
 
+#searchResult {
+	padding-top: 10px;
+}
 
+.nomPersonnage {
+	display:inline;
+	font-weight:bold;
+}
 
-
+.nomJoueur {
+	padding-bottom: 10px;
+}
 
 

@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
+import bean.Fiche;
+import bean.Partie;
 import bean.Utilisateur;
 import facade.FacadeFiche;
 import facade.FacadePartie;
@@ -63,8 +69,13 @@ public class ServPartie extends HttpServlet {
 				throw new ServletException("invitedNick = null");
 			}
 				
-			Utilisateur util = fu.getUtilisateur(invitedNick);
-			if (util == null || util.getPersonnages().isEmpty()) {
+			Collection<String> listePersos = ff.getNomPersos(invitedNick);
+//			Collection<String> listePersos = new ArrayList<String>();
+//			listePersos.add("personnage1");
+//			listePersos.add("personnage2");
+//			listePersos.add("personnage3");
+			
+			if (listePersos.isEmpty()) {
 				
 				request.setAttribute("erreur", true);
 				request.getRequestDispatcher("partie/SearchPlayer.jsp").forward(request, response);
@@ -72,23 +83,34 @@ public class ServPartie extends HttpServlet {
 			} else {
 				
 				request.setAttribute("erreur", false);
-				request.setAttribute("fiches", util.getPersonnages());	
+				request.setAttribute("fiches", listePersos);	
 				request.getRequestDispatcher("partie/SearchPlayer.jsp").forward(request, response);
 			}	
-		} 
-		
-		
-		
-//		//On créée la partie
-//		Partie p = fp.creerPartie(null) ;
-//		
-//		//On récupère les joueurs que le MJ ajoute à la partie
-//		String perso = request.getParameter("newPerso") ;
-//		p.ajouterPJ(ff.getFiche(Integer.parseInt(perso))) ;
-//		
-//		request.setAttribute("partie", p);
-//		request.getRequestDispatcher("partie-mj.html").forward(request, response);
-		
+		} else if (action.equals("create")) {
+			
+			String nomPartie = request.getParameter("nomPartie");
+			int nbJoueurs = Integer.parseInt(request.getParameter("nbJoueurs"));
+			
+			ArrayList<String> nomJoueurs = new ArrayList<String>();
+			ArrayList<String> nomPersos = new ArrayList<String>();
+			
+			for (int i=1; i<=nbJoueurs;i++) {
+				nomJoueurs.add(request.getParameter("nomJoueur" + i));
+				nomPersos.add(request.getParameter("nomPerso" + i));
+			}
+			
+			Partie p = fp.creerPartie(nomPartie, (String) request.getSession().getAttribute("utilisateur") );
+				
+			ArrayList<Fiche> fichesJoueurs = new ArrayList<Fiche>();
+			
+			for (int i=0; i<nbJoueurs;i++) {
+				fichesJoueurs.add(ff.getFiche(nomJoueurs.get(i),nomPersos.get(i)));
+				ff.ajouterPartie(fichesJoueurs.get(i), p);
+			}
+			
+			request.setAttribute("fiches", fichesJoueurs);
+			request.getRequestDispatcher("/JDR/partie/Partie.jsp").forward(request, response);
+		}	
 	}
 	
 	/**

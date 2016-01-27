@@ -10,13 +10,10 @@
 	<div class="erreur"> Ce nom de joueur n'existe pas, ou il n'a pas de fiche de personnage.</div>
 	<% } else { %>
 	<select id="ficheSelect">
-		<% Collection<Fiche> fiches = (Collection<Fiche>) request.getAttribute("fiches"); 
-		
-		 for (Iterator iteratorFiches = fiches.iterator(); iteratorFiches.hasNext();) {
-		        Fiche ficheCour = (Fiche) iteratorFiches.next();
-
+		<% Collection<String> fiches = (Collection<String>) request.getAttribute("fiches"); 	
+		 for (String nomPerso : fiches) {
 		%>	  
-		<option value="<%=ficheCour.getNomPerso()%>"><%=ficheCour.getNomPerso() %></option>	
+		<option value="<%=nomPerso %>"><%=nomPerso  %></option>	
 		<%
 		}		
 		%>

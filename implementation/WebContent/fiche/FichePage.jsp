@@ -29,6 +29,7 @@
 			int bVig = fb.getBonusVig(f.getClasse().getNom(), f.getLevel());
 			int bVol = fb.getBonusVol(f.getClasse().getNom(), f.getLevel());
 			HashMap<String, Integer> competences = f.getCompetences().getComp();
+			System.out.println(competences.toString());
 	%>
 	<table border="0" cellpadding="0" cellspacing="0" class="firstpage">
 

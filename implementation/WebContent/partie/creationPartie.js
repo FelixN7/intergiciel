@@ -10,9 +10,18 @@
 function invitePlayer(nomPerso, nomJoueur) {
 	
 	$('#selectedPlayers').append( 
-		"<div id='participant" + nomJoueur + "'> <div class='nomPersonnage'>" + nomPerso + "</div>(<div class='nomParticipant'>" + nomJoueur + "</div>)<br></div>"	
+		"<li id='" + nomJoueur + "' class='nomJoueur'> " + nomJoueur + "<div id='" + nomPerso + "' class='nomPersonnage'> ( " + nomPerso + " ) </div></li>"	
 	);
 	
+	var nbjoueurs = Number($('#nbJoueurs').val()) +1;
+	$('#nbJoueurs').val(nbjoueurs);
+	
+	$('#joueursForm').append(
+		"<div id='joueur" + nbjoueurs + "'>" +
+				"<input type='hidden' name='nomPerso" + nbjoueurs +"' value='" + nomPerso + "'/>" +
+				"<input type='hidden' name='nomJoueur" + nbjoueurs +"' value='" + nomJoueur + "'/>" +		
+		"</div>"		
+	);
 }
 
 /**
