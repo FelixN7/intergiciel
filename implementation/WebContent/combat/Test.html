@@ -6,7 +6,11 @@
 </head>
 <body>
 
+	<script src="/JDR/others/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="combat.js"></script>
+
 <div class="content" style="height:1200px;">
+	<script src="combat.js"></script>
 		<div style= "vertical-align: top; width: 100%;">
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; min-height: 550px;">
 				
@@ -14,15 +18,17 @@
 			</div>
 			
 			<div style="display:inline-block; vertical-align: top; width: 15%" id="actionsCombat">
-				<input type="button" id="attaquer" value="attaquer"><br><br>
-				<select id="attaquant">
-					<option value="test1">Test1
-					<option value="test2">Test2
-				</select>
-				<select id="defenseur">
-					<option value="test1">Test1
-					<option value="test2">Test2
-				</select>
+				<input type="button" id="attaquer" value="attaquer" onclick="attaque()"><br><br>
+				<div id="hidden" style=display:none>
+					<select id="attaquant">
+						<option value="test1">Test1
+						<option value="test2">Test2
+					</select>
+					<select id="defenseur">
+						<option value="test1">Test1
+						<option value="test2">Test2
+					</select>
+				</div>
 			</div>
 				
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; min-height: 550px;">

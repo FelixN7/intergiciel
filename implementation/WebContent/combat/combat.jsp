@@ -5,6 +5,8 @@
 <%@page import="utilities.Combat"%>
 
 <div class="content" id="combat" style="height:1200px;">
+<input type="hidden" name="op" value="creation">
+	<script src="combat.js"></script>
 		<div style = "vertical-align: top; display: inline-block; width: 100%">
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;">
 			Liste des joueurs : 
@@ -21,17 +23,21 @@
 			
 			<div style="display:inline-block; vertical-align: top; width: 15%" id="actionsCombat">
 				<input type="button" id="attaquer" value="attaquer"><br><br>
-				<select id="attaquant">
-				<%= ArrayList<Fiche> listePartcipants = combat.getPJS().addAll(combat.getOpposants()) ; %>
-				<%for (Fiche pj : listePartcipants) {%>
-					<option value="<%= pj.getNomPerso() %>">
-				<%} %>
-				</select>
-				<select id="defenseur">
-				<%for (Fiche pj : combat.getPJS().addAll(combat.getOpposants())) {%>
-					<option value="<%= pj.getNomPerso() %>">
-				<%} %>
-				</select>
+				<div style=display:none >
+					<select id="attaquant">
+					<% ArrayList<Fiche> listePartcipants = combat.getPJS() ;%>
+					<%listePartcipants.addAll(combat.getPJS()) ;%>
+					<%for (Fiche pj : listePartcipants) {%>
+						<option value="<%= pj.getNomPerso() %>">
+					<%} %>
+					</select>
+					<select id="defenseur">
+					<%for (Fiche pj : listePartcipants) {%>
+						<option value="<%= pj.getNomPerso() %>">
+					<%} %>
+					</select>
+				</div>
+				<input type="button" value="ok">
 			</div>
 			
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;">

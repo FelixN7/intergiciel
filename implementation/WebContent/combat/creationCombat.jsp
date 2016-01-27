@@ -1,6 +1,6 @@
 <div id="creaCombat">
 	<div id="selectedPlayersContainer" class="contentDiv">
-
+		<input type="hidden" name="op" value="creation">
 		<b>Maitre de jeu de la partie :</b>
 		<%=request.getSession().getAttribute("utilisateur") %>
 		<br> <br> <b>Liste des joueurs : </b><br>

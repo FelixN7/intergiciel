@@ -15,8 +15,8 @@ function addJoueur() {
 	var test = document.getElementById("test").value ;
 	document.getElementById("test").innerHTML = text ;
 }
-*/
 
+*/
 $(document).ready(function(){
     $("#btn1").click(function(){
     	var joueur = document.getElementById("joueur").value ;
@@ -47,5 +47,5 @@ function searchPlayer(nickName) {
 }
 
 function attaque() {
-	
+	$("#hidden").css("display","inline") ;
 }
