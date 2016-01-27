@@ -23,7 +23,7 @@
 <%} %>
 
 <form action="/JDR/ServFiche" method="post">
-
+<input type="hidden" name="op" value="creationFiche"/>
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
   <!--DWLayoutTable-->
   <tr> 
