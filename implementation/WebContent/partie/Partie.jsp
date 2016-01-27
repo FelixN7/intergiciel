@@ -19,8 +19,8 @@
 
 
 	<div class="pageContent">
-		MJ : <%= request.getSession().getAttribute("utilisateur") %> <br>
-		Nom de la partie : <%= request.getAttribute("nomPartie") %> <br>
+		MJ : <div id="pseudomj"><%= request.getSession().getAttribute("utilisateur") %></div> <br>
+		Nom de la partie : <div id="nomPartie"><%= request.getAttribute("nomPartie") %></div> <br>
 		<div class="partieDiv">
 			<div class="listePersos">
 				Liste des joueurs : <br>
@@ -44,7 +44,11 @@
 		
 		Actions : 
 		<div id="divActions">
-			<input type="submit" value="Lancer un combat">
+			<input type="button" value="Lancer un combat" onclick="createCombat($('#pseudomj').html(),$('#nomPartie').html())">
+		</div>
+		
+		<div id="actionContent">
+		
 		</div>
 	</div>
 	<script type="text/javascript">

@@ -1,6 +1,3 @@
-
-
-
 function getDetails(divPerso) {
 
 	$.ajax({
@@ -14,6 +11,23 @@ function getDetails(divPerso) {
 		},
 		success: function(htmlCode) {
 			$("#detailsFiche").html(htmlCode);
+		}
+	});
+}
+
+function createCombat(pseudo,nomPartie) {
+	
+	$.ajax({
+		url: "/JDR/ServPartie",
+		mathod: "GET",
+		dataType: "html",
+		data: {
+			op:"creationCombat",
+			pseudomj: pseudo,
+			nomPartie : nomPartie
+		},
+		success: function(htmlCode) {
+			$("#actionContent").html(htmlCode);
 		}
 	});
 }

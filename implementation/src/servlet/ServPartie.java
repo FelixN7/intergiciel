@@ -123,8 +123,18 @@ public class ServPartie extends HttpServlet {
 				request.setAttribute("facadeBonus", fb );
 				request.getRequestDispatcher("/fiche/FichePage.jsp").forward(request, response);
 			} 			
-		} else if (action.equals("partie")) {
-			request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
+		} else if (action.equals("creationCombat")) {
+			
+			String pseudoMJ = request.getParameter("pseudomj");
+			String nomPartie = request.getParameter("nomPartie");
+			
+			if(pseudoMJ != null & nomPartie != null) {
+			
+				Collection<Fiche> fiches = ff.getNomPersos(nomPartie, pseudoMJ);
+				request.setAttribute("fiches", fiches);
+				
+				request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
+			}
 		}
 	}
 	
