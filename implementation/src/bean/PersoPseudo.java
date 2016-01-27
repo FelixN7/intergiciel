@@ -7,6 +7,9 @@ public class PersoPseudo implements Serializable {
 	private String pseudo;
 	private String nomPerso;
 	
+	public PersoPseudo() {
+	}
+	
 	public PersoPseudo(String pseudo,String nomPerso){
 		this.pseudo=pseudo;
 		this.nomPerso=nomPerso;
