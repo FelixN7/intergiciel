@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.ejb.Singleton;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import bean.Fiche;
 import bean.Partie;
@@ -48,8 +50,12 @@ public class FacadeFiche {
 	}
 	
 	public Collection<String> getNomPersos(String pseudo){
-		List<Fiche> fiches = em.createQuery("from Fiche where pseudo="
-				+pseudo, Fiche.class).getResultList();
+		String reqString = "from Fiche where pseudo like ?1";
+		Query query = em.createQuery(reqString);
+		query.setParameter(1, pseudo);
+		
+		List<Fiche> fiches = query.getResultList();
+		
 		Collection<String> persos = new Vector<String>();
 		for(Fiche f :fiches){
 			persos.add(f.getNomPerso());
