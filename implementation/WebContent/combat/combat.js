@@ -4,7 +4,8 @@
 
 function rollTheDice() {
 	var x = Math.floor(Math.random() * 20) + 1 ;
-	$("#init").val(x) ;
+	$("#initJoueur").val(x) ;
+	$("#initOpposant").val(x) ;
 	$("#dice").val(x) ;
 }
 

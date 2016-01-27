@@ -50,6 +50,22 @@ public class Combat {
 	}
 	
 	/**
+	 * Supprime un joueur du combat
+	 * @param joueur
+	 */
+	public void supprimerJoueur(Fiche joueur) {
+		this.listePJS.remove(joueur) ;
+	}
+	
+	/**
+	 * Supprime un adversaire du combat
+	 * @param opposant
+	 */
+	public void supprimerOpposant(Fiche opposant) {
+		this.listeOPPOSANTS.remove(opposant) ;
+	}
+	
+	/**
 	 * Ajout l'initiative du combattant dans la table 
 	 * @param combattant
 	 * @param initiative
@@ -85,7 +101,7 @@ public class Combat {
 	/**
 	 * Initie le combat
 	 */
-	public void demarrerCombat() {
+	public void lancerInit() {
 		
 		/**On Commence par récupérer l'initiative de participant au combat */
 		ArrayList<Fiche> listeTours = new ArrayList<Fiche>() ;

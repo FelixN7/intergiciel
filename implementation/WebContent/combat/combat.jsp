@@ -12,7 +12,7 @@
 			Liste des joueurs : 
 				<%Combat combat = (Combat) request.getAttribute("combat"); %>
 				<%for (Fiche pj : combat.getPJS()) { %>
-					<div style="display:inline-block; border: 2px black; border-style: solid;">
+					<div style="display:inline-block; border: 1px black; border-style: solid;">
 						<%= pj.getPseudo() %><br>
 						<%= pj.getNomPerso() %><br>
 						<%= pj.getVieCourante() %>/<%= pj.getVie() %><br>
@@ -49,7 +49,7 @@
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;">
 				Liste des Opposants : 
 				<%for (Fiche opposant : combat.getOpposants()) { %>
-					<div style="display:inline-block; border: 2px black; border-style: solid;">
+					<div style="display:inline-block; border: 1px black; border-style: solid;">
 						<%= opposant.getPseudo() %><br>
 						<%= opposant.getNomPerso() %><br>
 						<%= opposant.getVieCourante() %>/<%= opposant.getVie() %><br>

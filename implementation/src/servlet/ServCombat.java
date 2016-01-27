@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Fiche;
 import facade.FacadeFiche;
 import utilities.Combat;
+import utilities.PersoType;
 
 /**
  * Servlet implemententation servCombat
@@ -46,18 +47,26 @@ public class ServCombat extends HttpServlet {
 			Combat combat = new Combat(PJS, Opposants) ;		
 			
 			//On récupère et on ajoute un à un les participants au combat
-			String nomUtilisateur = request.getParameter("nomUtilisateur") ;
-			String nomPerso = request.getParameter("nomPerso") ;
-			Fiche combattant = ff.getFiche(nomUtilisateur, nomPerso) ;
-			combat.ajouterJoueur(combattant);
+			Fiche joueur = (Fiche) request.getAttribute("nomPerso") ;
+			combat.ajouterJoueur(joueur);
+
+			//On ajoute leurs initiatives
+			Integer initiativeJoueur = Integer.parseInt(request.getParameter("initJoueur")) ;
+			combat.ajoutInit(joueur, initiativeJoueur);
+			
+			//On récupère et on ajoute un à un les participants au combat
+			Fiche opposant = (Fiche) request.getAttribute("nomOpposant") ;
+			combat.ajouterOpposant(opposant);
 			
 			//On ajoute leurs initiatives
-			Integer initiative = Integer.parseInt(request.getParameter("init")) ;
-			combat.ajoutInit(combattant, initiative);
+			Integer initiativeOpposant = Integer.parseInt(request.getParameter("initJoueur")) ;
+			combat.ajoutInit(opposant, initiativeOpposant);
 			
 			//On démarre le combat
-			combat.demarrerCombat();	
+			combat.lancerInit();	
 			request.setAttribute("combat", combat);
+			request.getRequestDispatcher("/combat/combat.jsp").forward(request, response);
+			
 		} else if (op.equals("combat")) {
 			Combat combat = (Combat) request.getAttribute("combat") ;
 			
@@ -71,12 +80,18 @@ public class ServCombat extends HttpServlet {
 			//Si le joueur a été touché alors on calcule les degats
 			if (touche) {
 				combat.calculDgts(attaquant, 0, true, defenseur) ;
+				if (defenseur.getVieCourante() == 0) {
+					if (defenseur.getType() == PersoType.PJ) {
+						combat.supprimerJoueur(defenseur);
+					} else {
+						combat.supprimerOpposant(defenseur);
+					}
+				}
 			}
 			
 		} else if (op.equals("partie")) {
 			request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
-		}
-		
+		}		
 	}
 	
 	/**
