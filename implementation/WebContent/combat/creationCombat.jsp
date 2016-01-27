@@ -8,7 +8,7 @@
 			<br>
 		</div>
 				
-		</div>
+	</div>
 
 		<div id="addPlayerDiv" class="contentDiv">
 			<div id="addPlayer">

@@ -22,18 +22,9 @@ public class FacadePartie {
 		return p ;
 	}
 	
-	public void ajouterJoueurPartie(Fiche joueur, Partie p) {
-		p.ajouterPJ(joueur);
-		em.refresh(p);
-	}
-	
-	public void supprimerJoueurPartie(Fiche joueur, Partie p) {
-		p.supprimerPJ(joueur);
-		em.refresh(p);		
-	}
-	
-	public Partie getPartie(Integer id){
-		return em.find(Partie.class, id);
+	public Partie getPartie(String pseudoMJ, String nomPartie){
+		PartiePseudo pp = new PartiePseudo(pseudoMJ, nomPartie) ;
+		return em.find(Partie.class, pp);
 	}
 	
 }

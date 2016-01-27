@@ -15,15 +15,15 @@
 
 	<form action="/JDR/ServPartie?op=partie" method="POST">
 
-	
+	MJ : <%= request.getSession().getAttribute("utilisateur") %>
 	<div style = "vertical-align: top; display: inline-block; width: 100%">
-		<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;">
+		<div style="display:inline-block; border: 1px black; border-style: solid; width: 40%; height: 550px;">
 		Liste des joueurs :
 		<%FacadePartie fp = new FacadePartie(); %> 
 		<%//Partie partie = fp.getPartie(id); %>	
 		</div>
 			
-		<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;"> 
+		<div style="display:inline-block; border: 1px black; border-style: solid; width: 40%; height: 550px;"> 
 					
 		</div>
 	</div>
