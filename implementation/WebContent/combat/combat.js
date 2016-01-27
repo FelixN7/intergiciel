@@ -5,6 +5,7 @@
 function rollTheDice() {
 	var x = Math.floor(Math.random() * 20) + 1 ;
 	$("#init").val(x) ;
+	$("#dice").val(x) ;
 }
 
 /**
@@ -46,6 +47,10 @@ function searchPlayer(nickName) {
 	});	
 }
 
-function attaque() {
+function selectOpponent() {
+	$("#hidden").css("display","inline") ;
+}
+
+function validate() {
 	$("#hidden").css("display","inline") ;
 }

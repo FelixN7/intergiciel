@@ -22,8 +22,8 @@
 			</div>
 			
 			<div style="display:inline-block; vertical-align: top; width: 15%" id="actionsCombat">
-				<input type="button" id="attaquer" value="attaquer"><br><br>
-				<div style=display:none >
+				<input type="button" id="attaquer" value="attaquer" onclick="selectOpponent()"><br><br>
+				<div id="hidden" style=display:none >
 					<select id="attaquant">
 					<% ArrayList<Fiche> listePartcipants = combat.getPJS() ;%>
 					<%listePartcipants.addAll(combat.getPJS()) ;%>
@@ -37,11 +37,17 @@
 					<%} %>
 					</select>
 				</div>
-				<input type="button" value="ok">
+				<input type="button" value="valider">
+				
+				<div id="hid" style=display:none>
+					<input type="number" id="dgts" name="resD">
+					<input type="button" value="ok">
+					<input type="button" value="RollTheDice"> <p id="dice"></p>
+				</div>
 			</div>
 			
 			<div style="display:inline-block; border: 2px black; border-style: solid; width: 40%; height: 550px;">
-				Liste des joueurs : 
+				Liste des Opposants : 
 				<%for (Fiche opposant : combat.getOpposants()) { %>
 					<div style="display:inline-block; border: 2px black; border-style: solid;">
 						<%= opposant.getPseudo() %><br>

@@ -63,6 +63,10 @@ public class ServCombat extends HttpServlet {
 			
 			Fiche attaquant = (Fiche) request.getAttribute("attaquant") ;
 			Fiche defenseur = (Fiche) request.getAttribute("defenseur") ;
+			int resD = (Integer) request.getAttribute("resD") ;
+			
+			//Différencier si l'attaque se fait avec la main droite ou gauche
+			combat.attaque(attaquant, resD, true, defenseur) ;
 			
 			
 		}

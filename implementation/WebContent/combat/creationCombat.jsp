@@ -27,7 +27,6 @@
 		</div>
 	</div>
 
-	<form action="ServCombat?op=creation" method="POST"></form>
 	<script type="text/javascript" src="creationCombat.js"></script>
 	
 </div>
