@@ -2,11 +2,14 @@
  * 
  */
 
-function rollTheDice() {
+function rollTheDiceJoueur() {
 	var x = Math.floor(Math.random() * 20) + 1 ;
 	$("#initJoueur").val(x) ;
+}
+
+function rollTheDiceOpposant() {
+	var x = Math.floor(Math.random() * 20) + 1 ;
 	$("#initOpposant").val(x) ;
-	$("#dice").val(x) ;
 }
 
 function addJoueur(nomPerso, nomJoueur) {

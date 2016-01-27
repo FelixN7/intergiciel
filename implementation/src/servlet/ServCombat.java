@@ -36,7 +36,7 @@ public class ServCombat extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
 		
-		if (op.equals("creation")) {
+		if (op.equals("create")) {
 			//On initialise la liste des PJs et la liste des opposants
 			ArrayList<Fiche> PJS = new ArrayList<Fiche>() ;
 			ArrayList<Fiche> Opposants = new ArrayList<Fiche>() ;
