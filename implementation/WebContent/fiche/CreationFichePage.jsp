@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="CreationFiche.css" />
 
 </head>
-<body onload="setAttaque(), setSave(), setHP()">
+<body onload="setAttaque(), setSave(), setHP(), setModFor(), setModDex(), setModCon(), setModInt(), setModSag(), setModCha(), setInit(), settotaux(), setCA()">
 
 <form action="/JDR/ServFiche" method="post">
 

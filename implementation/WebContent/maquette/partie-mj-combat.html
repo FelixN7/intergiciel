@@ -5,12 +5,12 @@
 <title>Interface d'aide aux MJs</title>
 <link rel="stylesheet" type="text/css" href="accueil.css">
 
-<script type="text/javascript" src="/JDR/others/jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="combat.js"></script>
-
 </head>
 <body>
-<form action="ServCombat" method="post">
+
+	<script src="/JDR/others/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="combat.js"></script>
+	
 	<div class="entete">
 		<div class="header" >Accueil</div>
 		<div class="header" >Règles du jeu</div>
@@ -36,24 +36,15 @@
 			Participants : <input type="text" id="joueur"/>
 			<br>
 			<a href="partie-mj-opt.html">Lancer le combat</a>  			
-			<input type="button" value="calculer l'initiative" onclick="rollTheDice()"> <p  id="init" ></p>
+			<input type="button" value="Roll The Dice " onclick="rollTheDice()"> <input type="number" id="init" ></p>
 		</div>
 		<br>
 		<div class="combat" style="border: 2px black; border-style: ">
 			<div id="options">
-				<button id="btn1">Ajouter un joueur</button> <input type="button" value="ajouter un opposant" onclick="addJoueur()">
+				<input type="button" value="Ajouter un joueur" id="btn1"> <input type="button" value="Ajouter un opposant" id="btn2">
 			</div>
 			<div id="listcombat">
-					<p id="test"></p>
-				<div class="combattant opposant">
-					Ennemi 1
-				</div>
-				<div class="combattant joueur tour">
-					Joueur 2
-				</div>
-				<div class="combattant joueur">
-					Joueur 3
-				</div>
+				<participant> </participant>
 			</div>
 		</div>
 	</div>	

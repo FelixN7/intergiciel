@@ -45,7 +45,3 @@ function searchPlayer(nickName) {
 		}
 	});	
 }
-
-function attaque() {
-	
-}
