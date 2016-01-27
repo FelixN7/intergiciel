@@ -22,6 +22,8 @@
 	<h2>Vous avez déjà créé un personnage avec ce nom</h2>
 <%} %>
 
+<div class="fichepage">
+
 <form action="/JDR/ServFiche" method="post">
 
 <table border="0" cellpadding="0" cellspacing="0" class="firstpage">
@@ -1336,6 +1338,7 @@
 <script src="/JDR/fiche/CreationFiche.js"></script>
 
 </form>
+</div>
 </div>
 </body>
 </html> 
