@@ -24,7 +24,7 @@
 	<div id="actionsAccueil">
 		<a href="/JDR/fiche/CreationFichePage.jsp">Créer une fiche de
 			personnage</a> <br>
-		<br> <a href="/JDR/fiche/FichePage.jsp">Voir ses personnages</a>
+		<br> <a href="/JDR/ServFiche?op=afficherFiche">Voir ses personnages</a>
 	</div>
 	<%
 		} else if(request.getSession().getAttribute("typeUtil") == TypeUtilisateur.MaitreDuJeu) {
@@ -33,7 +33,7 @@
 	<div id="actionsAccueil">
 		<a href="/JDR/fiche/CreationFichePage.jsp">Créer une fiche de
 			personnage</a> <br>
-		<br> <a href="/JDR/fiche/FichePage.jsp">Voir ses personnages</a> <br>
+		<br> <a href="/JDR/ServFiche?op=afficherFiche">Voir ses personnages</a> <br>
 		<br> <a href="/JDR/partie/CreationPartie.jsp">Créer une
 			partie</a>
 	</div>
