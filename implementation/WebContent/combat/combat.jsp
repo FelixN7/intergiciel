@@ -22,8 +22,8 @@
 			<div style="display:inline-block; vertical-align: top; width: 15%" id="actionsCombat">
 				<input type="button" id="attaquer" value="attaquer"><br><br>
 				<select id="attaquant">
-				<%= ArrayList<Fiche> listePartcipants =  %>
-				<%for (Fiche pj : combat.getPJS().addAll(combat.getOpposants())) {%>
+				<%= ArrayList<Fiche> listePartcipants = combat.getPJS().addAll(combat.getOpposants()) ; %>
+				<%for (Fiche pj : listePartcipants) {%>
 					<option value="<%= pj.getNomPerso() %>">
 				<%} %>
 				</select>

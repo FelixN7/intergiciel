@@ -1,38 +1,41 @@
+<%@page import="bean.Armure"%>
 <%@page import="bean.Fiche"%>
 <%@page import="facade.FacadeBonus"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%if(request.getSession().getAttribute("typeUtil") == null){
-	response.sendRedirect("/JDR/");
-}else{
-	%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	if (request.getSession().getAttribute("typeUtil") == null) {
+		response.sendRedirect("/JDR/");
+	} else {
+%>
+<!DOCTYPE html PUBLIC "-W3CDTD HTML 4.01 TransitionalEN" "http:www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Affichage Fiche</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="CreationFiche.css" />
+<link rel="stylesheet" type="text/css"
+	href="/JDR/fiche/CreationFiche.css" />
 </head>
 <body>
 
 	<%
 		Fiche f = (Fiche) request.getAttribute("fiche");
-	%>
-	<%
-		FacadeBonus fb = (FacadeBonus) request.getAttribute("facadeBonus");
+			FacadeBonus fb = (FacadeBonus) request.getAttribute("facadeBonus");
+			int bAtt = fb.getBonusAtt(f.getClasse().getNom(), f.getLevel());
+			int bref = fb.getBonusRef(f.getClasse().getNom(), f.getLevel());
+			int bVig = fb.getBonusVig(f.getClasse().getNom(), f.getLevel());
+			int bVol = fb.getBonusVol(f.getClasse().getNom(), f.getLevel());
+			HashMap<String, Integer> competences = f.getCompetences().getComp();
 	%>
 	<table border="0" cellpadding="0" cellspacing="0" class="firstpage">
-		<!--DWLayoutTable-->
+
 		<tr>
 			<td height="18" colspan="10"><%=f.getNomPerso()%></td>
-			<td colspan="12" valign="top">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
-			<td colspan="8" valign="top">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
+			<td colspan="12" valign="top"><%=f.getPseudo()%></td>
+			<td colspan="8" valign="top">&nbsp;</td>
 		</tr>
 		<tr>
 			<td height="16" colspan="10" valign="top" class="desc1">CHARACTER
@@ -42,7 +45,7 @@
 		</tr>
 		<tr>
 			<td height="18" colspan="10"><%=f.getLevel()%> <%=f.getClasse().getNom()%></td>
-			<td colspan="7" valign="top"><%=f.getRace()%></td>
+			<td colspan="7" valign="top"><%=f.getRace().getNom()%></td>
 			<td colspan="5" valign="top"><%=f.getAlignement()%></td>
 			<td colspan="8" valign="top" class="boxed"></td>
 		</tr>
@@ -54,9 +57,7 @@
 			<td colspan="8" class="desc1">EXPERIENCE POINTS</td>
 		</tr>
 		<tr>
-			<td height="18" colspan="30" valign="top">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
+			<td height="18" colspan="30" valign="top">&nbsp;</td>
 		</tr>
 		<tr>
 			<td width="42" height="18" valign="middle" class="desc2">
@@ -64,9 +65,7 @@
 			</td>
 			<td colspan="2" class="desc2">ABILITY SCORE</td>
 			<td colspan="3" class="desc2">ABILITY MODIFIER</td>
-			<td colspan="2" class="desc2">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
+			<td colspan="2" class="desc2">&nbsp;</td>
 			<td colspan="3" class="desc2">TOTAL</td>
 			<td colspan="11" class="desc2">WOUNDS/CURRENT HP</td>
 			<td colspan="5" class="desc2">NONLETHAL DAMAGE</td>
@@ -84,12 +83,8 @@
 					HP<br> <span class="blackback_small">hit points</span>
 				</p></td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getVie()%></td>
-			<td colspan="11" valign="top" class="boxed">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
-			<td colspan="5" valign="top" class="boxed">
-				<!--DWLayoutEmptyCell-->&nbsp;
-			</td>
+			<td colspan="11" valign="top" class="boxed">&nbsp;</td>
+			<td colspan="5" valign="top" class="boxed">&nbsp;</td>
 			<td colspan="3" valign="top" class="boxed">40ft.</td>
 		</tr>
 		<tr>
@@ -180,14 +175,13 @@
 			<td></td>
 			<td colspan="11" rowspan="20" valign="top"><table width="100%"
 					border="0" cellpadding="0" cellspacing="0">
-					<!--DWLayoutTable-->
+
 					<tr class="blackback">
 						<td height="18" colspan="10" valign="top">SKILLS</td>
 					</tr>
 					<tr>
 						<td width="9" height="18" valign="top" class="blackback">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+							&nbsp;</td>
 						<td width="74" valign="top" class="descboxed">SKILL NAME</td>
 						<td width="25" valign="top" class="descboxed">KEY ABILITY</td>
 						<td colspan="2" valign="top" class="descboxed">SKILL MODIFIER</td>
@@ -197,402 +191,340 @@
 						<td colspan="2" valign="top" class="descboxed">MISC MODIFIER</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Acrobaties</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td width="25" valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Acrobaties")%></td>
+						<td width="25" valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Acrobaties")%></td>
 						<td width="7" class="desc3">=</td>
 						<td width="25" valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td width="7" class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Acrobaties")%></td>
+						<td valign="top" class="skill"><%=f.getCompetences().getComp().get("Acrobaties")%></td>
 						<td width="7" class="desc3">+</td>
 						<td width="25" valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Art de la magie</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Art de la magie")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getComp().get("Art de la magie")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Art de la magie")%></td>
+						<td valign="top" class="skill"><%=competences.get("Art de la magie")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Artisanat</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Art de la magie")%>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Artisanat")%>
 						</td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Artisanat")%></td>
+						<td valign="top" class="skill"><%=competences.get("Artisanat")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Bluff</td>
 						<td valign="top" class="skillability">Cha</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Bluff")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Bluff")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Bluff")%></td>
+						<td valign="top" class="skill"><%=competences.get("Bluff")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Concentration</td>
 						<td valign="top" class="skillability">Con</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCon() + f.getCompetences().getCompetences().get("Concentration")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCon() + competences.get("Concentration")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCon()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Concentration")%></td>
+						<td valign="top" class="skill"><%=competences.get("Concentration")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Connaissance(Mystères)</td>
 						<td valign="top" class="skillability">int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt()
-					+ f.getCompetences().getCompetences().get("Connaissance(Mystères)")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Connaissance(Mysteres)")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Connaissance(Mystères)")%></td>
+						<td valign="top" class="skill"><%=competences.get("Connaissance(Mysteres)")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Connaissance(Nature)</td>
 						<td valign="top" class="skillability">int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt()
-					+ f.getCompetences().getCompetences().get("Connaissance(Nature)")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Connaissance(Nature)")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Connaissance(Nature)")%></td>
+						<td valign="top" class="skill"><%=competences.get("Connaissance(Nature)")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Connaissance(Religion)</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt()
-					+ f.getCompetences().getCompetences().get("Connaissance(Religion)")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Connaissance(Religion)")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Connaissance(religion)")%></td>
+						<td valign="top" class="skill"><%=competences.get("Connaissance(Religion)")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Contrefaçon</td>
 						<td valign="top" class="skillability">int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Contrefaçon")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Contrefacon")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Contrefaçon")%></td>
+						<td valign="top" class="skill"><%=competences.get("Contrefacon")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Crochetage</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Crochetage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Crochetage")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Crochetage")%></td>
+						<td valign="top" class="skill"><%=competences.get("Crochetage")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Décryptage</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Décryptage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Decryptage")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Décryptage")%></td>
+						<td valign="top" class="skill"><%=competences.get("Decryptage")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Déguisement</td>
 						<td valign="top" class="skillability">Cha</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Décryptage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Deguisement")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Déguisement")%></td>
+						<td valign="top" class="skill"><%=competences.get("Deguisement")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Déplacement silencieux</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex()
-					+ f.getCompetences().getCompetences().get("Déplacement silencieux")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Deplacement Silencieux")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Déplacement silencieux")%></td>
+						<td valign="top" class="skill"><%=competences.get("Deplacement Silencieux")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Désamorçage/sabotage</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt()
-					+ f.getCompetences().getCompetences().get("Désamorçage/sabotage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Desamorcage/sabotage")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Désamorçage/sabotage")%></td>
+						<td valign="top" class="skill"><%=competences.get("Desamorcage/sabotage")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Détection</td>
 						<td valign="top" class="skillability">Sag</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Détection")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + competences.get("Detection")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModSag()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Détection")%></td>
+						<td valign="top" class="skill"><%=competences.get("Detection")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Diplomatie</td>
 						<td valign="top" class="skillability">Cha</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Diplomatie")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Diplomatie")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Diplomatie")%></td>
+						<td valign="top" class="skill"><%=competences.get("Diplomatie")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Discrétion</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Discrétion")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Discretion")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Discrétion")%></td>
+						<td valign="top" class="skill"><%=competences.get("Discretion")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Dressage</td>
 						<td valign="top" class="skillability">Cha</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Dressage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Dressage")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Dressage")%>
-							%></td>
+						<td valign="top" class="skill"><%=competences.get("Dressage")%>
+						</td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Equilibre</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Equilibre")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Equilibre")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Equilibre")%></td>
+						<td valign="top" class="skill"><%=competences.get("Equilibre")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Equitation</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Equitation")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Equitation")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Equitation")%></td>
+						<td valign="top" class="skill"><%=competences.get("Equitation")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Escalade</td>
 						<td valign="top" class="skillability">For</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + f.getCompetences().getCompetences().get("Escalade")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + competences.get("Escalade")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModFor()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Escalade")%></td>
+						<td valign="top" class="skill"><%=competences.get("Escalade")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Escamotage</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Escamotage")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Escamotage")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Escamotage")%></td>
+						<td valign="top" class="skill"><%=competences.get("Escamotage")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Estimation</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Estimation")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Estimation")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences()%></td>
+						<td valign="top" class="skill"><%=competences.get("Estimation")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Evasion</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + f.getCompetences().getCompetences().get("Evasion")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Evasion")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Evasion")%></td>
+						<td valign="top" class="skill"><%=competences.get("Evasion")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Fouille</td>
 						<td valign="top" class="skillability">Int</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + f.getCompetences().getCompetences().get("Fouille")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModInt() + competences.get("Fouille")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModInt()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Fouille")%></td>
+						<td valign="top" class="skill"><%=competences.get("Fouille")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Intimidation</td>
 						<td valign="top" class="skillability">Cha</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Intimidation")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Intimidation")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Intimidation")%></td>
+						<td valign="top" class="skill"><%=competences.get("Intimidation")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Maitrise des cordes</td>
 						<td valign="top" class="skillability">Dex</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex()
-					+ f.getCompetences().getCompetences().get("Maitrise des cordes")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModDex() + competences.get("Maitrise des cordes")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModDex()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Maitrise des cordes")%></td>
+						<td valign="top" class="skill"><%=competences.get("Maitrise des cordes")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
 					<tr>
-						<td height="18" valign="top">
-							<!--DWLayoutEmptyCell-->&nbsp;
-						</td>
+						<td height="18" valign="top">&nbsp;</td>
 						<td valign="top" class="skillname">Natation</td>
 						<td valign="top" class="skillability">for</td>
-						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + f.getCompetences().getCompetences().get("Natation")%></td>
+						<td valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + competences.get("Natation")%></td>
 						<td class="desc3">=</td>
 						<td valign="top" class="skill"><%=f.getCaracteristiques().getModFor()%></td>
 						<td class="desc3">+</td>
-						<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Natation")%></td>
+						<td valign="top" class="skill"><%=competences.get("Natation")%></td>
 						<td class="desc3">+</td>
 						<td valign="top" class="skill">0</td>
 					</tr>
@@ -657,9 +589,9 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					VIG<br> <span class="blackback_small">constitution</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVig(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModCon()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bVig + f.getCaracteristiques().getModCon()%></td>
 			<td valign="top" class="desc3">=</td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVig(f.getClasse().getNom(), f.getLevel())%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bVig%></td>
 			<td valign="top" class="desc3">+</td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getCaracteristiques().getModCon()%></td>
 			<td valign="top" class="desc3">+</td>
@@ -674,9 +606,9 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					REF<br> <span class="blackback_small">dexterity</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusRef(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModDex()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bref + f.getCaracteristiques().getModDex()%></td>
 			<td valign="top" class="desc3">=</td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusRef(f.getClasse().getNom(), f.getLevel())%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bref%></td>
 			<td valign="top" class="desc3">+</td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getCaracteristiques().getModDex()%></td>
 			<td valign="top" class="desc3">+</td>
@@ -691,9 +623,9 @@
 			<td height="42" colspan="2" valign="top" class="blackback"><P>
 					VOL<br> <span class="blackback_small">wisdom</span>
 				</p></td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVol(f.getClasse().getNom(), f.getLevel()) + f.getCaracteristiques().getModSag()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bVol + f.getCaracteristiques().getModSag()%></td>
 			<td valign="top" class="desc3">=</td>
-			<td colspan="2" valign="top" class="boxed"><%=fb.getBonusVol(f.getClasse().getNom(), f.getLevel())%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bVol%></td>
 			<td valign="top" class="desc3">+</td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getCaracteristiques().getModSag()%></td>
 			<td valign="top" class="desc3">+</td>
@@ -728,7 +660,7 @@
 		<tr>
 			<td height="28" colspan="5" valign="top" class="blackback">BASE
 				ATTACK BONUS</td>
-			<td colspan="7" valign="top" class="boxed"><%=fb.getBonusAtt(f.getClasse().getNom(), f.getLevel())%></td>
+			<td colspan="7" valign="top" class="boxed"><%=bAtt%></td>
 			<td colspan="5" valign="top" class="blackback">SPELL RESISTANCE</td>
 			<td valign="top" class="boxed">0</td>
 			<td></td>
@@ -758,9 +690,9 @@
 			<td height="28" colspan="5" valign="top" class="blackback"><P>
 					LUTTE<BR> <span class="blackback_small"> modifier</span>
 				</P></td>
-			<td colspan="2" valign="top" class="boxed"><%=f.getBonusAtt() + f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=bAtt + f.getCaracteristiques().getModFor()%></td>
 			<td valign="top" class="desc3">=</td>
-			<td colspan="3" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
+			<td colspan="3" valign="top" class="boxed"><%=bAtt%></td>
 			<td valign="top" class="desc3">+</td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getCaracteristiques().getModFor()%></td>
 			<td valign="top" class="desc3">+</td>
@@ -793,23 +725,29 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
-		<%if (f.getArmeGauche() == null) {%>
+		<%
+			if (f.getArmeGauche() == null) {
+		%>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
-			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%} else {  %>
+		<%
+			} else {
+		%>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
-			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()-2%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt - 2%></td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%} %>
+		<%
+			}
+		%>
 		<tr>
 			<td height="19" colspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" valign="top" class="blackback2">TYPE</td>
@@ -850,23 +788,29 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
-		<%if (f.getArmeDroite() == null) { %>
+		<%
+			if (f.getArmeDroite() == null) {
+		%>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
-			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getArmeGauche().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%} else { %>
+		<%
+			} else {
+		%>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
-			<td colspan="4" valign="top" class="boxed"><%=f.getBonusAtt()-6%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt - 6%></td>
 			<td colspan="3" valign="top" class="boxed"><%=f.getArmeGauche().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%} %>
+		<%
+			}
+		%>
 		<tr>
 			<td colspan="2" rowspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" rowspan="2" valign="top" class="blackback2">TYPE</td>
@@ -921,20 +865,20 @@
 	</table>
 	<table width="580" border="0" cellpadding="0" cellspacing="0"
 		class="page">
-		<!--DWLayoutTable-->
+
 		<tr>
-			<td width="580" height="438" valign="top"><table width="580"
-					border="0" cellpadding="0" cellspacing="0">
-					<!--DWLayoutTable-->
+			<td width="580" height="438" valign="top">
+				<table width="580" border="0" cellpadding="0" cellspacing="0">
+
 					<tr>
 						<td width="342" height="24" valign="top" class="blackback">POSSESSIONS</td>
 						<td width="12">&nbsp;</td>
 						<td width="226" valign="top" class="blackback">SKILLS</td>
 					</tr>
 					<tr>
-						<td height="414" valign="top"><table width="100%" border="0"
-								cellpadding="0" cellspacing="0">
-								<!--DWLayoutTable-->
+						<td height="414" valign="top">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
 								<tr>
 									<td width="107" height="24" valign="top" class="descboxed">ITEM</td>
 									<td width="32" valign="top" class="descboxed">PG.</td>
@@ -944,195 +888,135 @@
 									<td width="32" valign="top" class="descboxed">LB.</td>
 								</tr>
 								<tr>
-									<td width="107" height="24" valign="top" class="boxedsmall"><%=f.getArmure().getNom() %></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
+									<td width="107" height="24" valign="top" class="boxedsmall">
+										<%Armure armure = f.getArmure(); if(armure!=null)response.getWriter().print(armure.getNom());%>
 									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
 								<tr>
 									<td width="107" height="24" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 									<td width="107" valign="top" class="boxedsmall"></td>
-									<td width="32" valign="top" class="boxedsmall">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="32" valign="top" class="boxedsmall">&nbsp;</td>
 									<td width="32" valign="top" class="boxedsmall"></td>
 								</tr>
-							</table></td>
+							</table>
+						</td>
 						<td>&nbsp;</td>
-						<td valign="top"><table width="226" border="0"
-								cellpadding="0" cellspacing="0">
-								<!--DWLayoutTable-->
-								<!--DWLayoutTable-->
+						<td valign="top">
+							<table width="226" border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<td width="3" height="18" valign="top" class="blackback">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+										&nbsp;</td>
 									<td width="59" valign="top" class="descboxed">SKILL NAME</td>
 									<td width="27" valign="top" class="descboxed">KEY ABILITY</td>
 									<td colspan="2" valign="top" class="descboxed">SKILL
@@ -1144,140 +1028,118 @@
 										MODIFIER</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Perception
 										auditive¤</td>
 									<td width="27" valign="top" class="skillability">Sag</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag()
-					+ f.getCompetences().getCompetences().get("Perception auditive")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + competences.get("Perception auditive")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Perception Auditive")%></td>
+									<td valign="top" class="skill"><%=competences.get("Perception auditive")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Premier
 										secours¤</td>
 									<td width="27" valign="top" class="skillability">Sag</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Premiers secours")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + competences.get("Premiers secours")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Premier secours")%></td>
+									<td valign="top" class="skill"><%=competences.get("Premier secours")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Profession</td>
 									<td width="27" valign="top" class="skillability">Sag</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Profession")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + competences.get("Profession")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Profession")%></td>
+									<td valign="top" class="skill"><%=competences.get("Profession")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Psychologie¤</td>
 									<td width="27" valign="top" class="skillability">Sag</td>
 									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag()%></td>
 									<td width="12" class="desc3">=</td>
-									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Psychologie")%></td>
+									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag() + competences.get("Psychologie")%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Psychologie")%></td>
+									<td valign="top" class="skill"><%=competences.get("Psychologie")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Renseignements¤</td>
 									<td width="27" valign="top" class="skillability">Cha</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Renseignements")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Renseignements")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Renseignements")%></td>
+									<td valign="top" class="skill"><%=competences.get("Renseignements")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Représentation¤</td>
 									<td width="27" valign="top" class="skillability">Cha</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + f.getCompetences().getCompetences().get("Représentation")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Representation")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Représentation")%></td>
+									<td valign="top" class="skill"><%=competences.get("Representation")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Saut¤§</td>
 									<td width="27" valign="top" class="skillability">For</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + f.getCompetences().getCompetences().get("Saut")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModFor() + competences.get("Saut")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModFor()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Saut")%></td>
+									<td valign="top" class="skill"><%=competences.get("Saut")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Survie¤</td>
 									<td width="27" valign="top" class="skillability">Sag</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + f.getCompetences().getCompetences().get("Survie")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModSag() + competences.get("Survie")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModSag()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Survie")%></td>
+									<td valign="top" class="skill"><%=competences.get("Survie")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">Utilisation
 										d'objets magiques</td>
 									<td width="27" valign="top" class="skillability">Cha</td>
-									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha()
-					+ f.getCompetences().getCompetences().get("Utilisation d'objets magiques")%></td>
+									<td width="27" valign="top" class="skill2"><%=f.getCaracteristiques().getModCha() + competences.get("Utilisation d objets magiques")%></td>
 									<td width="12" class="desc3">=</td>
 									<td width="27" valign="top" class="skill"><%=f.getCaracteristiques().getModCha()%></td>
 									<td width="8" class="desc3">+</td>
-									<td valign="top" class="skill"><%=f.getCompetences().getCompetences().get("Utilisation d'objets magiques")%></td>
+									<td valign="top" class="skill"><%=competences.get("Utilisation d objets magiques")%></td>
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">0</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1289,9 +1151,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1303,9 +1163,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1317,9 +1175,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1331,9 +1187,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1345,9 +1199,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1359,9 +1211,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1373,9 +1223,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname"></td>
 									<td width="27" valign="top" class="skillability"></td>
 									<td width="27" valign="top" class="skill2"></td>
@@ -1387,9 +1235,7 @@
 									<td width="29" valign="top" class="skill"></td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">&nbsp;</td>
 									<td width="27" valign="top" class="skillability">&nbsp;</td>
 									<td width="27" valign="top" class="skill2">&nbsp;</td>
@@ -1401,9 +1247,7 @@
 									<td width="29" valign="top" class="skill">&nbsp;</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">&nbsp;</td>
 									<td width="27" valign="top" class="skillability">&nbsp;</td>
 									<td width="27" valign="top" class="skill2">&nbsp;</td>
@@ -1415,9 +1259,7 @@
 									<td width="29" valign="top" class="skill">&nbsp;</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">&nbsp;</td>
 									<td width="27" valign="top" class="skillability">&nbsp;</td>
 									<td width="27" valign="top" class="skill2">&nbsp;</td>
@@ -1429,9 +1271,7 @@
 									<td width="29" valign="top" class="skill">&nbsp;</td>
 								</tr>
 								<tr>
-									<td width="3" height="18" valign="top">
-										<!--DWLayoutEmptyCell-->&nbsp;
-									</td>
+									<td width="3" height="18" valign="top">&nbsp;</td>
 									<td width="59" valign="top" class="skillname">&nbsp;</td>
 									<td width="27" valign="top" class="skillability">&nbsp;</td>
 									<td width="27" valign="top" class="skill2">&nbsp;</td>
@@ -1442,14 +1282,16 @@
 									<td width="8" class="desc3">+</td>
 									<td width="29" valign="top" class="skill">&nbsp;</td>
 								</tr>
-							</table></td>
+							</table>
+						</td>
 					</tr>
-				</table></td>
+				</table>
+			</td>
 		</tr>
 		<tr>
-			<td height="114" valign="top"><table width="100%" border="0"
-					cellpadding="0" cellspacing="0">
-					<!--DWLayoutTable-->
+			<td height="114" valign="top">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+
 					<tr>
 						<td width="57" rowspan="2" valign="top" class="boxed">1-87lb.</td>
 						<td width="57" rowspan="2" valign="top" class="boxed">88-173lb.</td>
@@ -1508,12 +1350,13 @@
 						<td></td>
 						<td></td>
 					</tr>
-				</table></td>
+				</table>
+			</td>
 		</tr>
 		<tr>
-			<td height="250" valign="top"><table width="580" border="0"
-					cellpadding="0" cellspacing="0">
-					<!--DWLayoutTable-->
+			<td height="250" valign="top">
+				<table width="580" border="0" cellpadding="0" cellspacing="0">
+
 					<tr>
 						<td height="18" colspan="4" valign="top" class="blackback">FEATS,
 							LANGUAGES &amp; ABILITIES</td>
@@ -1593,7 +1436,8 @@
 						<td valign="top" class="boxedsmall">&nbsp;</td>
 						<td valign="top" class="boxedsmall">&nbsp;</td>
 					</tr>
-				</table></td>
+				</table>
+			</td>
 		</tr>
 	</table>
 

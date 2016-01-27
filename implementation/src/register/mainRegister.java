@@ -37,12 +37,6 @@ public class mainRegister {
 		//Enregistrement des armures	
 		ArmureCuir.inserer(em);
 		ArmureCloutee.inserer(em);
-		Armure armure = new Armure("sans armure");
-		armure.setBonusArmure(0);
-		armure.setBonusDexMax(0);
-		armure.setMalusTests(0);
-		armure.setRisqueEchec(0);
-		em.persist(armure);
 
 		//Enregistrement des armes
 		EpeeBatarde.inserer(em);
