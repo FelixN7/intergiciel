@@ -1,35 +1,61 @@
+<%@page import="java.util.Collection"%>
+<%@page import="bean.Fiche"%>
 <%@page import="facade.FacadePartie"%>
 <%@page import="bean.Partie"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>LA PARTIE</title>
+<title>Partie : <%= request.getAttribute("nomPartie")%></title>
 <link rel="stylesheet" type="text/css" href="others/general.css">
+<link rel="stylesheet" type="text/css" href="partie/partie.css">
+<script src="/JDR/partie/partie.js"></script>
 </head>
 <body>
 
 	<%@ include file="/others/bandeau.html"%>
 
-	<form action="/JDR/ServPartie?op=partie" method="POST">
 
-	MJ : <%= request.getSession().getAttribute("utilisateur") %>
-	<div style = "vertical-align: top; display: inline-block; width: 100%">
-		<div style="display:inline-block; border: 1px black; border-style: solid; width: 40%; height: 550px;">
-		Liste des joueurs :
-		<%FacadePartie fp = new FacadePartie(); %> 
-		<%//Partie partie = fp.getPartie(id); %>	
-		</div>
-			
-		<div style="display:inline-block; border: 1px black; border-style: solid; width: 40%; height: 550px;"> 
+	<div class="pageContent">
+		MJ : <%= request.getSession().getAttribute("utilisateur") %> <br>
+		Nom de la partie : <%= request.getAttribute("nomPartie") %> <br>
+		<div class="partieDiv">
+			<div class="listePersos">
+				Liste des joueurs : <br>
+				<% Collection<Fiche> fiches = (Collection<Fiche>) request.getAttribute("fiches");
+				for (Fiche ficheCour : fiches) {
+				%>
 					
+				<div class= "persoDiv" data-joueur="<%=ficheCour.getPseudo()%>" data-perso="<%=ficheCour.getNomPerso() %>">
+					<%=ficheCour.getPseudo()%> ( <b><%=ficheCour.getNomPerso()%></b> ) <br>
+					Classe : <%=ficheCour.getClasse().getNom()%> <br>
+					PVs : <%=ficheCour.getVieCourante()%>/<%=ficheCour.getVie()%>
+				</div>		
+				<%
+				}				
+				%> 				
+			</div>
+
+			<div id="detailsFiche"> Aucune fiche sélectionnée pour le moment.
+			</div>
+		</div>
+		
+		Actions : 
+		<div id="divActions">
+			<input type="submit" value="Lancer un combat">
 		</div>
 	</div>
-	
-	
-	<input type="submit" value="lancer un combat">
+	<script type="text/javascript">
 
+	$(document).ready(function() {
+		$(".persoDiv").click(function() {
+			getDetails($(this));
+		});
+	});
+		
+	</script>
+	
 </body>
 </html>

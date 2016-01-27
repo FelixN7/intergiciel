@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 import bean.Fiche;
 import bean.Partie;
-import bean.Utilisateur;
+import facade.FacadeBonus;
 import facade.FacadeFiche;
 import facade.FacadePartie;
 import facade.FacadeUtilisateur;
@@ -35,6 +33,10 @@ public class ServPartie extends HttpServlet {
 	
 	@EJB
 	FacadeUtilisateur fu ;
+	
+	@EJB
+	FacadeBonus fb;
+	
 	private static final long serialVersionUID = 5504876312795472403L;
 
 	/**
@@ -70,10 +72,6 @@ public class ServPartie extends HttpServlet {
 			}
 				
 			Collection<String> listePersos = ff.getNomPersos(invitedNick);
-//			Collection<String> listePersos = new ArrayList<String>();
-//			listePersos.add("personnage1");
-//			listePersos.add("personnage2");
-//			listePersos.add("personnage3");
 			
 			if (listePersos.isEmpty()) {
 				
@@ -99,18 +97,32 @@ public class ServPartie extends HttpServlet {
 				nomPersos.add(request.getParameter("nomPerso" + i));
 			}
 			
+			
 			Partie p = fp.creerPartie(nomPartie, (String) request.getSession().getAttribute("utilisateur") );
 				
 			ArrayList<Fiche> fichesJoueurs = new ArrayList<Fiche>();
 			
 			for (int i=0; i<nbJoueurs;i++) {
 				fichesJoueurs.add(ff.getFiche(nomJoueurs.get(i),nomPersos.get(i)));
-				ff.ajouterPartie(fichesJoueurs.get(i), p);
+				ff.ajouterPartie(ff.getFiche(nomJoueurs.get(i),nomPersos.get(i)), p);
 			}
 			
+			request.setAttribute("nomPartie", nomPartie);			
 			request.setAttribute("fiches", fichesJoueurs);
 			request.getRequestDispatcher("/partie/Partie.jsp").forward(request, response);
 			
+			
+		} else if (action.equals("detailsJoueur"))	{		
+			String pseudo = request.getParameter("pseudo");
+			String personnage = request.getParameter("personnage");
+			
+			if (pseudo!=null & personnage != null) {
+				
+				Fiche fichePerso = ff.getFiche(pseudo, personnage);
+				request.setAttribute("fiche", fichePerso);
+				request.setAttribute("facadeBonus", fb );
+				request.getRequestDispatcher("/fiche/FichePage.jsp").forward(request, response);
+			} 			
 		} else if (action.equals("partie")) {
 			request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
 		}
