@@ -4,7 +4,6 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import bean.Fiche;
 import bean.Partie;
 import bean.PartieMJ;
 
@@ -23,7 +22,7 @@ public class FacadePartie {
 	}
 	
 	public Partie getPartie(String pseudoMJ, String nomPartie){
-		PartiePseudo pp = new PartiePseudo(pseudoMJ, nomPartie) ;
+		PartieMJ pp = new PartieMJ(pseudoMJ, nomPartie) ;
 		return em.find(Partie.class, pp);
 	}
 	
