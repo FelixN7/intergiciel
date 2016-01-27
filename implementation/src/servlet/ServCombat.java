@@ -65,11 +65,18 @@ public class ServCombat extends HttpServlet {
 			Fiche defenseur = (Fiche) request.getAttribute("defenseur") ;
 			int resD = (Integer) request.getAttribute("resD") ;
 			
+			boolean touche ;
 			//Différencier si l'attaque se fait avec la main droite ou gauche
-			combat.attaque(attaquant, resD, true, defenseur) ;
+			touche = combat.attaque(attaquant, resD, true, defenseur) ;
+			//Si le joueur a été touché alors on calcule les degats
+			if (touche) {
+				combat.calculDgts(attaquant, 0, true, defenseur) ;
+			}
 			
-			
+		} else if (op.equals("partie")) {
+			request.getRequestDispatcher("/combat/creationCombat.jsp").forward(request, response);
 		}
+		
 	}
 	
 	/**
