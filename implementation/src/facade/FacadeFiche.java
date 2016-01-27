@@ -46,7 +46,7 @@ public class FacadeFiche {
 	
 	public void ajouterPartie(Fiche f, Partie p){
 		f.setPartie(p);
-		em.refresh(f);
+		em.merge(f);
 	}
 	
 	public Collection<String> getNomPersos(String pseudo){

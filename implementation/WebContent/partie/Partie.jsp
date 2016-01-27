@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<%@ include file="/others/bandeau.html"%>
+	<%@ include file="../others/bandeau.html"%>
 
 	Partie.
 
