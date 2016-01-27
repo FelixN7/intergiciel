@@ -11,10 +11,16 @@
 <title>Création de Fiche</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="CreationFiche.css" />
+<link rel="stylesheet" type="text/css" href="/JDR/fiche/CreationFiche.css" />
+<link rel="stylesheet" type="text/css" href="/JDR/others/general.css">
 
 </head>
 <body onload="setAttaque(), setSave(), setHP(), setModFor(), setModDex(), setModCon(), setModInt(), setModSag(), setModCha(), setInit(), settotaux(), setCA()">
+<%@ include file="/others/bandeau.html" %>
+<div class="pageContent">
+<%if(request.getAttribute("erreur")!=null){%>
+	<h2>Vous avez déjà créé un personnage avec ce nom</h2>
+<%} %>
 
 <form action="/JDR/ServFiche" method="post">
 
@@ -1326,9 +1332,10 @@
 </table>
 <input type="submit" value="OK">
 
-<script src="CreationFiche.js"></script>
+<script src="/JDR/fiche/CreationFiche.js"></script>
 
 </form>
+</div>
 </body>
 </html> 
 <%} %>

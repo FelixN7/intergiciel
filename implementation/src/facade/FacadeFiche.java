@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.ejb.Singleton;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import bean.Arme;
+import bean.Armure;
 import bean.Fiche;
 import bean.Partie;
 import bean.PersoPseudo;
@@ -35,10 +36,6 @@ public class FacadeFiche {
 		}
 	}
 	
-	public void voirFiche() {
-		
-	}
-	
 	public Fiche getFiche(String pseudo,String nomPerso){
 		PersoPseudo pp = new PersoPseudo(pseudo, nomPerso);
 		return em.find(Fiche.class, pp);
@@ -61,6 +58,14 @@ public class FacadeFiche {
 			persos.add(f.getNomPerso());
 		}
 		return persos;
+	}
+	
+	public Arme getArme(String nomArme){
+		return em.find(Arme.class,nomArme);
+	}
+	
+	public Armure getArmure(String nomArmure){
+		return em.find(Armure.class, nomArmure);
 	}
 	
 	

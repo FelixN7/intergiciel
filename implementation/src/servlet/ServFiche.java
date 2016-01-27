@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,10 +69,10 @@ public class ServFiche extends HttpServlet {
 		Integer Cha = Integer.parseInt(request.getParameter("cha"));
 		Caracteristiques c = new Caracteristiques(For, Dex, Con, Int, Sag, Cha) ;
 		
-		Arme armeG = new Arme(request.getParameter("armeG")) ;
-		Arme armeD= new Arme(request.getParameter("armeD")) ;
+		Arme armeG = f.getArme(request.getParameter("armeG")) ;
+		Arme armeD= f.getArme(request.getParameter("armeD"));
 		String arm = request.getParameter("armure");
-		Armure armure = arm.equals("sans armure")?null:new Armure(arm);
+		Armure armure = arm.equals("sans armure")?null:f.getArmure(arm);
 		
 		HashMap<String, Integer> HM = new HashMap<String, Integer>() ;
 		HM.put("Acrobaties", Integer.parseInt(request.getParameter("acrobatiesRank"))) ;
@@ -122,7 +123,12 @@ public class ServFiche extends HttpServlet {
 		fiche.setArmure(armure);
 		PersoType type = (request.getSession().getAttribute("typeUtil") == TypeUtilisateur.Joueur)?PersoType.PJ:PersoType.PNJ;
 		fiche.setType(type);
-		f.insererFiche(fiche);
+		try {
+			f.insererFiche(fiche);
+		} catch (EJBTransactionRolledbackException e) {
+			request.setAttribute("erreur", "nomPersoDejaUtilise");
+			request.getRequestDispatcher("/fiche/CreationFichePage.jsp").forward(request, response);
+		}
 		request.setAttribute("fiche", fiche);
 		request.setAttribute("facadeBonus", fb);
 		request.getRequestDispatcher("/fiche/FichePage.jsp").forward(request, response);
