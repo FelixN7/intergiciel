@@ -94,11 +94,10 @@ function setModCha() {
 }
 
 function setInit() {
-	var x1, x2, text ;
+	var x1, text ;
 	
-	x1 = document.getElementById("dex") ;
-	x2 = document.getElementById("miscInit");
-	text = Math.floor((x1-10)/2) + x2 ;
+	x1 = Number(document.getElementById("dex").value) ;
+	text = Math.floor((x1-10)/2) ;
 	document.getElementById("init").innerHTML = text ;
 }
 

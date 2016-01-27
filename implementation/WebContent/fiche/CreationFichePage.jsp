@@ -546,7 +546,7 @@
     <td valign="top" class="desc3">=</td>
     <td valign="top" class="boxed"><p name	="modDex"></p></td>
     <td valign="top" class="desc3">+</td>
-    <td valign="top" class="boxed"><p id = "miscInit"></td>
+    <td valign="top" class="boxed"></td>
     <td></td>
   </tr>
   <tr> 
@@ -813,6 +813,7 @@
     <td></td>
   </tr>
 </table>
+<br>
 <table width="1025" border="0" cellpadding="0" cellspacing="0" class="page">
   <!--DWLayoutTable-->
   <tr> 

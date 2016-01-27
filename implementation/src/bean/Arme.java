@@ -3,6 +3,9 @@ package bean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import utilities.Des;
+import utilities.TypeDeDes;
+
 @Entity
 public class Arme implements Item {
 
@@ -27,15 +30,15 @@ public class Arme implements Item {
 		this.nom = nom;
 	}
 	
-	public utilities.Des getDgtsP() {
+	public Des getDgtsP() {
 		return this.dgtsP;
 	}
 	public void setDgtsP(utilities.Des dgtsP) {
 		this.dgtsP = dgtsP;
 	}
 
-	public utilities.Des getDgtsM() {
-		return this.dgtsM;
+	public Des getDgtsM() {
+		return this.dgtsM ;
 	}
 
 	public void setDgtsM(utilities.Des dgtsM) {

@@ -27,7 +27,11 @@ public class Caracteristiques implements Serializable{
 	}
 	
 	public int getModFor() {
-		return (this.For - 10)/2 ;
+		if (this.For % 2 == 0) {
+			return (this.For - 10)/2 ;
+		} else {
+			return (this.For - 10)/2 - 1;
+		}
 	}
 	
 	public void setFor(int For) {
@@ -39,7 +43,11 @@ public class Caracteristiques implements Serializable{
 	}
 	
 	public int getModDex() {
-		return (this.Dex - 10)/2 ;
+		if (this.Dex % 2 == 0) {
+			return (this.Dex - 10)/2 ;
+		} else {
+			return (this.Dex - 10)/2 - 1;
+		}
 	}
 
 	public void setDex(int dex) {
@@ -51,7 +59,11 @@ public class Caracteristiques implements Serializable{
 	}
 	
 	public int getModCon() {
-		return (this.Con - 10)/2 ;
+		if (this.Con % 2 == 0) {
+			return (this.Con - 10)/2 ;
+		} else {
+			return (this.Con - 10)/2 - 1;
+		}
 	}
 
 	public void setCon(int con) {
@@ -63,7 +75,11 @@ public class Caracteristiques implements Serializable{
 	}
 
 	public int getModInt() {
-		return (this.Int - 10)/2 ;
+		if (this.Int % 2 == 0) {
+			return (this.Int - 10)/2 ;
+		} else {
+			return (this.Int - 10)/2 - 1;
+		}
 	}
 	
 	public void setInt(int i) {
@@ -75,7 +91,11 @@ public class Caracteristiques implements Serializable{
 	}
 
 	public int getModSag() {
-		return (this.Sag - 10)/2 ;
+		if (this.Sag % 2 == 0) {
+			return (this.Sag - 10)/2 ;
+		} else {
+			return (this.Sag - 10)/2 - 1;
+		}
 	}
 	
 	public void setSag(int sag) {
@@ -87,7 +107,11 @@ public class Caracteristiques implements Serializable{
 	}
 
 	public int getModCha() {
-		return (this.Cha - 10)/2 ;
+		if (this.Cha % 2 == 0) {
+			return (this.Cha - 10)/2 ;
+		} else {
+			return (this.Cha - 10)/2 - 1;
+		}
 	}
 	
 	public void setCha(int cha) {

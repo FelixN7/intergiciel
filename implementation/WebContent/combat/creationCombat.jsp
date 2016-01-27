@@ -25,8 +25,7 @@
 				
 			</div>			
 		</div>
-	</div>
-
+	<input type="button" value="lancer le combat">
 	<script type="text/javascript" src="creationCombat.js"></script>
 	
 </div>

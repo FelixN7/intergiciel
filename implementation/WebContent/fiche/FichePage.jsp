@@ -1,3 +1,5 @@
+<%@page import="utilities.TypeDeDes"%>
+<%@page import="utilities.Des"%>
 <%@page import="bean.Armure"%>
 <%@page import="bean.Fiche"%>
 <%@page import="facade.FacadeBonus"%>
@@ -20,7 +22,7 @@
 	href="/JDR/fiche/CreationFiche.css" />
 </head>
 <body>
-
+<%@ include file="/others/bandeau.html" %>
 	<%
 		Fiche f = (Fiche) request.getAttribute("fiche");
 			FacadeBonus fb = (FacadeBonus) request.getAttribute("facadeBonus");
@@ -31,6 +33,7 @@
 			HashMap<String, Integer> competences = f.getCompetences().getComp();
 			System.out.println(competences.toString());
 	%>
+	<div class="fichepage">
 	<table border="0" cellpadding="0" cellspacing="0" class="firstpage">
 
 		<tr>
@@ -726,29 +729,33 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
-		<%
-			if (f.getArmeGauche() == null) {
-		%>
+		<%if (f.getArmeGauche().getNom().equals("main")) { %>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
 			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
-			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%> + <%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%
-			} else {
-		%>
+		<% } else { %>
+			<% if (f.getArmeDroite().equals("main")) { %>
+		<tr>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%> + <%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
+			<td></td>
+		</tr>
+			<% } else { %>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeDroite().getNom()%></td>
 			<td colspan="4" valign="top" class="boxed"><%=bAtt - 2%></td>
-			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeDroite().getDgtsM().toString()%> + <%=f.getCaracteristiques().getModFor()%></td>
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeDroite().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%
-			}
-		%>
+			<% } %>
+		<% } %>
 		<tr>
 			<td height="19" colspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" valign="top" class="blackback2">TYPE</td>
@@ -789,9 +796,7 @@
 			<td colspan="2" valign="top" class="blackback2">CRITICAL</td>
 			<td></td>
 		</tr>
-		<%
-			if (f.getArmeDroite() == null) {
-		%>
+		<% if (f.getArmeDroite().getNom().equals("main")) { %>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
 			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
@@ -799,9 +804,16 @@
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%
-			} else {
-		%>
+		<% } else { %>
+			<% if (f.getArmeGauche().getNom().equals("main")) { %>
+		<tr>
+			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
+			<td colspan="4" valign="top" class="boxed"><%=bAtt%></td>
+			<td colspan="3" valign="top" class="boxed"><%=f.getArmeGauche().getDgtsM().toString()%>+<%=f.getCaracteristiques().getModFor()%></td>
+			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
+			<td></td>
+		</tr>
+			<% } else { %>
 		<tr>
 			<td height="19" colspan="9" valign="top" class="boxed"><%=f.getArmeGauche().getNom()%></td>
 			<td colspan="4" valign="top" class="boxed"><%=bAtt - 6%></td>
@@ -809,9 +821,8 @@
 			<td colspan="2" valign="top" class="boxed"><%=f.getArmeGauche().getMinCrit()%>/x<%=f.getArmeDroite().getFacteurCritique()%></td>
 			<td></td>
 		</tr>
-		<%
-			}
-		%>
+			<% } %>
+		<% } %>	
 		<tr>
 			<td colspan="2" rowspan="2" valign="top" class="blackback2">RANGE</td>
 			<td colspan="3" rowspan="2" valign="top" class="blackback2">TYPE</td>
@@ -864,6 +875,7 @@
 			<td></td>
 		</tr>
 	</table>
+	<br>
 	<table width="580" border="0" cellpadding="0" cellspacing="0"
 		class="page">
 
@@ -1441,7 +1453,7 @@
 			</td>
 		</tr>
 	</table>
-
+	</div>
 </body>
 </html>
 <%}%>

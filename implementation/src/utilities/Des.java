@@ -88,20 +88,28 @@ public class Des implements Serializable{
 		switch(this.type) {
 			case D4 :
 				s = nbDes+"d4" ;
+				break ;
 			case D6 :
 				s = nbDes+"d6" ;
+				break ;
 			case D8 :
 				s = nbDes+"d8" ;
+				break ;
 			case D10 :
 				s = nbDes+"d10" ;
+				break ;
 			case D12 :
 				s = nbDes+"d12" ;
+				break ;
 			case D20 :
 				s = nbDes+"d20" ;
+				break ;
 			case D100 :
-				s = nbDes+"d100" ;	
+				s = nbDes+"d100" ;
+				break ;
 			default :
 				s = null ;	
+				break ;
 		}
 		return s ;
 	}
