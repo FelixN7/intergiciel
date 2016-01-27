@@ -8,12 +8,9 @@
 </head>
 <body>
 
-	<%@ include file="/others/bandeau.html"%>
-	
-	<form action="/JDR/ServPartie?op=partie" method="POST">
-	Partie.
+	<%@ include file="../others/bandeau.html"%>
 
-	<input type="submit" value="lancer un combat">	
+	Partie.
 
 </body>
 </html>

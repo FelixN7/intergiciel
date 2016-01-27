@@ -26,17 +26,17 @@ public class Fiche {
 	@ManyToOne
 	private Partie partie;
 	private int initiative;
-	private int ca ;
+	private int ca;
 	@ManyToOne
 	private Classe classe;
 	@ManyToOne
-	private Race race ;
+	private Race race;
 	private Alignement alignement;
 	@ManyToMany
 	private Collection<Dons> dons ;
 	private int level ;
 	@Column (columnDefinition = "blob")
-	private Competences competences;// n arrive pas a s inserer en bdd 
+	private Competences competences;
 	@ManyToOne
 	private Arme armeGauche;
 	@ManyToOne
@@ -64,7 +64,7 @@ public class Fiche {
 		this.pseudo = nameUt ;
 		this.level = 1 ;
 		this.caracteristiques = c ;
-		//this.competences=comp;
+		this.competences=comp;
 		this.setClasse(classe);
 		this.setRace(race);
 
