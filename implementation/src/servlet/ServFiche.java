@@ -149,7 +149,7 @@ public class ServFiche extends HttpServlet {
 				Fiche fichePerso = f.getFiche(pseudo, personnage);
 				request.setAttribute("fiche", fichePerso);
 				request.setAttribute("facadeBonus", fb );
-				request.getRequestDispatcher("/fiche/FichePage.jsp").forward(request, response);
+				request.getRequestDispatcher("/partie/detailsJoueur.jsp").forward(request, response);
 			}
 		}
 	}

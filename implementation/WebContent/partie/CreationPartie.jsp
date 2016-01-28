@@ -40,21 +40,20 @@
 			</div>
 		</div>
 
-		<form action="/JDR/ServPartie?op=create" method="POST">
+		<form action="/JDR/ServPartie" method="POST">
 			Nom de la partie : 
-			<input type="text" name="nomPartie"/>
+			<input type="text" name="nomPartie" id="nomPartie" onchange="validateSubmit()"/>
 			<div style="display: none">
 				<input type="hidden" name="nbJoueurs" id="nbJoueurs" value="0"/>
 
 				<div id="joueursForm">
 				</div>
-<!-- 				<input type="hidden" name="op" value="create" /> -->
+			<input type="hidden" name="op" value="create"/>
 			</div>
 
-			<input type="submit" value="Lancer la partie"/>
+			<input type="submit" value="Lancer la partie" id="createGameBtn" disabled="disabled"/> 
 		</form>
 	</div>
-
 	<script type="text/javascript" src="creationPartie.js"></script>
 
 </body>

@@ -11,6 +11,8 @@
 <title>Personnages de <%=request.getSession().getAttribute("utilisateur")%></title>
 <link rel="stylesheet" type="text/css" href="others/general.css">
 <link rel="stylesheet" type="text/css" href="/JDR/fiche/affichageFiche.css">
+<link rel="stylesheet" type="text/css" href="fiche/CreationFiche.css">
+
 <script src="/JDR/fiche/detailFiche.js"></script>
 </head>
 <body>

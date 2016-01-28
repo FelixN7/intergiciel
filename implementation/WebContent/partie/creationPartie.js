@@ -16,12 +16,18 @@ function invitePlayer(nomPerso, nomJoueur) {
 	var nbjoueurs = Number($('#nbJoueurs').val()) +1;
 	$('#nbJoueurs').val(nbjoueurs);
 	
+	if (nbjoueurs==1) {
+		validateSubmit();
+	}
+	
 	$('#joueursForm').append(
 		"<div id='joueur" + nbjoueurs + "'>" +
 				"<input type='hidden' name='nomPerso" + nbjoueurs +"' value='" + nomPerso + "'/>" +
 				"<input type='hidden' name='nomJoueur" + nbjoueurs +"' value='" + nomJoueur + "'/>" +		
 		"</div>"		
 	);
+		
+	$("#searchResult").html("");
 }
 
 /**
@@ -30,6 +36,7 @@ function invitePlayer(nomPerso, nomJoueur) {
  */
 
 function searchPlayer(nickName) {
+	
 	
 	$.ajax({
 		url: '/JDR/ServPartie',
@@ -43,4 +50,14 @@ function searchPlayer(nickName) {
 			$("#searchResult").html(htmlret);
 		}
 	});	
+}
+
+
+function validateSubmit() {
+	
+	if ($("#nomPartie").val().length!=0 & $("#nbJoueurs").val()!=0) {
+		$("#createGameBtn").removeAttr("disabled");
+	} else {
+		$("#createGameBtn").attr("disabled","disabled");
+	}
 }

@@ -23,8 +23,12 @@
 	font-weight:bold;
 }
 
-.nomJoueur {
+li.nomJoueur {
 	padding-bottom: 10px;
 }
 
+#emptyGameError {
+	color: red;
+	display:none;	
+}
 
